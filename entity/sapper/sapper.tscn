@@ -1,3 +1,54 @@
-[gd_scene format=3 uid="uid://c37uogod3vrww"]
+[gd_scene load_steps=5 format=3 uid="uid://c37uogod3vrww"]
+
+[ext_resource type="Texture2D" uid="uid://bpf2uc4lh43f7" path="res://entity/sapper/image/sapper-spritesheet.png" id="1_in5lr"]
+
+[sub_resource type="Animation" id="Animation_in5lr"]
+resource_name = "idle_no_bomb"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.43333, 1.6, 1.66667, 3.79118, 3.83333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(1, 1), Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mab4w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3olne"]
+_data = {
+&"RESET": SubResource("Animation_mab4w"),
+&"idle_no_bomb": SubResource("Animation_in5lr")
+}
 
 [node name="Sapper" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_in5lr")
+hframes = 6
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3olne")
+}
+autoplay = "idle_no_bomb"
