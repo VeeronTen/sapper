@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://kqkvasn678ry"]
+[gd_scene load_steps=7 format=4 uid="uid://kqkvasn678ry"]
 
 [ext_resource type="Script" uid="uid://d22scmdflkulk" path="res://stage/demo/demo_stage.gd" id="1_3sebb"]
 [ext_resource type="Texture2D" uid="uid://dskvu0ifsxjhx" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="1_vyskl"]
 [ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="2_w7nxb"]
+[ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://stage/demo/demo_controls.gd" id="4_vte7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vyskl"]
 resource_name = "demo_floor"
@@ -23,6 +24,13 @@ tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAA
 tile_set = SubResource("TileSet_w7nxb")
 
 [node name="Sapper" parent="." instance=ExtResource("2_w7nxb")]
+unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Sapper"]
 zoom = Vector2(8, 8)
+
+[node name="DemoControls" type="Node" parent="."]
+script = ExtResource("4_vte7o")
+
+[connection signal="is_moving_changed" from="DemoControls" to="." method="_on_demo_controls_is_moving_changed"]
+[connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c37uogod3vrww"]
+[gd_scene load_steps=9 format=3 uid="uid://c37uogod3vrww"]
 
 [ext_resource type="Texture2D" uid="uid://bpf2uc4lh43f7" path="res://entity/sapper/image/sapper-spritesheet.png" id="1_in5lr"]
+[ext_resource type="Script" uid="uid://bftdrom7daad0" path="res://entity/sapper/sapper.gd" id="1_mab4w"]
 
 [sub_resource type="Animation" id="Animation_in5lr"]
 resource_name = "idle_no_bomb"
@@ -93,6 +94,7 @@ _data = {
 }
 
 [node name="Sapper" type="CharacterBody2D"]
+script = ExtResource("1_mab4w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_in5lr")
