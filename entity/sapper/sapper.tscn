@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve" id="Curve_mab4w"]
 _limits = [1.0, 2.0, 0.0, 4.0]
-_data = [Vector2(0.00274474, 1), 0.0, 0.0, 0, 0, Vector2(1.7415, 1.00927), 0.0, 0.0, 0, 0, Vector2(3.66742, 2), 0.0608421, 0.0, 0, 0]
+_data = [Vector2(0.00274474, 1), 0.0, 0.0, 0, 0, Vector2(1.7415, 1.00927), 0.0, 0.0, 0, 0, Vector2(3.67064, 1.5811), 0.0608421, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Animation" id="Animation_mab4w"]
