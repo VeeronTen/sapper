@@ -1,8 +1,6 @@
 class_name Sapper
 extends CharacterBody2D
 
-#fixme первый кадр в анимации ходьбы - стояние
-
 @export var walk_speed: float = 2700.0
 @export var time_to_walk_speed_modifier: Curve
 
