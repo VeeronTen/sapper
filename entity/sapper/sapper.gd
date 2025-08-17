@@ -11,7 +11,7 @@ extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO:
 	set(value):
-		if (value != Vector2.ZERO): _sprite_2d.flip_h = value.x < 0.0
+		if (value.x != 0): _sprite_2d.flip_h = value.x < 0.0
 		direction = value
 
 var is_moving: bool = false:
