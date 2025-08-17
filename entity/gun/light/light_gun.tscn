@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://qb3w45t4vdnh"]
+
+[ext_resource type="Script" uid="uid://juyrg2fub5yp" path="res://entity/gun/light/light_gun.gd" id="1_looag"]
+[ext_resource type="Texture2D" uid="uid://fmvafa7fgr5w" path="res://entity/gun/light/image/light-gun.png" id="1_vbp2j"]
+
+[node name="LightGun" type="Node2D"]
+script = ExtResource("1_looag")
+
+[node name="Pivot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+unique_name_in_owner = true
+position = Vector2(6, 0)
+texture = ExtResource("1_vbp2j")
