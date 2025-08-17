@@ -2,7 +2,7 @@ class_name Sapper
 extends CharacterBody2D
 
 @export var walk_speed: float = 2700.0
-@export var walk_backwards_penalty: float = 0.65
+@export var walk_backwards_penalty: float = 0.80
 @export var time_to_walk_speed_modifier: Curve
 
 @onready var _sprite_2d: Sprite2D = %Sprite2D
