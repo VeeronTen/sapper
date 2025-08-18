@@ -28,9 +28,11 @@ _health = NodePath("../HealthComponent")
 shape = SubResource("RectangleShape2D_bkyos")
 debug_color = Color(0.317647, 0.615686, 0.32549, 0.419608)
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -11)
 script = ExtResource("3_wblws")
+show_debug_healthbar = true
 _initial_value = 10.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 

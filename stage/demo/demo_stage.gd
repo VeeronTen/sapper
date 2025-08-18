@@ -22,6 +22,8 @@ extends Node2D
 @onready var _sapper: Sapper = %Sapper
 @onready var _light_gun: LightGun = %LightGun
 
+var _rng = RandomNumberGenerator.new()
+
 func _ready() -> void:
 	DebugDraw2D.config.text_default_size = 25
 	
@@ -37,3 +39,12 @@ func _on_demo_controls_pointer_position_changed(pointer: Vector2) -> void:
 
 func _on_demo_controls_pointer_click(pointer: Vector2) -> void:
 	_light_gun.shoot()
+
+
+func _on_spawn_dummy_timer_timeout() -> void:
+	var dummy: Dummy = Dummy.new_scene()
+	add_child(dummy)
+	var random_x = _rng.randf_range(-1.0, 1.0)
+	var random_y = _rng.randf_range(-1.0, 1.0)
+	var direction = Vector2(random_x, random_y).normalized()
+	dummy.global_position = _sapper.global_position + direction * 40

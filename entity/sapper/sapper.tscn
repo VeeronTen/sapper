@@ -102,7 +102,6 @@ _data = {
 up_direction = Vector2(0, 1)
 script = ExtResource("1_mab4w")
 walk_speed = null
-walk_backword_penalty = null
 time_to_walk_speed_modifier = SubResource("Curve_mab4w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

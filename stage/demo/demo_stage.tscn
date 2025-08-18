@@ -40,7 +40,12 @@ script = ExtResource("4_vte7o")
 [node name="Dummy" parent="." instance=ExtResource("6_fk4h2")]
 position = Vector2(69, -27)
 
+[node name="SpawnDummyTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="is_moving_changed" from="DemoControls" to="." method="_on_demo_controls_is_moving_changed"]
 [connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]
 [connection signal="pointer_click" from="DemoControls" to="." method="_on_demo_controls_pointer_click"]
 [connection signal="pointer_position_changed" from="DemoControls" to="." method="_on_demo_controls_pointer_position_changed"]
+[connection signal="timeout" from="SpawnDummyTimer" to="." method="_on_spawn_dummy_timer_timeout"]
