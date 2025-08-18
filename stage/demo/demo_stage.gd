@@ -16,6 +16,8 @@ extends Node2D
 #todo uid (можн охранить в статик поле файла, рядом с которым лежит)
 #todo сигналы можно привязывать к своим методам, но можно ли несколько сигналов привязать к одному методу? Что лучше, делать явные функции обработки сигналов или все привязывать через движок и смотреть тулзой че куда
 #todo Сакутин говорил, что можно конфиг ноды в сцене унести в отдельный файл, чтоб сцену было легче множить. Как? И ещё и какие Бест практис для совместной разработке игр. Особенно в годоте
+#todo особая зона на вразах, в которой хитмаркеры появляются
+#todo сделать так, что на определенной дистанции мы стреляем по земле, дальше - в воздух
 
 @onready var _sapper: Sapper = %Sapper
 @onready var _light_gun: LightGun = %LightGun
@@ -32,3 +34,6 @@ func _on_demo_controls_move_direction_changed(direction: Vector2) -> void:
 func _on_demo_controls_pointer_position_changed(pointer: Vector2) -> void:
 	_light_gun.pointer_position = pointer
 	_sapper.watch_position = pointer
+
+func _on_demo_controls_pointer_click(pointer: Vector2) -> void:
+	_light_gun.shoot()

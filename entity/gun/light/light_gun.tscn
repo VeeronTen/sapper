@@ -13,3 +13,12 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(6, 0)
 texture = ExtResource("1_vbp2j")
+
+[node name="ShootingRay" type="RayCast2D" parent="Pivot/Sprite2D"]
+unique_name_in_owner = true
+position = Vector2(3, -0.5)
+target_position = Vector2(0, 0)
+collision_mask = 1073741824
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false

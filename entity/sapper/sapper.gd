@@ -3,10 +3,13 @@ extends CharacterBody2D
 
 @export var walk_speed: float = 2700.0
 @export var walk_backwards_penalty: float = 0.80
+@export var carrying_bomb_penalty: float = 0.80
 @export var time_to_walk_speed_modifier: Curve
 
 @onready var _sprite_2d: Sprite2D = %Sprite2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
+
+var _is_carrying_bomb: bool = true
 
 var watch_position: Vector2 = Vector2.RIGHT:
 	set(value):
@@ -34,13 +37,17 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if is_moving: _walking_time += delta
-	var move_speed = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)
-	if _is_walking_backwards():
-		move_speed *= walk_backwards_penalty
+	var current_walk_speed = _compute_walk_speed()
 	#hack анимации играть в аним ноде
-	_animation_player.speed_scale = move_speed / walk_speed
-	velocity = move_speed * move_direction * delta
+	_animation_player.speed_scale = current_walk_speed / walk_speed
+	velocity = current_walk_speed * move_direction * delta
 	move_and_slide()
 
+func _compute_walk_speed() -> float:
+	var result: float = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)
+	if _is_walking_backwards(): result *= walk_backwards_penalty
+	if _is_carrying_bomb: result *= carrying_bomb_penalty
+	return result
+		
 func _is_walking_backwards() -> bool:
 	return (watch_position - global_position).dot(move_direction) < 0.0

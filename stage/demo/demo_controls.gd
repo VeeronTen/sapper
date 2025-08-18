@@ -3,6 +3,7 @@ extends Node2D
 signal move_direction_changed(direction: Vector2)
 signal is_moving_changed(is_moving: bool)
 signal pointer_position_changed(pointer: Vector2)
+signal pointer_click(pointer: Vector2)
 
 var _prev_move_direction: Vector2 = Vector2.ZERO
 var _prev_is_moving: bool = false
@@ -19,3 +20,8 @@ func _physics_process(_delta: float) -> void:
 		if is_moving != _prev_is_moving:
 			is_moving_changed.emit(is_moving)
 			_prev_is_moving = is_moving
+			
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			pointer_click.emit(get_global_mouse_position())
