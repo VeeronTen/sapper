@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7mytol7o1133"]
 
 [ext_resource type="Script" uid="uid://dyq3k47m6upu3" path="res://entity/dummy/dummy.gd" id="1_ttpty"]
-[ext_resource type="Texture2D" uid="uid://cwxlgno3x5w63" path="res://icon.svg" id="1_vlewu"]
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="2_bkyos"]
+[ext_resource type="Texture2D" uid="uid://2wdq14520vck" path="res://entity/dummy/image/dummy.png" id="2_ttpty"]
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="3_wblws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
@@ -15,8 +15,7 @@ size = Vector2(16, 16)
 script = ExtResource("1_ttpty")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("1_vlewu")
+texture = ExtResource("2_ttpty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vlewu")
