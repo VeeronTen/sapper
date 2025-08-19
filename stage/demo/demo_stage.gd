@@ -18,6 +18,7 @@ extends Node2D
 #todo Сакутин говорил, что можно конфиг ноды в сцене унести в отдельный файл, чтоб сцену было легче множить. Как? И ещё и какие Бест практис для совместной разработке игр. Особенно в годоте
 #todo особая зона на вразах, в которой хитмаркеры появляются
 #todo сделать так, что на определенной дистанции мы стреляем по земле, дальше - в воздух
+#todo давать бонус при заспаме стрельбы + краснеть оружие, непонятно, должны ли проахи уменьшать урон следующего попадания при заспаме
 
 @onready var _sapper: Sapper = %Sapper
 @onready var _light_gun: LightGun = %LightGun
@@ -25,6 +26,7 @@ extends Node2D
 var _rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	#todo наконец-то чтото для автолоада?
 	DebugDraw2D.config.text_default_size = 25
 	
 func _on_demo_controls_is_moving_changed(is_moving: bool) -> void:
