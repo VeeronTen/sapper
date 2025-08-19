@@ -23,7 +23,7 @@ extends Node2D
 @onready var _sapper: Sapper = %Sapper
 @onready var _light_gun: LightGun = %LightGun
 
-var _rng = RandomNumberGenerator.new()
+var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	#todo наконец-то чтото для автолоада?
@@ -39,14 +39,13 @@ func _on_demo_controls_pointer_position_changed(pointer: Vector2) -> void:
 	_light_gun.pointer_position = pointer
 	_sapper.watch_position = pointer
 
-func _on_demo_controls_pointer_click(pointer: Vector2) -> void:
+func _on_demo_controls_pointer_click(_pointer: Vector2) -> void:
 	_light_gun.shoot()
-
 
 func _on_spawn_dummy_timer_timeout() -> void:
 	var dummy: Dummy = Dummy.new_scene()
 	add_child(dummy)
-	var random_x = _rng.randf_range(-1.0, 1.0)
-	var random_y = _rng.randf_range(-1.0, 1.0)
-	var direction = Vector2(random_x, random_y).normalized()
+	var random_x: float = _rng.randf_range(-1.0, 1.0)
+	var random_y: float = _rng.randf_range(-1.0, 1.0)
+	var direction: Vector2 = Vector2(random_x, random_y).normalized()
 	dummy.global_position = _sapper.global_position + direction * 40

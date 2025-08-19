@@ -8,7 +8,7 @@ signal pointer_click(pointer: Vector2)
 var _prev_move_direction: Vector2 = Vector2.ZERO
 var _prev_is_moving: bool = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pointer_position_changed.emit(get_global_mouse_position())
 	
 func _physics_process(_delta: float) -> void:
@@ -23,5 +23,6 @@ func _physics_process(_delta: float) -> void:
 			
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var mouse_event: InputEventMouseButton = event
+		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
 			pointer_click.emit(get_global_mouse_position())

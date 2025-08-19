@@ -11,16 +11,18 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is DamagingAreaComponent:
-		take_damage(area.get_damage())
+		var damaging_area: DamagingAreaComponent = area
+		take_damage(damaging_area.get_damage())
 #todo damaging должен искать а не наоборот
 
 func take_damage(damage: Damage) -> void:
-	var resulting_damage = damage
+	var resulting_damage: Damage = damage
 	if _damage_filter != null:
 		resulting_damage = _damage_filter.filter_damage(resulting_damage)
 	_health.take_damage(resulting_damage)
 
 func _recolor_debug_areas() -> void:
-	for child in get_children():
+	for child: Node in get_children():
 		if child is CollisionShape2D:
-			child.debug_color = Color.hex(0x519d536b)
+			var collision: CollisionShape2D = child
+			collision.debug_color = Color.hex(0x519d536b)

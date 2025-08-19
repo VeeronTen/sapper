@@ -15,5 +15,5 @@ var pointer_position: Vector2 = Vector2.ZERO:
 		pointer_position = value
 
 func shoot() -> void:
-	var distance = pointer_position.distance_to(_damaging_ray_component.global_position)
+	var distance: float = pointer_position.distance_to(_damaging_ray_component.global_position)
 	_damaging_ray_component.shoot(distance)

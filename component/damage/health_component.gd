@@ -21,6 +21,6 @@ func get_current_value() -> float:
 
 func _draw() -> void:
 	if not show_debug_healthbar: return
-	var to_left_offset = -_initial_value / 2
+	var to_left_offset: float = -_initial_value / 2
 	draw_rect(Rect2(to_left_offset, 0, _initial_value, 4), Color.GREEN, false)
 	draw_rect(Rect2(to_left_offset, 0, _current_value, 4), Color.GREEN)
