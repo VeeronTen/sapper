@@ -1,4 +1,4 @@
-class_name DamagingComponent
+class_name DamagingAreaComponent
 extends Area2D
 
 @export var _damage: Damage

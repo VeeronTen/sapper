@@ -76,7 +76,7 @@ ui_down={
 [layer_names]
 
 2d_physics/layer_31="DamageableComponent"
-2d_physics/layer_32="DamagingComponent"
+2d_physics/layer_32="DamagingAreaComponent"
 
 [rendering]
 

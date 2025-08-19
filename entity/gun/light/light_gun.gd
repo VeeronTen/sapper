@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var _pivot: Node2D = %Pivot
 @onready var _sprite_2d: Sprite2D = %Sprite2D
-@onready var _shooting_ray: RayCast2D = %ShootingRay
+@onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
 
 var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -13,14 +13,7 @@ var pointer_position: Vector2 = Vector2.ZERO:
 		else: 
 			_sprite_2d.scale.y = 1
 		pointer_position = value
-		
-#todo не так втупую дамажить, а тоже через компонент
+
 func shoot() -> void:
-	_shooting_ray.target_position = Vector2.ZERO
-	_shooting_ray.target_position.x = pointer_position.distance_to(_shooting_ray.global_position)
-	_shooting_ray.	force_raycast_update()
-	if _shooting_ray.is_colliding():
-		var node = _shooting_ray.get_collider() as DamageableComponent
-		var dmg = Damage.new()
-		dmg.value = 3
-		node.take_damage(dmg)
+	var distance = pointer_position.distance_to(_damaging_ray_component.global_position)
+	_damaging_ray_component.shoot(distance)

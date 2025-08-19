@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://qb3w45t4vdnh"]
+[gd_scene load_steps=6 format=3 uid="uid://qb3w45t4vdnh"]
 
 [ext_resource type="Script" uid="uid://juyrg2fub5yp" path="res://entity/gun/light/light_gun.gd" id="1_looag"]
 [ext_resource type="Texture2D" uid="uid://fmvafa7fgr5w" path="res://entity/gun/light/image/light-gun.png" id="1_vbp2j"]
+[ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="3_w4ufm"]
+[ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="4_l0bhc"]
+
+[sub_resource type="Resource" id="Resource_47k46"]
+script = ExtResource("4_l0bhc")
+value = 3.0
+metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [node name="LightGun" type="Node2D"]
 script = ExtResource("1_looag")
@@ -14,11 +21,7 @@ unique_name_in_owner = true
 position = Vector2(6, 0)
 texture = ExtResource("1_vbp2j")
 
-[node name="ShootingRay" type="RayCast2D" parent="Pivot/Sprite2D"]
+[node name="DamagingRayComponent" parent="Pivot/Sprite2D" instance=ExtResource("3_w4ufm")]
 unique_name_in_owner = true
 position = Vector2(3, -0.5)
-target_position = Vector2(0, 0)
-collision_mask = 1073741824
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
+_initial_damage = SubResource("Resource_47k46")

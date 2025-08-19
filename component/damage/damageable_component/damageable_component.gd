@@ -10,7 +10,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint: _recolor_debug_areas()
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is DamagingComponent:
+	if area is DamagingAreaComponent:
 		take_damage(area.get_damage())
 #todo damaging должен искать а не наоборот
 
