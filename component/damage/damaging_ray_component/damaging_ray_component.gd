@@ -12,9 +12,10 @@ extends RayCast2D
 		queue_redraw()
 
 func _ready() -> void:
-	assert(_initial_damage != null, "damage must be set")
 	_direction = _direction
-	
+	if not Engine.is_editor_hint():
+		assert(_initial_damage != null, "damage must be set")
+		
 #fixme все вот такие дровы косячат и будут отображены не так для других масштабов, что же делать
 func _draw() -> void:
 	if not Engine.is_editor_hint(): return
@@ -23,10 +24,10 @@ func _draw() -> void:
 # todo чтоб врезался в вещи (layer 1?), нужно два луча и смотреть, какой врезался раньше?
 func shoot(distance: float) -> void:
 	target_position.x = distance
-	var damage = _initial_damage
+	var damage: Damage = _initial_damage
 	force_raycast_update()
 	while is_colliding():
-		var damageable = get_collider() as DamageableComponent
+		var damageable: DamageableComponent = get_collider()
 		damageable.take_damage(damage)
 		if not _is_piercing: break
 		add_exception(damageable)
