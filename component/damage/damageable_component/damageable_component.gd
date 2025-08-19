@@ -9,12 +9,6 @@ extends Area2D
 func _ready() -> void:
 	if Engine.is_editor_hint: _recolor_debug_areas()
 
-func _on_area_entered(area: Area2D) -> void:
-	if area is DamagingAreaComponent:
-		var damaging_area: DamagingAreaComponent = area
-		take_damage(damaging_area.get_damage())
-#todo damaging должен искать а не наоборот
-
 func take_damage(damage: Damage) -> void:
 	var resulting_damage: Damage = damage
 	if _damage_filter != null:

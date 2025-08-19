@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://d18np84nt0e1" path="res://component/damage/damaging_area_component/damaging_area_component.gd" id="1_1jm2e"]
 
 [node name="DamagingComponent" type="Area2D"]
-collision_layer = 2147483648
-collision_mask = 0
-monitoring = false
+collision_layer = 0
+collision_mask = 1073741824
+monitorable = false
 script = ExtResource("1_1jm2e")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
