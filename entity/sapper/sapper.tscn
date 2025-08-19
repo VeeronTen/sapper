@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c37uogod3vrww"]
+[gd_scene load_steps=11 format=3 uid="uid://c37uogod3vrww"]
 
 [ext_resource type="Texture2D" uid="uid://bpf2uc4lh43f7" path="res://entity/sapper/image/sapper-spritesheet.png" id="1_in5lr"]
 [ext_resource type="Script" uid="uid://bftdrom7daad0" path="res://entity/sapper/sapper.gd" id="1_mab4w"]
@@ -98,10 +98,13 @@ _data = {
 &"walk_no_bomb": SubResource("Animation_mxqki")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mab4w"]
+radius = 4.0
+height = 14.0
+
 [node name="Sapper" type="CharacterBody2D"]
 up_direction = Vector2(0, 1)
 script = ExtResource("1_mab4w")
-walk_speed = null
 time_to_walk_speed_modifier = SubResource("Curve_mab4w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -115,3 +118,7 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_3olne")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_mab4w")

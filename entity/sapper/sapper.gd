@@ -37,10 +37,11 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if is_moving: _walking_time += delta
-	var current_walk_speed = _compute_walk_speed()
+	var current_walk_speed: float = _compute_walk_speed()
 	#hack анимации играть в аним ноде
 	_animation_player.speed_scale = current_walk_speed / walk_speed
 	velocity = current_walk_speed * move_direction * delta
+	@warning_ignore("return_value_discarded")
 	move_and_slide()
 
 func _compute_walk_speed() -> float:
