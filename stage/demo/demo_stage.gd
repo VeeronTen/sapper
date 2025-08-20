@@ -24,10 +24,6 @@ extends Node2D
 @onready var _light_gun: LightGun = %LightGun
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
-
-func _ready() -> void:
-	#todo наконец-то чтото для автолоада?
-	DebugDraw2D.config.text_default_size = 25
 	
 func _on_demo_controls_is_moving_changed(is_moving: bool) -> void:
 	_sapper.is_moving = is_moving
