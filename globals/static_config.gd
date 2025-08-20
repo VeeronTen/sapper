@@ -9,4 +9,4 @@ func _setup_debug_draw() -> void:
 	
 func _setup_damaging_ray_component_debug() -> void:
 	DamagingRayComponentDebug.draw_hit_rays = true
-	DamagingRayComponentDebug.draw_hit_rays_time = 1.5
+	DamagingRayComponentDebug.draw_hit_rays_time = 3.5
