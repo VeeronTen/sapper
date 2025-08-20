@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://mvxp5ceg0qt1"]
+[gd_scene load_steps=3 format=3 uid="uid://mvxp5ceg0qt1"]
 
 [ext_resource type="Script" uid="uid://cj7lyc6jxbtmp" path="res://component/damage/damaging_ray_component/damaging_ray_component.gd" id="1_aeoty"]
+[ext_resource type="Script" uid="uid://coofqsbov03ng" path="res://component/damage/damaging_ray_component/damaging_ray_compontnt_debug.gd" id="2_bk42a"]
 
 [node name="DamagingRayComponent" type="RayCast2D"]
 target_position = Vector2(0, 0)
@@ -9,3 +10,9 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("1_aeoty")
+
+[node name="DamagingRayComponentDebug" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+script = ExtResource("2_bk42a")
+metadata/_custom_type_script = "uid://coofqsbov03ng"
