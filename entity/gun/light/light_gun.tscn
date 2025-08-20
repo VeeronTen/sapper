@@ -12,6 +12,8 @@ metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [node name="LightGun" type="Node2D"]
 script = ExtResource("1_looag")
+_max_distance = 100.0
+_distance_to_shoot_above_ground = 35.0
 
 [node name="Pivot" type="Node2D" parent="."]
 unique_name_in_owner = true
