@@ -19,6 +19,7 @@ func take_damage(damage: Damage) -> void:
 func get_current_value() -> float:
 	return _current_value
 
+#todo сделать сценой, чтобы порядок отрисовки сделать. или без сцены
 func _draw() -> void:
 	if not show_debug_healthbar: return
 	var to_left_offset: float = -_initial_value / 2
