@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://qb3w45t4vdnh"]
+[gd_scene load_steps=7 format=3 uid="uid://qb3w45t4vdnh"]
 
 [ext_resource type="Script" uid="uid://juyrg2fub5yp" path="res://entity/gun/light/light_gun.gd" id="1_looag"]
 [ext_resource type="Texture2D" uid="uid://fmvafa7fgr5w" path="res://entity/gun/light/image/light-gun.png" id="1_vbp2j"]
 [ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="3_w4ufm"]
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="4_l0bhc"]
+[ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="5_47k46"]
 
 [sub_resource type="Resource" id="Resource_47k46"]
 script = ExtResource("4_l0bhc")
@@ -28,3 +29,4 @@ texture = ExtResource("1_vbp2j")
 unique_name_in_owner = true
 position = Vector2(3, -0.5)
 _initial_damage = SubResource("Resource_47k46")
+_collision_filter = ExtResource("5_47k46")

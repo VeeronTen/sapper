@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DamageableComponentCollisionFilterSame" load_steps=2 format=3 uid="uid://xk5ss8evnc3k"]
+
+[ext_resource type="Script" uid="uid://b8clepcihggto" path="res://component/damage/damageable_component/collision_filter/damageable_component_collision_filter_same.gd" id="1_a7qm1"]
+
+[resource]
+script = ExtResource("1_a7qm1")
+debug_color_damaging = Color(0.741176, 0.243137, 0.0862745, 0.627451)
+debug_color_damageable = Color(0, 0.470588, 0, 0.368627)
+metadata/_custom_type_script = "uid://b8clepcihggto"

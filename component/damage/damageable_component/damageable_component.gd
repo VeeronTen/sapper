@@ -1,9 +1,18 @@
+@tool
 class_name DamageableComponent
 extends Area2D
 
+@export var collision_filter: DamageableComponentCollisionFilter
 @export var _damage_filter: DamageFilter
 @export var _health: HealthComponent
+
+@onready var _collisions_recolorer: CollisionsRecolorer = %CollisionsRecolorer
+	
 #todo как запретить создание ноды и оставить только сцену?
+func _ready() -> void:
+	_collisions_recolorer.collisions_color = collision_filter.debug_color_damageable
+	assert(_health != null, "health must be set")
+	assert(collision_filter != null, "coolision filter must be set")
 
 func take_damage(damage: Damage) -> void:
 	var resulting_damage: Damage = damage

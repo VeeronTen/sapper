@@ -11,7 +11,7 @@ script = ExtResource("1_njdtc")
 metadata/_custom_type_script = "uid://cqetxqmmcc1pj"
 
 [node name="CollisionsRecolorer" type="Node" parent="." node_paths=PackedStringArray("target")]
+unique_name_in_owner = true
 script = ExtResource("2_jt80t")
-collisions_color = Color(0, 0.470588, 0, 0.368627)
 target = NodePath("..")
 metadata/_custom_type_script = "uid://bueoaiyrwqcss"

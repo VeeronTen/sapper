@@ -32,6 +32,7 @@ var pointer_position: Vector2 = Vector2.ZERO:
 		else: 
 			_sprite_2d.scale.y = 1
 		pointer_position = value
+# todo получается фильтр должен и по лежащим сработать целям
 
 func shoot() -> void:
 	_damaging_ray_component.rotation_degrees = _rng.randf_range(-_base_spread_angle/2, _base_spread_angle/2)

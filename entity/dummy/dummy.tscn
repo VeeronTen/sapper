@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7mytol7o1133"]
+[gd_scene load_steps=8 format=3 uid="uid://c7mytol7o1133"]
 
 [ext_resource type="Script" uid="uid://dyq3k47m6upu3" path="res://entity/dummy/dummy.gd" id="1_ttpty"]
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="2_bkyos"]
 [ext_resource type="Texture2D" uid="uid://2wdq14520vck" path="res://entity/dummy/image/dummy.png" id="2_ttpty"]
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="3_wblws"]
+[ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="4_avckc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
 size = Vector2(14, 14)
@@ -21,11 +22,12 @@ texture = ExtResource("2_ttpty")
 shape = SubResource("RectangleShape2D_vlewu")
 
 [node name="DamageableComponent" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
+collision_filter = ExtResource("4_avckc")
 _health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent"]
 shape = SubResource("RectangleShape2D_bkyos")
-debug_color = Color(0.317647, 0.615686, 0.32549, 0.419608)
+debug_color = Color(0, 0.470588, 0, 0.74902)
 
 [node name="HealthComponent" type="Node2D" parent="."]
 unique_name_in_owner = true
