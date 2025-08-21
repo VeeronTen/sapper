@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgxmj8nsmy30g"]
+[gd_scene load_steps=3 format=3 uid="uid://cgxmj8nsmy30g"]
 
 [ext_resource type="Script" uid="uid://d18np84nt0e1" path="res://component/damage/damaging_area_component/damaging_area_component.gd" id="1_1jm2e"]
+[ext_resource type="Script" uid="uid://bueoaiyrwqcss" path="res://addons/personal/collisions_recolorer/collisions_recolorer.gd" id="2_ot678"]
 
-[node name="DamagingComponent" type="Area2D"]
+[node name="DamagingAreaComponent" type="Area2D"]
 collision_layer = 0
 collision_mask = 1073741824
 monitorable = false
 script = ExtResource("1_1jm2e")
+
+[node name="CollisionsRecolorer" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_ot678")
+collisions_color = Color(0.741176, 0.243137, 0.0862745, 0.627451)
+target = NodePath("..")
+metadata/_custom_type_script = "uid://bueoaiyrwqcss"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
