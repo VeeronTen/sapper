@@ -9,6 +9,7 @@ extends Area2D
 @onready var _collisions_recolorer: CollisionsRecolorer = %CollisionsRecolorer
 	
 #todo как запретить создание ноды и оставить только сцену?
+#todo должен бвть еще damage filter для друзей/врагов, то есть будет несколько измерений, а сейм должен быть стратегией разрешения а не прямым наследником
 func _ready() -> void:
 	_collisions_recolorer.collisions_color = collision_filter.debug_color_damageable
 	assert(_health != null, "health must be set")
