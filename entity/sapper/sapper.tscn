@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c37uogod3vrww"]
+[gd_scene load_steps=15 format=3 uid="uid://c37uogod3vrww"]
 
 [ext_resource type="Texture2D" uid="uid://bpf2uc4lh43f7" path="res://entity/sapper/image/sapper-spritesheet.png" id="1_in5lr"]
 [ext_resource type="Script" uid="uid://bftdrom7daad0" path="res://entity/sapper/sapper.gd" id="1_mab4w"]
+[ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="4_bnsai"]
+[ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="4_xmvwd"]
+[ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="5_e3idf"]
 
 [sub_resource type="Curve" id="Curve_mab4w"]
 _limits = [1.0, 2.0, 0.0, 4.0]
@@ -102,6 +105,9 @@ _data = {
 radius = 4.0
 height = 14.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ollty"]
+size = Vector2(8, 2)
+
 [node name="Sapper" type="CharacterBody2D"]
 up_direction = Vector2(0, 1)
 script = ExtResource("1_mab4w")
@@ -122,3 +128,19 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_mab4w")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+position = Vector2(0, -10)
+script = ExtResource("5_e3idf")
+show_debug_healthbar = true
+_initial_value = 3.0
+metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
+
+[node name="DamageableComponent" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("4_xmvwd")]
+collision_filter = ExtResource("4_bnsai")
+_health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_ollty")
+debug_color = Color(0, 0.470588, 0, 0.74902)

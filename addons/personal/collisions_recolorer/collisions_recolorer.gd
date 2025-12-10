@@ -9,6 +9,9 @@ extends Node
 @export var target: Node
 
 #todo унести в плагин
+#todo как-то запретить делать ноду, только сцену? или проверять на всех наследников
+# улетает в минус отображение, если не умирать, надо как-то подизменить
+# размер настраиваемый нужненв
 func _ready() -> void:
 	if Engine.is_editor_hint: _recolor_debug_areas()
 
