@@ -34,6 +34,7 @@ var pointer_position: Vector2 = Vector2.ZERO:
 		pointer_position = value
 # todo получается фильтр должен и по лежащим сработать целям
 
+# todo Вот тут хотел жестко логику менять с стрельбой по высоте и т д
 func shoot() -> void:
 	_damaging_ray_component.rotation_degrees = _rng.randf_range(-_base_spread_angle/2, _base_spread_angle/2)
 	var horizontal_diviation = abs(_damaging_ray_component.rotation_degrees)/(_base_spread_angle/2)

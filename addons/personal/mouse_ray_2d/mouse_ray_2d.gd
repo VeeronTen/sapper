@@ -3,7 +3,7 @@
 class_name MouseRay2D 
 extends RayCast2D
 ## A ray to cast from and to the mouse position
-
+# todo подумать над выносом этого в сцену, чтобы зафиксировать параметры? 
 var _restrictions: Restrictions = Restrictions.new()
 
 func _process(_delta: float) -> void:
