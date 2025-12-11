@@ -27,11 +27,12 @@ _health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent"]
 shape = SubResource("RectangleShape2D_bkyos")
-debug_color = Color(0, 0.470588, 0, 0.74902)
+debug_color = Color(0, 0.470588, 0, 0.368627)
 
 [node name="HealthComponent" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -11)
+position = Vector2(0, -10.000001)
+scale = Vector2(1.5999994, 0.6000006)
 script = ExtResource("3_wblws")
 show_debug_healthbar = true
 _initial_value = 10.0
