@@ -42,7 +42,7 @@ unique_name_in_owner = true
 script = ExtResource("4_vte7o")
 
 [node name="Dummy" parent="." instance=ExtResource("6_fk4h2")]
-position = Vector2(69, -27)
+position = Vector2(69, 32)
 
 [node name="SpawnDummyTimer" type="Timer" parent="."]
 wait_time = 3.0

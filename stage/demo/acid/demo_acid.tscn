@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_ndf6f"]
 script = ExtResource("3_y51hs")
 value = 1.0
+is_continuous = true
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2vgr"]
