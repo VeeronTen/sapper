@@ -1,7 +1,6 @@
 extends Node2D
 #todo тайлмап
 #todo паралакс
-#todo tweener
 #todo backBufferCopy
 #todo локализация
 #todo сохранение загрузка

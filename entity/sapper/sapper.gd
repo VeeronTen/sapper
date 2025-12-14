@@ -4,16 +4,19 @@ extends CharacterBody2D
 @export var walk_speed: float = 2700.0
 @export var walk_backwards_penalty: float = 0.80
 @export var carrying_bomb_penalty: float = 0.80
+@export var horizontal_flip_duration: float = 0.4
 @export var time_to_walk_speed_modifier: Curve
 
 @onready var _sprite_2d: Sprite2D = %Sprite2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 
 var _is_carrying_bomb: bool = true
+var _sprite_flip_tween: Tween = create_tween()
+var _is_sprite_gonna_flip: bool = false 
 
 var watch_position: Vector2 = Vector2.RIGHT:
 	set(value):
-		_sprite_2d.flip_h = global_position.x > value.x
+		_flip_sprit_horizontal(global_position.x > value.x)
 		watch_position = value
 		
 var move_direction: Vector2 = Vector2.ZERO
@@ -52,3 +55,17 @@ func _compute_walk_speed() -> float:
 		
 func _is_walking_backwards() -> bool:
 	return (watch_position - global_position).dot(move_direction) < 0.0
+
+#TODO @warning_ignore("return_value_discarded") в плагине не ворнить
+func _flip_sprit_horizontal(flip_h: bool) -> void:
+	if _is_sprite_gonna_flip == flip_h: return
+	_is_sprite_gonna_flip = flip_h
+	_sprite_flip_tween.kill()
+	_sprite_flip_tween = create_tween()
+	const full_flip_difference: float = 2
+	var final_scale: float = 1
+	if flip_h: final_scale = -1
+	var needed_flip_difference: float = absf(final_scale - _sprite_2d.scale.x)
+	var duration: float = horizontal_flip_duration * (needed_flip_difference / full_flip_difference)
+	_sprite_flip_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_sprite_flip_tween.tween_property(_sprite_2d, "scale:x", final_scale, duration)	
