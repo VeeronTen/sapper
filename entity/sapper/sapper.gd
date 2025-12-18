@@ -12,7 +12,7 @@ extends CharacterBody2D
 
 var _is_carrying_bomb: bool = true
 var _sprite_flip_tween: Tween = create_tween()
-var _is_sprite_gonna_flip: bool = false 
+var _sprite_is_flipped_h_or_gonna: bool = false 
 
 var watch_position: Vector2 = Vector2.RIGHT:
 	set(value):
@@ -61,8 +61,8 @@ func _is_walking_backwards() -> bool:
 
 #TODO @warning_ignore("return_value_discarded") в плагине не ворнить
 func _flip_sprit_horizontal(flip_h: bool) -> void:
-	if _is_sprite_gonna_flip == flip_h: return
-	_is_sprite_gonna_flip = flip_h
+	if _sprite_is_flipped_h_or_gonna == flip_h: return
+	_sprite_is_flipped_h_or_gonna = flip_h
 	_sprite_flip_tween.kill()
 	_sprite_flip_tween = create_tween()
 	const full_flip_difference: float = 2
