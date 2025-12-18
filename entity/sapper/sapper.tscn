@@ -137,11 +137,12 @@ show_debug_healthbar = true
 _initial_value = 3.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 
-[node name="DamageableComponent" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("4_xmvwd")]
+[node name="DamageableComponentGround" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("4_xmvwd")]
+unique_name_in_owner = true
 collision_filter = ExtResource("4_bnsai")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ollty")
 debug_color = Color(0, 0.470588, 0, 0.74902)

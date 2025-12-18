@@ -20,3 +20,8 @@ func take_damage(damage: Damage) -> void:
 	if _damage_filter != null:
 		resulting_damage = _damage_filter.filter_damage(resulting_damage)
 	_health.take_damage(resulting_damage)
+	
+func enable_childs(enable: bool) -> void:
+	for child: Node in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", not enable)
