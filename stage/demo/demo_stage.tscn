@@ -52,4 +52,5 @@ autostart = true
 [connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]
 [connection signal="pointer_click" from="DemoControls" to="." method="_on_demo_controls_pointer_click"]
 [connection signal="pointer_position_changed" from="DemoControls" to="." method="_on_demo_controls_pointer_position_changed"]
+[connection signal="roll_pressed" from="DemoControls" to="." method="_on_demo_controls_roll_pressed"]
 [connection signal="timeout" from="SpawnDummyTimer" to="." method="_on_spawn_dummy_timer_timeout"]

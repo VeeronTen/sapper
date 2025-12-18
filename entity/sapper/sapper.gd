@@ -47,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	@warning_ignore("return_value_discarded")
 	move_and_slide()
 
+func try_to_roll() -> void:
+	print("roll")
+	
 func _compute_walk_speed() -> float:
 	var result: float = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)
 	if _is_walking_backwards(): result *= walk_backwards_penalty

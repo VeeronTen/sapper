@@ -4,6 +4,7 @@ signal move_direction_changed(direction: Vector2)
 signal is_moving_changed(is_moving: bool)
 signal pointer_position_changed(pointer: Vector2)
 signal pointer_click(pointer: Vector2)
+signal roll_pressed
 
 var _prev_move_direction: Vector2 = Vector2.ZERO
 var _prev_is_moving: bool = false
@@ -24,5 +25,18 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
-		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
-			pointer_click.emit(get_global_mouse_position())
+		if mouse_event.pressed:
+			_handle_mouse(mouse_event)
+	elif event is InputEventKey:
+		var key_event: InputEventKey = event
+		if key_event.pressed and not key_event.echo:
+			_handle_key(key_event)
+
+func _handle_mouse(event: InputEventMouseButton) -> void:
+	match event.button_index:
+		MOUSE_BUTTON_LEFT: 
+			pointer_click.emit(get_global_mouse_position())		
+	
+func _handle_key(event: InputEventKey) -> void:
+	if event.is_action("ui_accept"):
+		roll_pressed.emit()

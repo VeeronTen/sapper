@@ -44,3 +44,7 @@ func _on_spawn_dummy_timer_timeout() -> void:
 	var random_y: float = _rng.randf_range(-1.0, 1.0)
 	var direction: Vector2 = Vector2(random_x, random_y).normalized()
 	dummy.global_position = _sapper.global_position + direction * 40
+
+
+func _on_demo_controls_roll_pressed() -> void:
+	_sapper.try_to_roll()
