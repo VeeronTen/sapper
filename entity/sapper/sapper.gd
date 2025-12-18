@@ -44,6 +44,8 @@ var _is_rolling: bool = false:
 		
 var _roll_direction: Vector2 = Vector2.ZERO
 
+var _sprite_roll_tween: Tween = create_tween()
+
 func _ready() -> void:
 	watch_position = watch_position
 	move_direction = move_direction
@@ -63,10 +65,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func try_to_roll() -> void:
-	if _is_rolling:
+	if _is_rolling or not is_moving:
 		return
 	_roll_direction = move_direction
 	_is_rolling = true
+	_sprite_roll_tween = create_tween()
+	_sprite_roll_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	_sprite_roll_tween.tween_property(_sprite_2d, "rotation", 2 * PI, max_roll_time_secs).as_relative()	
 	await get_tree().create_timer(max_roll_time_secs).timeout 
 	_is_rolling = false
 	
@@ -91,5 +96,5 @@ func _flip_sprit_horizontal(flip_h: bool) -> void:
 	if flip_h: final_scale = -1
 	var needed_flip_difference: float = absf(final_scale - _sprite_2d.scale.x)
 	var duration: float = horizontal_flip_duration * (needed_flip_difference / full_flip_difference)
-	_sprite_flip_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_sprite_flip_tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	_sprite_flip_tween.tween_property(_sprite_2d, "scale:x", final_scale, duration)	
