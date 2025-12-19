@@ -71,7 +71,10 @@ func try_to_roll() -> void:
 	_is_rolling = true
 	_sprite_roll_tween = create_tween()
 	_sprite_roll_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-	_sprite_roll_tween.tween_property(_sprite_2d, "rotation", 2 * PI, max_roll_time_secs).as_relative()	
+	var animation_direction: int = 1
+	if _sprite_is_flipped_h_or_gonna:
+		animation_direction = -1
+	_sprite_roll_tween.tween_property(_sprite_2d, "rotation", 2 * PI * animation_direction, max_roll_time_secs).as_relative()	
 	await get_tree().create_timer(max_roll_time_secs).timeout 
 	_is_rolling = false
 	
