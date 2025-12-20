@@ -1,5 +1,4 @@
 extends Node2D
-#todo тайлмап
 #todo паралакс
 #todo backBufferCopy
 #todo локализация

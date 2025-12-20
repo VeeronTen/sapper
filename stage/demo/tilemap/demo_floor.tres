@@ -1,0 +1,38 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c6jlxm4wokjti"]
+
+[ext_resource type="Texture2D" uid="uid://dskvu0ifsxjhx" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="1_1wt8o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k46ji"]
+texture = ExtResource("1_1wt8o")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+0:0/0/terrain = 0
+0:1/0 = 0
+0:1/0/terrain = 0
+0:2/0 = 0
+0:3/0 = 0
+0:3/0/terrain = 0
+1:0/0 = 0
+1:1/0 = 0
+1:1/0/terrain = 0
+1:2/0 = 0
+1:3/0 = 0
+1:3/0/terrain = 0
+2:0/0 = 0
+2:0/0/terrain = 0
+2:1/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+3:0/0 = 0
+3:0/0/terrain = 0
+3:1/0 = 0
+3:2/0 = 0
+3:2/0/terrain = 0
+3:3/0 = 0
+3:3/0/terrain = 0
+
+[resource]
+tile_size = Vector2i(256, 256)
+custom_data_layer_0/name = "biba"
+custom_data_layer_0/type = 1
+sources/3 = SubResource("TileSetAtlasSource_k46ji")
