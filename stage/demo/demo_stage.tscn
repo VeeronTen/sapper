@@ -4,10 +4,10 @@
 [ext_resource type="TileSet" uid="uid://c6jlxm4wokjti" path="res://stage/demo/tilemap/demo_floor.tres" id="2_ln17t"]
 [ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="2_w7nxb"]
 [ext_resource type="TileSet" uid="uid://2d7hcthqc830" path="res://stage/demo/tilemap/demo_walls.tres" id="3_k46ji"]
+[ext_resource type="TileSet" uid="uid://bjea5f63ldn35" path="res://stage/demo/tilemap/demo_acid.tres" id="3_ln17t"]
 [ext_resource type="PackedScene" uid="uid://qb3w45t4vdnh" path="res://entity/gun/light/light_gun.tscn" id="4_4royo"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://stage/demo/demo_controls.gd" id="4_vte7o"]
-[ext_resource type="PackedScene" uid="uid://c7mytol7o1133" path="res://entity/dummy/dummy.tscn" id="6_fk4h2"]
-[ext_resource type="PackedScene" uid="uid://c6gh6x8an7v0y" path="res://stage/demo/acid/demo_acid.tscn" id="7_8dtiy"]
+[ext_resource type="TileSet" uid="uid://c1xug7auajvfn" path="res://stage/demo/tilemap/demo_dummies.tres" id="5_k46ji"]
 
 [node name="DemoStage" type="Node2D"]
 script = ExtResource("1_3sebb")
@@ -16,12 +16,17 @@ script = ExtResource("1_3sebb")
 tile_map_data = PackedByteArray("AAD/////AwAAAAAAAAD//wAAAwAAAAMAAAAAAP//AwADAAAAAAAAAAAAAwADAAMAAAA=")
 tile_set = ExtResource("2_ln17t")
 
+[node name="TileMapAcid" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAAIAAAAAAAAAAgADAAIAAAAAAAAAAgADAAEAAAAAAAAAAgAEAAEAAAAAAAAAAgA=")
+tile_set = ExtResource("3_ln17t")
+
 [node name="TileMapWalls" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAHAPv/AgAAAAAAAAAHAPz/AgAAAAEAAAAHAP3/AgAAAAEAAAAHAP7/AgAHAAQAAAAHAP//AgADAAEAAAAHAAAAAgAFAAMAAAAHAAEAAgAAAAEAAAAHAAIAAgAAAAEAAAAHAAMAAgAAAAEAAAAHAAQAAgAGAAIAAAAGAAQAAgACAAMAAAAFAAQAAgACAAMAAAAEAAQAAgACAAMAAAADAAQAAgAEAAIAAAADAAMAAgAGAAAAAAACAAMAAgACAAMAAAABAAMAAgACAAMAAAAAAAMAAgACAAMAAAD//wMAAgACAAMAAAD+/wMAAgAEAAIAAAD+/wIAAgAAAAEAAAD+/wEAAgAGAAAAAAD9/wEAAgAEAAIAAAD9/wAAAgAAAAEAAAD9////AgAEAAAAAAD+////AgAGAAIAAAD+//7/AgAEAAAAAAD///7/AgACAAMAAAAAAP7/AgACAAMAAAABAP7/AgACAAMAAAACAP7/AgACAAMAAAADAP7/AgACAAMAAAAEAP7/AgACAAMAAAAFAP7/AgAHAAMAAAAFAP//AgABAAIAAAAGAP//AgAJAAAAAAAGAAAAAgABAAIAAAAGAP7/AgACAAAAAAAKAAEAAgABAAMAAAALAAEAAgACAAMAAAAMAAEAAgACAAMAAAANAAEAAgADAAMAAAAKAP7/AgAEAAAAAAAKAP//AgAAAAIAAAALAP3/AgAAAAAAAAALAP7/AgAFAAIAAAAMAP7/AgAHAAMAAAAMAP//AgABAAIAAAANAP3/AgAAAAAAAAANAP7/AgAHAAQAAAANAP//AgADAAIAAAA=")
 tile_set = ExtResource("3_k46ji")
 
-[node name="DemoAcid" parent="." instance=ExtResource("7_8dtiy")]
-position = Vector2(70, 47)
+[node name="TileMapDummies" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAAIAAAAAAAAAAQA=")
+tile_set = ExtResource("5_k46ji")
 
 [node name="Sapper" parent="." instance=ExtResource("2_w7nxb")]
 unique_name_in_owner = true
@@ -34,9 +39,6 @@ unique_name_in_owner = true
 
 [node name="DemoControls" type="Node2D" parent="."]
 script = ExtResource("4_vte7o")
-
-[node name="Dummy" parent="." instance=ExtResource("6_fk4h2")]
-position = Vector2(69, 32)
 
 [node name="SpawnDummyTimer" type="Timer" parent="."]
 wait_time = 3.0
