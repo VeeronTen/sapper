@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var time_to_walk_speed_modifier: Curve
 @export var roll_speed_modifier: float = 3
 @export var max_roll_time_secs: float = 0.4
+@export_range(0, 1, 0.01, "suffix:%") var roll_contorlability: float = 0.5
 
 @onready var _sprite_2d: Sprite2D = %Sprite2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
@@ -56,7 +57,8 @@ func _physics_process(delta: float) -> void:
 	var speed: float = _compute_speed()
 	var direction: Vector2 = move_direction
 	if _is_rolling:
-		direction = _roll_direction
+		direction = (_roll_direction * (1 - roll_contorlability ) + move_direction * roll_contorlability) / 2
+		direction = direction.normalized()
 	elif is_moving: 
 		_walking_time += delta
 		#hack анимации играть в аним ноде
