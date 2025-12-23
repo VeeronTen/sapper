@@ -8,7 +8,6 @@
 [sub_resource type="Resource" id="Resource_ndf6f"]
 script = ExtResource("3_y51hs")
 value = 1.0
-is_continuous = true
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2vgr"]
@@ -23,6 +22,7 @@ texture = ExtResource("1_q01te")
 [node name="DamagingAreaComponent" parent="." instance=ExtResource("2_x2v3l")]
 _damage = SubResource("Resource_ndf6f")
 _collision_filter = ExtResource("3_a2vgr")
+is_continuous = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagingAreaComponent"]
 shape = SubResource("RectangleShape2D_a2vgr")

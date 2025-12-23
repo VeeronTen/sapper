@@ -9,6 +9,7 @@ extends RayCast2D
 		_direction = value.normalized()
 		queue_redraw()
 @export var _collision_filter: DamageableComponentCollisionFilter
+@export var block_stacking_tag: String
 
 @onready var _debug: DamagingRayComponentDebug = %DamagingRayComponentDebug
 
@@ -36,7 +37,7 @@ func shoot(distance: float) -> void:
 			force_raycast_update()
 			continue
 		collisions.append(get_collision_point())
-		damageable.take_damage(damage)
+		damageable.take_damage(damage, block_stacking_tag)
 		if not _is_piercing: break
 		add_exception(damageable)
 		force_raycast_update()
