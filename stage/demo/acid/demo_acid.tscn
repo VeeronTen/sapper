@@ -23,6 +23,7 @@ texture = ExtResource("1_q01te")
 _damage = SubResource("Resource_ndf6f")
 _collision_filter = ExtResource("3_a2vgr")
 is_continuous = true
+block_stacking_tag = "demo_acid"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagingAreaComponent"]
 shape = SubResource("RectangleShape2D_a2vgr")

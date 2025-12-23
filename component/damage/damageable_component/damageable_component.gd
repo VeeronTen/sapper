@@ -33,6 +33,7 @@ func enable_childs(enable: bool) -> void:
 			child.set_deferred("disabled", not enable)
 
 func _process_block_stacking(block_stacking_tag: String) -> bool:
+	if block_stacking_tag.is_empty(): return false
 	if _block_stacking_tags.has(block_stacking_tag): return true
 	_block_stacking_tags.append(block_stacking_tag)
 	return false
