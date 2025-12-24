@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://kqkvasn678ry"]
+[gd_scene load_steps=13 format=4 uid="uid://kqkvasn678ry"]
 
 [ext_resource type="Script" uid="uid://d22scmdflkulk" path="res://stage/demo/demo_stage.gd" id="1_3sebb"]
 [ext_resource type="TileSet" uid="uid://c6jlxm4wokjti" path="res://stage/demo/tilemap/demo_floor.tres" id="2_ln17t"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://qb3w45t4vdnh" path="res://entity/gun/light/light_gun.tscn" id="4_4royo"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://stage/demo/demo_controls.gd" id="4_vte7o"]
 [ext_resource type="TileSet" uid="uid://c1xug7auajvfn" path="res://stage/demo/tilemap/demo_dummies.tres" id="5_k46ji"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_xrwbm"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_jj4g0"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_dk5wi"]
+
+[sub_resource type="Resource" id="Resource_fxrrq"]
+script = ExtResource("11_dk5wi")
 
 [node name="DemoStage" type="Node2D"]
 script = ExtResource("1_3sebb")
@@ -32,9 +38,6 @@ tile_set = ExtResource("5_k46ji")
 [node name="Sapper" parent="." instance=ExtResource("2_w7nxb")]
 unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="Sapper"]
-zoom = Vector2(8, 8)
-
 [node name="LightGun" parent="Sapper" instance=ExtResource("4_4royo")]
 unique_name_in_owner = true
 
@@ -44,6 +47,29 @@ script = ExtResource("4_vte7o")
 [node name="SpawnDummyTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+zoom = Vector2(7, 7)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("9_xrwbm")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+script = ExtResource("10_jj4g0")
+follow_mode = 5
+follow_target = NodePath("../Sapper")
+zoom = Vector2(7, 7)
+tween_resource = SubResource("Resource_fxrrq")
+follow_damping = true
+follow_damping_value = Vector2(0.2, 0.2)
+dead_zone_width = 0.07
+dead_zone_height = 0.04
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [connection signal="is_moving_changed" from="DemoControls" to="." method="_on_demo_controls_is_moving_changed"]
 [connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]
