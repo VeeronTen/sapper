@@ -1,0 +1,67 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://deu2u6slac2vq"]
+
+[ext_resource type="Texture2D" uid="uid://btod5ddh5ji40" path="res://stage/demo/tilemap/Desert1.png" id="1_o62gi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x12oa"]
+texture = ExtResource("1_o62gi")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+6:0/0/terrain_set = 0
+6:0/0/terrain = 0
+0:2/size_in_atlas = Vector2i(2, 2)
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 1
+0:4/size_in_atlas = Vector2i(2, 2)
+0:4/0 = 0
+0:4/0/terrain_set = 0
+0:4/0/terrain = 3
+2:4/size_in_atlas = Vector2i(2, 2)
+2:4/0 = 0
+2:4/0/terrain_set = 0
+2:4/0/terrain = 3
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 1
+4:2/size_in_atlas = Vector2i(2, 2)
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrain = 2
+6:2/size_in_atlas = Vector2i(2, 2)
+6:2/0 = 0
+6:2/0/terrain_set = 0
+6:2/0/terrain = 2
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+6:4/size_in_atlas = Vector2i(2, 2)
+6:4/0 = 0
+6:4/0/terrain_set = 0
+6:4/0/terrain = 4
+
+[resource]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Sand"
+terrain_set_0/terrain_0/color = Color(0.8044588, 0.7276986, 0.39884833, 1)
+terrain_set_0/terrain_1/name = "Cactus"
+terrain_set_0/terrain_1/color = Color(0.24945, 0.37706146, 0.13880631, 1)
+terrain_set_0/terrain_2/name = "Grass"
+terrain_set_0/terrain_2/color = Color(0.3200042, 0.5439788, 0.24741513, 1)
+terrain_set_0/terrain_3/name = "Rock"
+terrain_set_0/terrain_3/color = Color(0.3318518, 0.34710357, 0.33945966, 1)
+terrain_set_0/terrain_4/name = "Bone"
+terrain_set_0/terrain_4/color = Color(0.8644245, 0.87757856, 0.8579547, 1)
+sources/0 = SubResource("TileSetAtlasSource_x12oa")
