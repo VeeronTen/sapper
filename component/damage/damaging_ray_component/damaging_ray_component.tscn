@@ -5,10 +5,9 @@
 
 [node name="DamagingRayComponent" type="RayCast2D"]
 target_position = Vector2(0, 0)
-collision_mask = 1073741824
+collision_mask = 1610612736
 hit_from_inside = true
 collide_with_areas = true
-collide_with_bodies = false
 script = ExtResource("1_aeoty")
 
 [node name="DamagingRayComponentDebug" type="Node2D" parent="."]

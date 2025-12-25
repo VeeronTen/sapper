@@ -30,8 +30,10 @@ func shoot(distance: float) -> void:
 	var damage: Damage = _initial_damage
 	force_raycast_update()
 	while is_colliding():
-		var damageable: DamageableComponent = get_collider()
-		var is_compatible = _collision_filter.is_compatible_with(damageable.collision_filter)
+		var collider: Object = get_collider()
+		if collider is not DamageableComponent: return
+		var damageable: DamageableComponent = collider
+		var is_compatible: bool = _collision_filter.is_compatible_with(damageable.collision_filter)
 		if not is_compatible:
 			add_exception(damageable)
 			force_raycast_update()

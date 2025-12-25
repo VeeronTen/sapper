@@ -1,9 +1,6 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://2d7hcthqc830"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://2d7hcthqc830"]
 
 [ext_resource type="Texture2D" uid="uid://bfwa3mj8ca65k" path="res://stage/demo/tilemap/PrototypeTilemap16x16.png" id="1_squtu"]
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_squtu"]
-tile_data = PackedInt32Array(65536, 262146, 0, 131072, 2, 2, 1, 2, 0, 65537, 327682, 2, 65538, 458754, 3, 131074, 65538, 2, 3, 2, 0, 65539, 458754, 4, 131075, 196610, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ookb"]
 texture = ExtResource("1_squtu")
@@ -388,9 +385,9 @@ texture = ExtResource("1_squtu")
 9:4/0/terrains_peering_bit/top_side = 0
 
 [resource]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 536870913
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_8ookb")
-pattern_0 = SubResource("TileMapPattern_squtu")
