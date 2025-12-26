@@ -44,7 +44,7 @@ tile_map_data = PackedByteArray("AAD7//z/AgAEAAAAAAD7//3/AgAAAAEAAAD7//7/AgAAAAE
 tile_set = ExtResource("3_k46ji")
 
 [node name="TileMapEnemies" type="TileMapLayer" parent="Map"]
-tile_map_data = PackedByteArray("AAD9/wIAAAAAAAAAAQADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQADAAAAAAAAAAAAAQADAP//AAAAAAAAAQD//wIAAAAAAAAAAgA=")
+tile_map_data = PackedByteArray("AAD9/wIAAAAAAAAAAQADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQADAAAAAAAAAAAAAQADAP//AAAAAAAAAQD//wQAAAAAAAAAAgA=")
 tile_set = ExtResource("5_k46ji")
 
 [node name="Sapper" parent="." instance=ExtResource("2_w7nxb")]
