@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bth6ovyey2j4r"]
+[gd_scene load_steps=17 format=3 uid="uid://bth6ovyey2j4r"]
 
 [ext_resource type="Script" uid="uid://oj8riv1ysmha" path="res://entity/dog/dog.gd" id="1_cr7u6"]
 [ext_resource type="Texture2D" uid="uid://cpoycmarlsh3l" path="res://entity/dog/image/sapper-dog.png" id="1_eu4xl"]
@@ -102,8 +102,11 @@ _data = {
 &"run": SubResource("Animation_cnqqh")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sk661"]
+radius = 37.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_eu4xl"]
-radius = 47.042534
+radius = 22.0
 
 [node name="Dog" type="CharacterBody2D"]
 script = ExtResource("1_cr7u6")
@@ -128,8 +131,14 @@ libraries = {
 [node name="WatchArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WatchArea"]
-shape = SubResource("CircleShape2D_eu4xl")
+shape = SubResource("CircleShape2D_sk661")
 debug_color = Color(0, 0.6, 0.69803923, 0.07450981)
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_eu4xl")
+debug_color = Color(0.81960785, 0.37254903, 0.41568628, 0.34901962)
 
 [node name="StateChart" type="Node" parent="."]
 unique_name_in_owner = true
@@ -150,7 +159,7 @@ script = ExtResource("4_sk661")
 [node name="StartWalk" type="Node" parent="StateChart/Root/Chilling/Idle"]
 script = ExtResource("6_s85yq")
 to = NodePath("../../Walk")
-delay_in_seconds = "3"
+delay_in_seconds = "randf_range(1, 3)"
 
 [node name="Walk" type="Node" parent="StateChart/Root/Chilling"]
 script = ExtResource("4_sk661")
@@ -158,7 +167,7 @@ script = ExtResource("4_sk661")
 [node name="ToIdle" type="Node" parent="StateChart/Root/Chilling/Walk"]
 script = ExtResource("6_s85yq")
 to = NodePath("../../Idle")
-delay_in_seconds = "3"
+delay_in_seconds = "randf_range(1, 3)"
 
 [node name="FoundTarget" type="Node" parent="StateChart/Root/Chilling"]
 script = ExtResource("6_s85yq")
@@ -208,6 +217,7 @@ scale = Vector2(0.26281777, 0.26281777)
 initial_node_to_watch = NodePath("../StateChart")
 
 [connection signal="body_entered" from="WatchArea" to="." method="_on_watch_area_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="child_state_entered" from="StateChart/Root/Chilling" to="." method="_on_chilling_child_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chilling/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="taken" from="StateChart/Root/Chilling/Idle/StartWalk" to="." method="_on_start_walk_taken"]
