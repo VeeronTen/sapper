@@ -1,5 +1,5 @@
 class_name Dummy
-extends StaticBody2D
+extends CharacterBody2D
 
 @onready var health_component: HealthComponent = %HealthComponent
 	

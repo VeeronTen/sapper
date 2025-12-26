@@ -188,6 +188,11 @@ to = NodePath("../../Attacking")
 event = &"ready_to_attack"
 delay_in_seconds = "0.0"
 
+[node name="RecalculatePath" type="Node" parent="StateChart/Root/Angry/Chasing"]
+script = ExtResource("6_s85yq")
+to = NodePath("..")
+delay_in_seconds = "1"
+
 [node name="Attacking" type="Node" parent="StateChart/Root/Angry"]
 script = ExtResource("3_i13kc")
 initial_state = NodePath("PreparingToAttack")
@@ -216,6 +221,9 @@ offset_bottom = 360.9311
 scale = Vector2(0.26281777, 0.26281777)
 initial_node_to_watch = NodePath("../StateChart")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
 [connection signal="body_entered" from="WatchArea" to="." method="_on_watch_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chilling/Idle" to="." method="_on_idle_state_entered"]
@@ -224,6 +232,8 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_processing" from="StateChart/Root/Chilling/Walk" to="." method="_on_walk_state_processing"]
 [connection signal="state_entered" from="StateChart/Root/Angry/Chasing" to="." method="_on_chasing_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Angry/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="taken" from="StateChart/Root/Angry/Chasing/RecalculatePath" to="." method="_on_recalculate_path_taken"]
 [connection signal="state_entered" from="StateChart/Root/Angry/Attacking/PreparingToAttack" to="." method="_on_preparing_to_attack_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Angry/Attacking/Attacking" to="." method="_on_attacking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Angry/Attacking/Attacking" to="." method="_on_attacking_state_physics_processing"]
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

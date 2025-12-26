@@ -9,10 +9,10 @@ extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var attack_area: Area2D = %AttackArea
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 #todo крутую навигацию добавить
 
-var _walk_directopn: Vector2 = Vector2.ZERO
 var _target: Node2D = null
 var _attack_direction: Vector2 = Vector2.ZERO
 
@@ -20,15 +20,20 @@ func _process(_delta: float) -> void:
 	sprite_2d.flip_h = velocity.x > 0
 
 func _on_start_walk_taken() -> void:
-	_walk_directopn = Vector2( randf_range(-1, 1),  randf_range(-1, 1)).normalized()
+	var map_rid: RID = navigation_agent_2d.get_navigation_map()
+	var random_point: Vector2 = NavigationServer2D.map_get_random_point(
+		map_rid, 
+		navigation_agent_2d.navigation_layers, 
+		true
+	)
+	navigation_agent_2d.target_position = random_point
 
 func _on_walk_state_processing(_delta: float) -> void:
-	velocity = _walk_directopn * walk_speed
+	velocity = _get_path_direction() * walk_speed
 	move_and_slide()
 
 func _on_chasing_state_physics_processing(_delta: float) -> void:
-	var direction: Vector2 = _get_vector_to_target().normalized()
-	velocity = direction * chase_speed
+	velocity = _get_path_direction() * chase_speed
 	move_and_slide()
 	
 func _on_attacking_state_physics_processing(_delta: float) -> void:
@@ -59,6 +64,7 @@ func _on_walk_state_entered() -> void:
 
 func _on_chasing_state_entered() -> void:
 	animation_player.play("run")
+	navigation_agent_2d.target_position = _target.global_position
 	if attack_area.get_overlapping_bodies().any(func(elemnt: Node2D) -> bool: return elemnt == _target):
 		state_chart.send_event("ready_to_attack")
 
@@ -66,5 +72,20 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body == _target:
 		state_chart.send_event("ready_to_attack")
 
+func _on_recalculate_path_taken() -> void:
+	_recalculate_path()
+	
+func _on_navigation_agent_2d_navigation_finished() -> void:
+	_recalculate_path()
+	
 func _get_vector_to_target() -> Vector2:
 	return _target.global_position - global_position
+
+func _get_path_direction() -> Vector2:
+	if navigation_agent_2d.is_navigation_finished():
+		return Vector2.ZERO
+	else:
+		return to_local(navigation_agent_2d.get_next_path_position()).normalized()
+
+func _recalculate_path() -> void:
+	navigation_agent_2d.target_position = _target.global_position

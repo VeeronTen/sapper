@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://kqkvasn678ry"]
+[gd_scene load_steps=15 format=4 uid="uid://kqkvasn678ry"]
 
 [ext_resource type="Script" uid="uid://d22scmdflkulk" path="res://stage/demo/demo_stage.gd" id="1_3sebb"]
 [ext_resource type="TileSet" uid="uid://c6jlxm4wokjti" path="res://stage/demo/tilemap/demo_floor.tres" id="2_ln17t"]
@@ -13,6 +13,12 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_jj4g0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_dk5wi"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jj4g0"]
+vertices = PackedVector2Array(307.27344, -276.03125, 398.52344, 388.9375, 106, 74, 106, 6, 90, 6, 90, -74, -178.24219, -277.9922, 26, -106, 42, -74, 42, -90, 26, -90, -38, 54, -38, -38, -10, -54, 6, -54, 6, -38, -22, 70, 54, -38, 54, 54, 38, 54, 38, 70, 6, 70, -22, 106, 6, 106, -228.38281, 386.02344, -38, 70, -54, 54, -54, -38, -38, -54, -22, -54, -58, -106, -58, -90, -74, -90, -74, -74, -90, -74, -294.4297, -235.74219, -90, 90, -74, 90, -74, 106, 74, 106, 74, 90, 90, 90, 90, 74, -456.1797, 13.171875, -10, -106, -22, -106)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 0), PackedInt32Array(6, 0, 5, 7), PackedInt32Array(5, 8, 9), PackedInt32Array(9, 10, 7), PackedInt32Array(11, 12, 13, 14, 15, 16), PackedInt32Array(15, 17, 18, 19), PackedInt32Array(19, 20, 21, 15), PackedInt32Array(22, 21, 23, 24), PackedInt32Array(21, 22, 16, 15), PackedInt32Array(16, 25, 11), PackedInt32Array(11, 26, 27, 12), PackedInt32Array(12, 28, 29), PackedInt32Array(30, 31, 32, 6), PackedInt32Array(6, 32, 33, 34, 35), PackedInt32Array(36, 37, 38), PackedInt32Array(39, 40, 41, 1), PackedInt32Array(41, 42, 2, 1), PackedInt32Array(39, 1, 24, 23), PackedInt32Array(38, 22, 24), PackedInt32Array(38, 24, 43, 36), PackedInt32Array(36, 43, 35, 34), PackedInt32Array(13, 12, 29), PackedInt32Array(44, 13, 29, 45), PackedInt32Array(45, 30, 6), PackedInt32Array(44, 45, 6), PackedInt32Array(7, 44, 6), PackedInt32Array(7, 5, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-468, 13, -234, 396, 410, 399, 316, -286, -180, -288, -301, -244)])
+parsed_collision_mask = 1
+
 [sub_resource type="Resource" id="Resource_fxrrq"]
 script = ExtResource("11_dk5wi")
 duration = 0.0
@@ -22,28 +28,31 @@ script = ExtResource("1_3sebb")
 
 [node name="Map" type="Node2D" parent="."]
 
-[node name="TileMapFloor" type="TileMapLayer" parent="Map"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+navigation_polygon = SubResource("NavigationPolygon_jj4g0")
+
+[node name="TileMapFloor" type="TileMapLayer" parent="Map/NavigationRegion2D"]
 position = Vector2(-82, -12)
 tile_map_data = PackedByteArray("AAD/////AwABAAEAAAAAAP//AwABAAEAAAD//wAAAwABAAEAAAAAAAAAAwABAAEAAAABAAAAAwABAAEAAAABAP//AwABAAEAAAABAP7/AwABAAEAAAAAAP7/AwABAAEAAAD///7/AwABAAEAAAD+/wAAAwABAAEAAAD+////AwABAAEAAAD+//7/AwABAAEAAAAEAAIAAwADAAMAAAAEAAEAAwADAAEAAAAEAAAAAwADAAEAAAAEAP//AwADAAEAAAAEAP7/AwADAAEAAAAEAP3/AwADAAEAAAAEAPz/AwADAAAAAAADAAIAAwACAAMAAAADAAEAAwABAAEAAAADAAAAAwABAAEAAAADAP//AwABAAEAAAADAP7/AwABAAEAAAADAP3/AwABAAEAAAADAPz/AwABAAAAAAACAAIAAwACAAMAAAACAAEAAwABAAEAAAACAAAAAwABAAEAAAACAP//AwABAAEAAAACAP7/AwABAAEAAAACAP3/AwABAAEAAAACAPz/AwABAAAAAAABAAIAAwACAAMAAAABAAEAAwABAAEAAAABAP3/AwABAAEAAAABAPz/AwABAAAAAAAAAAIAAwACAAMAAAAAAAEAAwABAAEAAAAAAP3/AwABAAEAAAAAAPz/AwABAAAAAAD//wIAAwACAAMAAAD//wEAAwABAAEAAAD///3/AwABAAEAAAD///z/AwABAAAAAAD+/wIAAwACAAMAAAD+/wEAAwABAAEAAAD+//3/AwABAAEAAAD+//z/AwABAAAAAAD9/wIAAwACAAMAAAD9/wEAAwABAAEAAAD9/wAAAwABAAEAAAD9////AwABAAEAAAD9//7/AwABAAEAAAD9//3/AwABAAEAAAD9//z/AwABAAAAAAD8/wIAAwAAAAMAAAD8/wEAAwAAAAIAAAD8/wAAAwAAAAIAAAD8////AwAAAAIAAAD8//7/AwAAAAIAAAD8//3/AwAAAAIAAAD8//z/AwAAAAAAAAA=")
 tile_set = ExtResource("2_ln17t")
 
-[node name="TileMapDesert" type="TileMapLayer" parent="Map"]
+[node name="TileMapDesert" type="TileMapLayer" parent="Map/NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAAEAAEAAAACAAAAAAAEAAAAAAAGAAAAAAAEAP//AAAGAAAAAAADAAEAAAACAAAAAAADAAAAAAAGAAAAAAADAP//AAAGAAAAAAADAP7/AAACAAAAAAACAAMAAAACAAAAAAACAAIAAAAGAAAAAAACAAEAAAACAAAAAAACAAAAAAAEAAAAAAACAP//AAAAAAAAAAACAP7/AAACAAAAAAACAP3/AAAGAAAAAAABAAMAAAAAAAAAAAABAAIAAAAEAAAAAAABAAEAAAAGAAAAAAABAAAAAAAEAAAAAAABAP//AAAAAAAAAAABAP7/AAAEAAAAAAABAP3/AAAEAAAAAAAAAAMAAAACAAAAAAAAAAIAAAACAAAAAAAAAAEAAAACAAAAAAAAAAAAAAACAAAAAAAAAP//AAAGAAAAAAAAAP7/AAAEAAAAAAAAAP3/AAAAAAAAAAD//wMAAAACAAAAAAD//wIAAAACAAAAAAD//wEAAAAEAAAAAAD//wAAAAAGAAAAAAD/////AAACAAAAAAD///7/AAAAAAAAAAD///3/AAAAAAAAAAD+/wMAAAAAAAAAAAD+/wIAAAACAAAAAAD+/wEAAAAGAAAAAAD+/wAAAAAAAAAAAAD+////AAACAAAAAAD+//7/AAAEAAAAAAD+//3/AAAAAAAAAAD9/wIAAAAGAAAAAAD9/wEAAAAEAAAAAAD9/wAAAAAAAAAAAAD9////AAAGAAAAAAD9//7/AAAGAAAAAAD8/wEAAAACAAAAAAD8/wAAAAAGAAAAAAD8////AAAAAAAAAAADAAIAAAAAAAAAAAA=")
 tile_set = ExtResource("3_jj4g0")
 
-[node name="TileMapAcid" type="TileMapLayer" parent="Map"]
+[node name="TileMapAcid" type="TileMapLayer" parent="Map/NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAAEAAIAAAAAAAAAAgADAAIAAAAAAAAAAgADAAEAAAAAAAAAAgAEAAEAAAAAAAAAAgACAAMAAAAAAAAAAgADAAMAAAAAAAAAAgABAAMAAAAAAAAAAgAAAAQAAAAAAAAAAgABAAQAAAAAAAAAAgACAAQAAAAAAAAAAgA=")
 tile_set = ExtResource("3_ln17t")
 
-[node name="TileMapDesertObjects" type="TileMapLayer" parent="Map"]
+[node name="TileMapDesertObjects" type="TileMapLayer" parent="Map/NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAADAAEAAAACAAIAAAAEAAAAAAAAAAIAAAD8////AAACAAIAAAACAP3/AAAAAAIAAAABAAMAAAAGAAIAAAAAAAMAAAAEAAIAAAADAAAAAAAEAAIAAAADAP7/AAAGAAIAAAABAP3/AAAEAAIAAAD8/wEAAAACAAQAAAAAAP7/AAAAAAQAAAD+/wMAAAAGAAQAAAA=")
 tile_set = ExtResource("3_jj4g0")
 
-[node name="TileMapWalls" type="TileMapLayer" parent="Map"]
+[node name="TileMapWalls" type="TileMapLayer" parent="Map/NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAD7//z/AgAEAAAAAAD7//3/AgAAAAEAAAD7//7/AgAAAAEAAAD7////AgAAAAEAAAD7/wAAAgAAAAEAAAD7/wEAAgAAAAEAAAD7/wIAAgAAAAEAAAD7/wMAAgAAAAEAAAADAPz/AgACAAMAAAAEAPz/AgAGAAAAAAAEAP3/AgAAAAEAAAAEAP7/AgAAAAEAAAAEAP//AgAAAAEAAAAEAAAAAgAAAAEAAAAEAAEAAgAEAAIAAAAFAAEAAgAGAAAAAAAFAAIAAgAAAAEAAAAFAAMAAgAGAAIAAAAEAAMAAgAEAAAAAAAEAAQAAgAGAAIAAAADAAQAAgAEAAAAAAADAAUAAgAGAAIAAAACAAUAAgACAAMAAAABAAUAAgABAAMAAAD9//r/AgAAAAAAAAD9//v/AgAGAAIAAAD8//v/AgAEAAAAAAD8//z/AgAGAAIAAAAAAPr/AgAAAAAAAAAAAPv/AgAEAAIAAAABAPv/AgAGAAAAAAABAPz/AgAEAAIAAAACAPz/AgACAAMAAAD7/wQAAgAEAAIAAAD8/wQAAgAGAAAAAAD8/wUAAgAEAAIAAAD9/wUAAgADAAMAAAA=")
 tile_set = ExtResource("3_k46ji")
 
-[node name="TileMapEnemies" type="TileMapLayer" parent="Map"]
+[node name="TileMapEnemies" type="TileMapLayer" parent="Map/NavigationRegion2D"]
 tile_map_data = PackedByteArray("AAD9/wIAAAAAAAAAAQADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQADAAAAAAAAAAAAAQADAP//AAAAAAAAAQD//wQAAAAAAAAAAgA=")
 tile_set = ExtResource("5_k46ji")
 
