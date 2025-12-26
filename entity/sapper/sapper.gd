@@ -1,7 +1,7 @@
 class_name Sapper
 extends CharacterBody2D
 
-@export var walk_speed: float = 2700.0
+@export var walk_speed: float = 70.0
 @export var walk_backwards_penalty: float = 0.80
 @export var carrying_bomb_penalty: float = 0.80
 @export var horizontal_flip_duration: float = 0.4
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 		_walking_time += delta
 		#hack анимации играть в аним ноде
 		_animation_player.speed_scale = speed / walk_speed
-	velocity = speed * direction * delta
+	velocity = speed * direction
 	move_and_slide()
 
 func try_to_roll() -> void:

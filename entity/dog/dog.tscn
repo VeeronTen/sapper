@@ -62,7 +62,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j4ll2"]
 resource_name = "prepare_attack"
-length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,7 +69,7 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 1, 1.4333333, 1.8333334),
+"times": PackedFloat32Array(0, 0.20000002, 0.39999998, 0.6, 0.8000001),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2)]
@@ -135,6 +134,7 @@ shape = SubResource("CircleShape2D_sk661")
 debug_color = Color(0, 0.6, 0.69803923, 0.07450981)
 
 [node name="AttackArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_eu4xl")
@@ -198,7 +198,7 @@ script = ExtResource("4_sk661")
 [node name="Attack" type="Node" parent="StateChart/Root/Angry/Attacking/PreparingToAttack"]
 script = ExtResource("6_s85yq")
 to = NodePath("../../Attacking")
-delay_in_seconds = "1.5"
+delay_in_seconds = "1"
 
 [node name="Attacking" type="Node" parent="StateChart/Root/Angry/Attacking"]
 script = ExtResource("4_sk661")
@@ -206,7 +206,7 @@ script = ExtResource("4_sk661")
 [node name="ContinueAngry" type="Node" parent="StateChart/Root/Angry/Attacking/Attacking"]
 script = ExtResource("6_s85yq")
 to = NodePath("../../..")
-delay_in_seconds = "1.3"
+delay_in_seconds = "0.5"
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("6_x4pd8")]
 offset_left = 18.999998
@@ -218,7 +218,6 @@ initial_node_to_watch = NodePath("../StateChart")
 
 [connection signal="body_entered" from="WatchArea" to="." method="_on_watch_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="child_state_entered" from="StateChart/Root/Chilling" to="." method="_on_chilling_child_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chilling/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="taken" from="StateChart/Root/Chilling/Idle/StartWalk" to="." method="_on_start_walk_taken"]
 [connection signal="state_entered" from="StateChart/Root/Chilling/Walk" to="." method="_on_walk_state_entered"]
@@ -226,6 +225,5 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_entered" from="StateChart/Root/Angry/Chasing" to="." method="_on_chasing_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Angry/Chasing" to="." method="_on_chasing_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Angry/Attacking/PreparingToAttack" to="." method="_on_preparing_to_attack_state_entered"]
-[connection signal="taken" from="StateChart/Root/Angry/Attacking/PreparingToAttack/Attack" to="." method="_on_attack_taken"]
 [connection signal="state_entered" from="StateChart/Root/Angry/Attacking/Attacking" to="." method="_on_attacking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Angry/Attacking/Attacking" to="." method="_on_attacking_state_physics_processing"]
