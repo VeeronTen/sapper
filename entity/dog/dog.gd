@@ -89,3 +89,6 @@ func _get_path_direction() -> Vector2:
 
 func _recalculate_path() -> void:
 	navigation_agent_2d.target_position = _target.global_position
+
+func _on_health_component_dead() -> void:
+	queue_free()
