@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://kqkvasn678ry"]
+[gd_scene load_steps=16 format=4 uid="uid://kqkvasn678ry"]
 
 [ext_resource type="Script" uid="uid://d22scmdflkulk" path="res://stage/demo/demo_stage.gd" id="1_3sebb"]
 [ext_resource type="TileSet" uid="uid://c6jlxm4wokjti" path="res://stage/demo/tilemap/demo_floor.tres" id="2_ln17t"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_xrwbm"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="10_jj4g0"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_dk5wi"]
+[ext_resource type="PackedScene" uid="uid://c44dinhcu2bbt" path="res://entity/friendbot/friendbot.tscn" id="13_dk5wi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jj4g0"]
 vertices = PackedVector2Array(307.27344, -276.03125, 398.52344, 388.9375, 106, 74, 106, 6, 90, 6, 90, -74, -178.24219, -277.9922, 26, -106, 42, -74, 42, -90, 26, -90, -38, 54, -38, -38, -10, -54, 6, -54, 6, -38, -22, 70, 54, -38, 54, 54, 38, 54, 38, 70, 6, 70, -22, 106, 6, 106, -228.38281, 386.02344, -38, 70, -54, 54, -54, -38, -38, -54, -22, -54, -58, -106, -58, -90, -74, -90, -74, -74, -90, -74, -294.4297, -235.74219, -90, 90, -74, 90, -74, 106, 74, 106, 74, 90, 90, 90, 90, 74, -456.1797, 13.171875, -10, -106, -22, -106)
@@ -58,6 +59,7 @@ tile_set = ExtResource("5_k46ji")
 
 [node name="Sapper" parent="." instance=ExtResource("2_w7nxb")]
 unique_name_in_owner = true
+position = Vector2(-15, -36)
 
 [node name="LightGun" parent="Sapper" instance=ExtResource("4_4royo")]
 unique_name_in_owner = true
@@ -66,11 +68,12 @@ unique_name_in_owner = true
 script = ExtResource("4_vte7o")
 
 [node name="SpawnDummyTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.2
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
+position = Vector2(-15, -36)
 zoom = Vector2(7, 7)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -81,6 +84,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
+position = Vector2(-15, -36)
 script = ExtResource("10_jj4g0")
 follow_mode = 5
 follow_target = NodePath("../Sapper")
@@ -91,6 +95,8 @@ follow_damping_value = Vector2(0.2, 0.2)
 dead_zone_width = 0.07
 dead_zone_height = 0.04
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="FriendBot" parent="." instance=ExtResource("13_dk5wi")]
 
 [connection signal="is_moving_changed" from="DemoControls" to="." method="_on_demo_controls_is_moving_changed"]
 [connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]

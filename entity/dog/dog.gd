@@ -88,6 +88,8 @@ func _get_path_direction() -> Vector2:
 		return to_local(navigation_agent_2d.get_next_path_position()).normalized()
 
 func _recalculate_path() -> void:
+	if _target == null:
+		return
 	navigation_agent_2d.target_position = _target.global_position
 
 func _on_health_component_dead() -> void:

@@ -224,12 +224,12 @@ to = NodePath("../../..")
 delay_in_seconds = "0.5"
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("6_x4pd8")]
-visible = false
 offset_left = 18.999998
 offset_top = -50.0
 offset_right = 353.83282
 offset_bottom = 360.9311
 scale = Vector2(0.26281777, 0.26281777)
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -242,6 +242,7 @@ _health = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableAir"]
 position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_wr1da")
+debug_color = Color(0, 0.470588, 0, 0.368627)
 
 [node name="DamageableGround" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("8_e0evb")]
 collision_filter = ExtResource("10_wcwrh")
@@ -250,6 +251,7 @@ _health = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableGround"]
 position = Vector2(0.5, 6.5)
 shape = SubResource("RectangleShape2D_2rt1c")
+debug_color = Color(0, 0.470588, 0, 0.74902)
 
 [node name="HealthComponent" type="Node2D" parent="."]
 position = Vector2(0, -4)

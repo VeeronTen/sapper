@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c44dinhcu2bbt"]
+
+[ext_resource type="Texture2D" uid="uid://rfvyncn5ee1i" path="res://entity/friendbot/image/friendbot.png" id="1_dafpt"]
+
+[node name="FriendBot" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dafpt")

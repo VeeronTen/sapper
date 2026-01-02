@@ -35,12 +35,11 @@ func _on_demo_controls_pointer_click(_pointer: Vector2) -> void:
 
 func _on_spawn_dummy_timer_timeout() -> void:
 	var dummy: Dummy = Dummy.new_scene()
-	add_child(dummy)
 	var random_x: float = _rng.randf_range(-1.0, 1.0)
 	var random_y: float = _rng.randf_range(-1.0, 1.0)
 	var direction: Vector2 = Vector2(random_x, random_y).normalized()
 	dummy.global_position = _sapper.global_position + direction * 40
-
+	add_child(dummy)
 
 func _on_demo_controls_roll_pressed() -> void:
 	_sapper.try_to_roll()
