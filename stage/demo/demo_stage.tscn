@@ -68,7 +68,7 @@ unique_name_in_owner = true
 script = ExtResource("4_vte7o")
 
 [node name="SpawnDummyTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 3.0
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
