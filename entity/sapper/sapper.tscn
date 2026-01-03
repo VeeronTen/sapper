@@ -108,7 +108,7 @@ height = 14.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ollty"]
 size = Vector2(8, 2)
 
-[node name="Sapper" type="CharacterBody2D"]
+[node name="Sapper" type="CharacterBody2D" groups=["player"]]
 up_direction = Vector2(0, 1)
 script = ExtResource("1_mab4w")
 time_to_walk_speed_modifier = SubResource("Curve_mab4w")

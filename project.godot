@@ -46,6 +46,11 @@ movie_writer/movie_file="C:/Users/veero/OneDrive/Documents/sapper/movie.gif.avi"
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
+[global_group]
+
+player=""
+enemy=""
+
 [input]
 
 ui_left={

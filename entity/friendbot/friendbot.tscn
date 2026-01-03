@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c44dinhcu2bbt"]
+[gd_scene load_steps=5 format=3 uid="uid://c44dinhcu2bbt"]
 
+[ext_resource type="Script" uid="uid://bylnomfkhuyfq" path="res://entity/friendbot/friendbot.gd" id="1_1vqda"]
 [ext_resource type="Texture2D" uid="uid://rfvyncn5ee1i" path="res://entity/friendbot/image/friendbot.png" id="1_dafpt"]
+[ext_resource type="BehaviorTree" uid="uid://d5jgfnnok4lx" path="res://entity/friendbot/ai/friendbot_btree.tres" id="2_lp7in"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_1vqda"]
 
 [node name="FriendBot" type="CharacterBody2D"]
+script = ExtResource("1_1vqda")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dafpt")
+
+[node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("2_lp7in")
+blackboard_plan = SubResource("BlackboardPlan_1vqda")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true

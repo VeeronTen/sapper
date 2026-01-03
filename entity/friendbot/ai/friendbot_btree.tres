@@ -1,0 +1,85 @@
+[gd_resource type="BehaviorTree" load_steps=23 format=3 uid="uid://d5jgfnnok4lx"]
+
+[ext_resource type="Script" uid="uid://be0qh4solhdvu" path="res://ai/tasks/pick_random_pos_at_distance.gd" id="1_0r2e6"]
+[ext_resource type="Script" uid="uid://cqanvb428jdk5" path="res://ai/tasks/get_first_in_group.gd" id="1_ml4h5"]
+[ext_resource type="Script" uid="uid://dw57j2dt1h3dq" path="res://ai/tasks/in_range.gd" id="2_0r2e6"]
+[ext_resource type="Script" uid="uid://ur8dfqbs2tai" path="res://ai/tasks/navigation_set_target_position.gd" id="3_e432f"]
+[ext_resource type="Script" uid="uid://cqhd40qebpvdk" path="res://ai/tasks/navigation_go_to.gd" id="4_4prdj"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_tontj"]
+var/friend/name = &"friend"
+var/friend/type = 24
+var/friend/hint = 0
+var/friend/hint_string = ""
+var/target_pos/name = &"target_pos"
+var/target_pos/type = 5
+var/target_pos/value = Vector2(0, 0)
+var/target_pos/hint = 0
+var/target_pos/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_7gkxx"]
+script = ExtResource("1_ml4h5")
+group = &"player"
+output_var = &"friend"
+
+[sub_resource type="BTRunLimit" id="BTRunLimit_ml4h5"]
+children = [SubResource("BTAction_7gkxx")]
+
+[sub_resource type="BTCondition" id="BTCondition_7gkxx"]
+script = ExtResource("2_0r2e6")
+distance_max = 60.0
+target_var = &"friend"
+
+[sub_resource type="BTInvert" id="BTInvert_7s0as"]
+children = [SubResource("BTCondition_7gkxx")]
+
+[sub_resource type="BTAction" id="BTAction_7cc02"]
+script = ExtResource("3_e432f")
+target_var = &"friend"
+
+[sub_resource type="BTAction" id="BTAction_ufimb"]
+script = ExtResource("4_4prdj")
+speed = 30.0
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_e432f"]
+time_limit = 1.0
+children = [SubResource("BTAction_ufimb")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_e432f"]
+children = [SubResource("BTTimeLimit_e432f")]
+
+[sub_resource type="BTSequence" id="BTSequence_4prdj"]
+custom_name = "Sequence - Keep Friend Close Distance"
+children = [SubResource("BTInvert_7s0as"), SubResource("BTAction_7cc02"), SubResource("BTAlwaysSucceed_e432f")]
+
+[sub_resource type="BTAction" id="BTAction_0r2e6"]
+script = ExtResource("1_0r2e6")
+target_var = &"friend"
+distance = 70.0
+output_var = &"target_pos"
+
+[sub_resource type="BTAction" id="BTAction_e432f"]
+script = ExtResource("3_e432f")
+target_var = &"target_pos"
+
+[sub_resource type="BTAction" id="BTAction_4prdj"]
+script = ExtResource("4_4prdj")
+speed = 15.0
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_7cc02"]
+time_limit = 3.0
+children = [SubResource("BTAction_4prdj")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_4prdj"]
+children = [SubResource("BTTimeLimit_7cc02")]
+
+[sub_resource type="BTSequence" id="BTSequence_0r2e6"]
+custom_name = "Sequence - Chill Around Friend"
+children = [SubResource("BTAction_0r2e6"), SubResource("BTAction_e432f"), SubResource("BTAlwaysSucceed_4prdj")]
+
+[sub_resource type="BTSelector" id="BTSelector_0r2e6"]
+children = [SubResource("BTRunLimit_ml4h5"), SubResource("BTSequence_4prdj"), SubResource("BTSequence_0r2e6")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_tontj")
+root_task = SubResource("BTSelector_0r2e6")
