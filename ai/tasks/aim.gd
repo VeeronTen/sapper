@@ -37,6 +37,4 @@ func _tick(delta: float) -> Status:
 		
 func _exit() -> void:
 	_time_passed = 0.0
-
-
-	
+	blackboard.set_var(progress_var, 0.0)
