@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform sampler2D waterNoise : repeat_enable;
-uniform sampler2D waterColor : source_color;
+uniform sampler2D waterColor;
 uniform float speed : hint_range(0.0, 1.0, 0.1);
 
 void fragment() {
