@@ -1,9 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6gh6x8an7v0y"]
+[gd_scene load_steps=13 format=3 uid="uid://c6gh6x8an7v0y"]
 
+[ext_resource type="Shader" uid="uid://bu4jpr531r8yj" path="res://stage/demo/acid/shader/demo_acid.gdshader" id="1_ndf6f"]
 [ext_resource type="Texture2D" uid="uid://sidw4ko4u0po" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="1_q01te"]
 [ext_resource type="PackedScene" uid="uid://cgxmj8nsmy30g" path="res://component/damage/damaging_area_component/damaging_area_component.tscn" id="2_x2v3l"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="3_a2vgr"]
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="3_y51hs"]
+
+[sub_resource type="Gradient" id="Gradient_ndf6f"]
+offsets = PackedFloat32Array(0.053030305, 0.82878786, 0.91212124)
+colors = PackedColorArray(0.3137255, 0.8352941, 0.29411766, 1, 0.87058824, 0.8, 0.26666668, 1, 0.23529412, 0.6745098, 0.15686275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1p0fy"]
+gradient = SubResource("Gradient_ndf6f")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ndf6f"]
+noise_type = 2
+cellular_return_type = 4
+domain_warp_enabled = true
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1p0fy"]
+noise = SubResource("FastNoiseLite_ndf6f")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1p0fy"]
+shader = ExtResource("1_ndf6f")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_1p0fy")
+shader_parameter/waterColor = SubResource("GradientTexture1D_1p0fy")
+shader_parameter/speed = 0.30000000447036
 
 [sub_resource type="Resource" id="Resource_ndf6f"]
 script = ExtResource("3_y51hs")
@@ -15,11 +39,13 @@ metadata/_custom_type_script = "uid://but4ln51v458i"
 [node name="DemoAcid" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.494193, 0.743669, 0.5024, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1p0fy")
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_q01te")
 
 [node name="DamagingAreaComponent" parent="." instance=ExtResource("2_x2v3l")]
+visible = false
 _damage = SubResource("Resource_ndf6f")
 _collision_filter = ExtResource("3_a2vgr")
 is_continuous = true
