@@ -27,6 +27,9 @@ func _draw() -> void:
 	
 func _on_area_2d_aggro_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
+		var current_enemy: Variant = _bt_player.blackboard.get_var("enemy_target", null)
+		if current_enemy != null:
+			return
 		_bt_player.blackboard.set_var("enemy_target", body)
 
 func shoot_target() -> void:

@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=42 format=3 uid="uid://d5jgfnnok4lx"]
+[gd_resource type="BehaviorTree" load_steps=45 format=3 uid="uid://d5jgfnnok4lx"]
 
 [ext_resource type="Script" uid="uid://be0qh4solhdvu" path="res://ai/tasks/pick_random_pos_at_distance.gd" id="1_0r2e6"]
 [ext_resource type="Script" uid="uid://cqanvb428jdk5" path="res://ai/tasks/get_first_in_group.gd" id="1_ml4h5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cqhd40qebpvdk" path="res://ai/tasks/navigation_go_to.gd" id="4_4prdj"]
 [ext_resource type="Script" uid="uid://klgmj856wah" path="res://ai/tasks/pick_random_pos_at_distance_between.gd" id="5_4prdj"]
 [ext_resource type="Script" uid="uid://rqp2nn3axj7h" path="res://ai/tasks/aim.gd" id="5_7cc02"]
+[ext_resource type="Script" uid="uid://bxayfl2eghbvc" path="res://ai/tasks/get_first_in_group_in_area.gd" id="6_ufimb"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_tontj"]
 var/friend/name = &"friend"
@@ -56,30 +57,19 @@ output_var = &"target_pos"
 script = ExtResource("3_e432f")
 target_var = &"target_pos"
 
-[sub_resource type="BTSequence" id="BTSequence_o31m3"]
-children = [SubResource("BTAction_o31m3"), SubResource("BTAction_6y4gk")]
-
-[sub_resource type="BTCooldown" id="BTCooldown_6y4gk"]
-duration = 2.0
-children = [SubResource("BTSequence_o31m3")]
-
-[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_7cc02"]
-children = [SubResource("BTCooldown_6y4gk")]
-
 [sub_resource type="BTAction" id="BTAction_1iood"]
 script = ExtResource("4_4prdj")
-speed = 60.0
+speed = 40.0
+
+[sub_resource type="BTSequence" id="BTSequence_6y4gk"]
+children = [SubResource("BTAction_o31m3"), SubResource("BTAction_6y4gk"), SubResource("BTAction_1iood")]
 
 [sub_resource type="BTTimeLimit" id="BTTimeLimit_6y4gk"]
-time_limit = 3.0
-children = [SubResource("BTAction_1iood")]
-
-[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_1iood"]
-children = [SubResource("BTTimeLimit_6y4gk")]
+children = [SubResource("BTSequence_6y4gk")]
 
 [sub_resource type="BTSequence" id="BTSequence_7cc02"]
 custom_name = "Sequence - Fight - Move"
-children = [SubResource("BTAlwaysSucceed_7cc02"), SubResource("BTAlwaysSucceed_1iood")]
+children = [SubResource("BTTimeLimit_6y4gk")]
 
 [sub_resource type="BTAction" id="BTAction_kq6ix"]
 script = ExtResource("5_7cc02")
@@ -87,6 +77,7 @@ target_var = &"enemy_target"
 progress_var = &"aim_progress"
 max_distance = 80.0
 duration = 1.0
+reset_target_at_fail = null
 
 [sub_resource type="BBNode" id="BBNode_7cc02"]
 saved_value = NodePath(".")
@@ -101,12 +92,34 @@ custom_name = "Sequence - Fight - Shoot"
 children = [SubResource("BTAction_kq6ix"), SubResource("BTCallMethod_ufimb")]
 
 [sub_resource type="BTParallel" id="BTParallel_o31m3"]
+num_successes_required = 1486618496
 repeat = true
 children = [SubResource("BTSequence_7cc02"), SubResource("BTSequence_ufimb")]
 
 [sub_resource type="BTSequence" id="BTSequence_kq6ix"]
 custom_name = "Sequence - Fight"
 children = [SubResource("BTCheckVar_ufimb"), SubResource("BTParallel_o31m3")]
+
+[sub_resource type="BBVariant" id="BBVariant_ufimb"]
+saved_value = null
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_o31m3"]
+variable = &"enemy_target"
+value = SubResource("BBVariant_ufimb")
+
+[sub_resource type="BBNode" id="BBNode_ufimb"]
+saved_value = NodePath("Area2DAggro")
+resource_name = "Area2DAggro"
+
+[sub_resource type="BTAction" id="BTAction_vtdup"]
+script = ExtResource("6_ufimb")
+group = &"enemy"
+area = SubResource("BBNode_ufimb")
+output_var = &"enemy_target"
+
+[sub_resource type="BTSequence" id="BTSequence_1iood"]
+custom_name = "Sequence - Find Target"
+children = [SubResource("BTCheckVar_o31m3"), SubResource("BTAction_vtdup")]
 
 [sub_resource type="BTCondition" id="BTCondition_7gkxx"]
 script = ExtResource("2_0r2e6")
@@ -160,9 +173,9 @@ children = [SubResource("BTTimeLimit_7cc02")]
 custom_name = "Sequence - Chill Around Friend"
 children = [SubResource("BTAction_0r2e6"), SubResource("BTAction_e432f"), SubResource("BTAlwaysSucceed_4prdj")]
 
-[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_7cc02"]
-children = [SubResource("BTRunLimit_ml4h5"), SubResource("BTSequence_kq6ix"), SubResource("BTSequence_4prdj"), SubResource("BTSequence_0r2e6")]
+[sub_resource type="BTSelector" id="BTSelector_7cc02"]
+children = [SubResource("BTRunLimit_ml4h5"), SubResource("BTSequence_kq6ix"), SubResource("BTSequence_1iood"), SubResource("BTSequence_4prdj"), SubResource("BTSequence_0r2e6")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_tontj")
-root_task = SubResource("BTDynamicSelector_7cc02")
+root_task = SubResource("BTSelector_7cc02")
