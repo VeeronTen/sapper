@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://kqkvasn678ry"]
+[gd_scene load_steps=23 format=4 uid="uid://kqkvasn678ry"]
 
 [ext_resource type="Script" uid="uid://d22scmdflkulk" path="res://stage/demo/demo_stage.gd" id="1_3sebb"]
 [ext_resource type="TileSet" uid="uid://c6jlxm4wokjti" path="res://stage/demo/tilemap/demo_floor.tres" id="2_ln17t"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_dk5wi"]
 [ext_resource type="PackedScene" uid="uid://c44dinhcu2bbt" path="res://entity/friendbot/friendbot.tscn" id="13_dk5wi"]
 [ext_resource type="Shader" uid="uid://b4r7p31cdxr82" path="res://stage/demo/shader/anomaly.gdshader" id="14_fxrrq"]
+[ext_resource type="Shader" uid="uid://dvroe85kopapo" path="res://stage/demo/shader/chromatic_aberration.gdshader" id="15_xk4ec"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jj4g0"]
 vertices = PackedVector2Array(307.27344, -276.03125, 398.52344, 388.9375, 106, 74, 106, 6, 90, 6, 90, -74, -178.24219, -277.9922, 26, -106, 42, -74, 42, -90, 26, -90, -38, 54, -38, -38, -10, -54, 6, -54, 6, -38, -22, 70, 54, -38, 54, 54, 38, 54, 38, 70, 6, 70, -22, 106, 6, 106, -228.38281, 386.02344, -38, 70, -54, 54, -54, -38, -38, -54, -22, -54, -58, -106, -58, -90, -74, -90, -74, -74, -90, -74, -294.4297, -235.74219, -90, 90, -74, 90, -74, 106, 74, 106, 74, 90, 90, 90, 90, 74, -456.1797, 13.171875, -10, -106, -22, -106)
@@ -39,6 +40,14 @@ gradient = SubResource("Gradient_3p7ug")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8119658, 0.8247863)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3p7ug"]
+shader = ExtResource("15_xk4ec")
+shader_parameter/aberration_distance = 0.00800000038
+shader_parameter/extract_color_left = Color(0.78751117, 0.30806148, 0.7475481, 1)
+shader_parameter/extract_color_right = Color(0.99479204, 0.91009253, 0.8521871, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y18u6"]
 
 [node name="DemoStage" type="Node2D"]
 script = ExtResource("1_3sebb")
@@ -121,6 +130,14 @@ position = Vector2(-96, 73)
 material = SubResource("ShaderMaterial_xk4ec")
 position = Vector2(235, -58)
 texture = SubResource("GradientTexture2D_y18u6")
+
+[node name="ChromaticAbberation" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ChromaticAbberation"]
+material = SubResource("ShaderMaterial_3p7ug")
+position = Vector2(-32, -2)
+scale = Vector2(55.280006, 55.280006)
+texture = SubResource("PlaceholderTexture2D_y18u6")
 
 [connection signal="is_moving_changed" from="DemoControls" to="." method="_on_demo_controls_is_moving_changed"]
 [connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]
