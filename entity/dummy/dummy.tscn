@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7mytol7o1133"]
+[gd_scene load_steps=11 format=3 uid="uid://c7mytol7o1133"]
 
 [ext_resource type="Script" uid="uid://dyq3k47m6upu3" path="res://entity/dummy/dummy.gd" id="1_ttpty"]
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="2_bkyos"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="3_wblws"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="4_avckc"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="6_518d7"]
+[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="7_1nodl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
 size = Vector2(14, 14)
@@ -17,6 +18,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 2)
 
 [node name="Dummy" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
 script = ExtResource("1_ttpty")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -25,11 +27,11 @@ texture = ExtResource("2_ttpty")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vlewu")
 
-[node name="DamageableComponent" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
+[node name="DamageableComponentAir" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
 collision_filter = ExtResource("4_avckc")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentAir"]
 shape = SubResource("RectangleShape2D_bkyos")
 debug_color = Color(0, 0.470588, 0, 0.368627)
 
@@ -42,13 +44,20 @@ show_debug_healthbar = true
 _initial_value = 10.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 
-[node name="DamageableComponent2" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
+[node name="DamageableComponentGround" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
 collision_filter = ExtResource("6_518d7")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_1nodl")
 debug_color = Color(0, 0.470588, 0, 0.74902)
 
+[node name="TweenerTwitchComponent" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+unique_name_in_owner = true
+script = ExtResource("7_1nodl")
+target_node = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://c5mm22a8mpvos"
+
+[connection signal="took_damage" from="DamageableComponentAir" to="." method="_on_damageable_component_air_took_damage"]
 [connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]

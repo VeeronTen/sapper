@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var attack_area: Area2D = %AttackArea
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var tweener_twitch_component: TweenerTwitchComponent = $TweenerTwitchComponent
 
 #todo крутую навигацию добавить
 
@@ -94,3 +95,7 @@ func _recalculate_path() -> void:
 
 func _on_health_component_dead() -> void:
 	queue_free()
+
+
+func _on_damageable_air_took_damage() -> void:
+	tweener_twitch_component.twitch()

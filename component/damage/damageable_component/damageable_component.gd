@@ -2,6 +2,8 @@
 class_name DamageableComponent
 extends Area2D
 
+signal took_damage
+
 @export var collision_filter: DamageableComponentCollisionFilter
 @export var _damage_filter: DamageFilter
 @export var _health: HealthComponent
@@ -25,6 +27,7 @@ func take_damage(damage: Damage, block_stacking_tag: String) -> void:
 	var resulting_damage: Damage = damage
 	if _damage_filter != null:
 		resulting_damage = _damage_filter.filter_damage(resulting_damage)
+	took_damage.emit()
 	_health.take_damage(resulting_damage)
 	
 func enable_childs(enable: bool) -> void:

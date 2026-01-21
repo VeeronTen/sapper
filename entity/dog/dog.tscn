@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bth6ovyey2j4r"]
+[gd_scene load_steps=24 format=3 uid="uid://bth6ovyey2j4r"]
 
 [ext_resource type="Script" uid="uid://oj8riv1ysmha" path="res://entity/dog/dog.gd" id="1_cr7u6"]
 [ext_resource type="Texture2D" uid="uid://cpoycmarlsh3l" path="res://entity/dog/image/sapper-dog.png" id="1_eu4xl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="9_fp3cy"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="10_wcwrh"]
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="11_sks4y"]
+[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="12_fp3cy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eu4xl"]
 radius = 4.0
@@ -261,6 +262,11 @@ show_debug_healthbar = true
 _initial_value = 10.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 
+[node name="TweenerTwitchComponent" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("12_fp3cy")
+target_node = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://c5mm22a8mpvos"
+
 [connection signal="body_entered" from="WatchArea" to="." method="_on_watch_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chilling/Idle" to="." method="_on_idle_state_entered"]
@@ -274,4 +280,5 @@ metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 [connection signal="state_entered" from="StateChart/Root/Angry/Attacking/Attacking" to="." method="_on_attacking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Angry/Attacking/Attacking" to="." method="_on_attacking_state_physics_processing"]
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="took_damage" from="DamageableAir" to="." method="_on_damageable_air_took_damage"]
 [connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]
