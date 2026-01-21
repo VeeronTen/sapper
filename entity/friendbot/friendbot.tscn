@@ -21,6 +21,7 @@ value = 1.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [node name="FriendBot" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_1vqda")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

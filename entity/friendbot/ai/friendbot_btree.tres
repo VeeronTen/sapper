@@ -77,7 +77,6 @@ target_var = &"enemy_target"
 progress_var = &"aim_progress"
 max_distance = 80.0
 duration = 1.0
-reset_target_at_fail = null
 
 [sub_resource type="BBNode" id="BBNode_7cc02"]
 saved_value = NodePath(".")
@@ -102,6 +101,7 @@ children = [SubResource("BTCheckVar_ufimb"), SubResource("BTParallel_o31m3")]
 
 [sub_resource type="BBVariant" id="BBVariant_ufimb"]
 saved_value = null
+resource_name = "<null>"
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_o31m3"]
 variable = &"enemy_target"
