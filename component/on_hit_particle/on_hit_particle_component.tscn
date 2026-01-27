@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ck78f6xiexdkn"]
+
+[ext_resource type="Script" uid="uid://cd1krokuq7u0p" path="res://component/on_hit_particle/on_hit_particle_component.gd" id="1_ecpy6"]
+[ext_resource type="Shader" uid="uid://3irnirlqt8d6" path="res://component/on_hit_particle/shader/on_hit_particle.gdshader" id="2_bcs62"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20wcu"]
+shader = ExtResource("2_bcs62")
+
+[sub_resource type="Gradient" id="Gradient_uiaq1"]
+offsets = PackedFloat32Array(0.12014134, 0.5706714)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n5f6f"]
+gradient = SubResource("Gradient_uiaq1")
+width = 30
+height = 30
+fill = 1
+fill_from = Vector2(0.50256413, 0.50085473)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oro8d"]
+lifetime_randomness = 0.38
+emission_shape = 1
+emission_sphere_radius = 5.85
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 46.552
+initial_velocity_min = 3.6499999
+initial_velocity_max = 106.13
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+
+[node name="OnHitParticleComponent" type="Node2D" unique_id=1577882112]
+script = ExtResource("1_ecpy6")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2116873209]
+material = SubResource("ShaderMaterial_20wcu")
+emitting = false
+amount = 30
+texture = SubResource("GradientTexture2D_n5f6f")
+lifetime = 0.26
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_oro8d")

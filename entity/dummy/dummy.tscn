@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7mytol7o1133"]
+[gd_scene format=3 uid="uid://c7mytol7o1133"]
 
 [ext_resource type="Script" uid="uid://dyq3k47m6upu3" path="res://entity/dummy/dummy.gd" id="1_ttpty"]
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="2_bkyos"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="4_avckc"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="6_518d7"]
 [ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="7_1nodl"]
+[ext_resource type="PackedScene" uid="uid://ck78f6xiexdkn" path="res://component/on_hit_particle/on_hit_particle_component.tscn" id="8_uiaq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
 size = Vector2(14, 14)
@@ -17,25 +18,25 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nodl"]
 size = Vector2(16, 2)
 
-[node name="Dummy" type="CharacterBody2D" groups=["enemy"]]
+[node name="Dummy" type="CharacterBody2D" unique_id=2607212 groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_ttpty")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1094953945]
 texture = ExtResource("2_ttpty")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320596196]
 shape = SubResource("RectangleShape2D_vlewu")
 
-[node name="DamageableComponentAir" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
+[node name="DamageableComponentAir" parent="." unique_id=332337403 node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
 collision_filter = ExtResource("4_avckc")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentAir"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentAir" unique_id=1795211994]
 shape = SubResource("RectangleShape2D_bkyos")
 debug_color = Color(0, 0.470588, 0, 0.368627)
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." unique_id=633375376]
 unique_name_in_owner = true
 position = Vector2(0, -10.000001)
 scale = Vector2(1.5999994, 0.6000006)
@@ -44,20 +45,23 @@ show_debug_healthbar = true
 _initial_value = 10.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 
-[node name="DamageableComponentGround" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
+[node name="DamageableComponentGround" parent="." unique_id=1113658265 node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
 collision_filter = ExtResource("6_518d7")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround" unique_id=207429182]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_1nodl")
 debug_color = Color(0, 0.470588, 0, 0.74902)
 
-[node name="TweenerTwitchComponent" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+[node name="TweenerTwitchComponent" type="Node" parent="." unique_id=862433165 node_paths=PackedStringArray("target_node")]
 unique_name_in_owner = true
 script = ExtResource("7_1nodl")
 target_node = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://c5mm22a8mpvos"
+
+[node name="OnHitParticleComponent" parent="." unique_id=1577882112 instance=ExtResource("8_uiaq1")]
+unique_name_in_owner = true
 
 [connection signal="took_damage" from="DamageableComponentAir" to="." method="_on_damageable_component_air_took_damage"]
 [connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]

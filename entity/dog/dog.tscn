@@ -226,6 +226,7 @@ to = NodePath("../../..")
 delay_in_seconds = "0.5"
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("6_x4pd8")]
+visible = false
 offset_left = 18.999998
 offset_top = -50.0
 offset_right = 353.83282
