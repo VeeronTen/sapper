@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c6jlxm4wokjti"]
+[gd_resource type="TileSet" format=3 uid="uid://c6jlxm4wokjti"]
 
 [ext_resource type="Texture2D" uid="uid://dskvu0ifsxjhx" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="1_1wt8o"]
 

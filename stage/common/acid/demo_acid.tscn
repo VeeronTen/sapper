@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6gh6x8an7v0y"]
+[gd_scene format=3 uid="uid://c6gh6x8an7v0y"]
 
-[ext_resource type="Shader" uid="uid://bu4jpr531r8yj" path="res://stage/demo/acid/shader/demo_acid.gdshader" id="1_ndf6f"]
+[ext_resource type="Shader" uid="uid://bu4jpr531r8yj" path="res://stage/common/acid/shader/demo_acid.gdshader" id="1_ndf6f"]
 [ext_resource type="Texture2D" uid="uid://sidw4ko4u0po" path="res://addons/kenney_prototype_textures/light/texture_01.png" id="1_q01te"]
 [ext_resource type="PackedScene" uid="uid://cgxmj8nsmy30g" path="res://component/damage/damaging_area_component/damaging_area_component.tscn" id="2_x2v3l"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="3_a2vgr"]

@@ -1,6 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bjea5f63ldn35"]
+[gd_resource type="TileSet" format=3 uid="uid://bjea5f63ldn35"]
 
-[ext_resource type="PackedScene" uid="uid://c6gh6x8an7v0y" path="res://stage/demo/acid/demo_acid.tscn" id="1_aec8n"]
+[ext_resource type="PackedScene" uid="uid://c6gh6x8an7v0y" path="res://stage/common/acid/demo_acid.tscn" id="1_aec8n"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ndofo"]
 scenes/2/scene = ExtResource("1_aec8n")
