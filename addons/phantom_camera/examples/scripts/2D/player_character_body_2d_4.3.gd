@@ -142,7 +142,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _show_prompt(body_rid: RID, body: Node2D, body_shape_index: int, local_shape: int) -> void:
-	if body.is_class("TileMapLayer"): # TODO - Using string reference to support Godot 4.2
+	if body.is_class("TileMapLayer"): #  - Using string reference to support Godot 4.2
 		var tile_map := body
 		var tile_coords: Vector2i = tile_map.get_coords_for_body_rid(body_rid)
 		var cell_data: TileData = tile_map.get_cell_tile_data(tile_coords)
@@ -165,7 +165,7 @@ func _show_prompt(body_rid: RID, body: Node2D, body_shape_index: int, local_shap
 
 
 func _hide_prompt(body_rid: RID, body: Node2D, body_shape_index: int, local_shape: int) -> void:
-	if body.is_class("TileMapLayer"): # TODO - Using string reference to support Godot 4.2
+	if body.is_class("TileMapLayer"): #  - Using string reference to support Godot 4.2
 		var tile_map := body
 
 		var tile_coords: Vector2i = tile_map.get_coords_for_body_rid(body_rid)

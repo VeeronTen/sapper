@@ -23,7 +23,7 @@ var _settings_show_jitter_tips: String = "phantom_camera/tips/show_jitter_tips"
 var _settings_enable_editor_shortcut: String = "phantom_camera/general/enable_editor_shortcut"
 var _settings_editor_shortcut: String = "phantom_camera/general/editor_shortcut"
 
-# 	TODO - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after the release that is featured in
+# 	 - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after the release that is featured in
 #var _editor_shortcut: Shortcut = Shortcut.new()
 #var _editor_shortcut_input: InputEventKey
 #endregion
@@ -98,12 +98,12 @@ func _enter_tree() -> void:
 	ProjectSettings.set_as_basic(_settings_show_jitter_tips, true)
 
 
-# 	TODO - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after this release
+# 	 - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after this release
 #	if not ProjectSettings.has_setting(_settings_enable_editor_shortcut):
 #		ProjectSettings.set_setting(_settings_enable_editor_shortcut, false)
 #	ProjectSettings.set_initial_value(_settings_enable_editor_shortcut, false)
 
-# 	TODO - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after this release
+# 	 - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after this release
 #	_viewfinder_shortcut_default.events = [editor_shortcut]
 #	if ProjectSettings.get_setting(_settings_enable_editor_shortcut):
 #	if not ProjectSettings.has_setting(_settings_editor_shortcut):
@@ -111,7 +111,7 @@ func _enter_tree() -> void:
 #	ProjectSettings.set_initial_value(_settings_editor_shortcut, _editor_shortcut)
 
 
-	# TODO - Should be disabled unless in editor
+	# - Should be disabled unless in editor
 	# Viewfinder
 	editor_panel_instance = EditorPanel.instantiate()
 	editor_panel_instance.editor_plugin = self
@@ -157,11 +157,11 @@ func _make_visible(visible):
 	if editor_panel_instance:
 		editor_panel_instance.set_visible(visible)
 
-## TODO - Signal can be added directly to the editor_panel with the changes in Godot 4.5 (https://github.com/godotengine/godot/pull/102986)
+##  - Signal can be added directly to the editor_panel with the changes in Godot 4.5 (https://github.com/godotengine/godot/pull/102986)
 func _scene_changed(scene_root: Node) -> void:
 	editor_panel_instance.viewfinder.scene_changed(scene_root)
 
-#	TODO - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after this release
+#	 - Pending merge of https://github.com/godotengine/godot/pull/102889 - Should only support Godot version after this release
 #func _set_editor_shortcut() -> InputEventKey:
 #	var shortcut: InputEventKey = InputEventKey.new()
 #	shortcut.keycode = 67 # Key =  C

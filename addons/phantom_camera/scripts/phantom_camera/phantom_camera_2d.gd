@@ -431,7 +431,7 @@ var _should_rotate_with_target: bool = false
 @export var limit_margin: Vector4i = Vector4.ZERO:
 	set = set_limit_margin,
 	get = get_limit_margin
-#@export var limit_smoothed: bool = false: # TODO - Needs proper support
+#@export var limit_smoothed: bool = false: # - Needs proper support
 	#set = set_limit_smoothing,
 	#get = get_limit_smoothing
 
@@ -695,7 +695,7 @@ func process_logic(delta: float) -> void:
 				if _limit_inactive_pcam:
 					global_position = _set_limit_clamp_position(global_position)
 			# InactiveUpdateMode.EXPONENTIALLY:
-			# TODO - Trigger positional updates less frequently as more PCams gets added
+			#  - Trigger positional updates less frequently as more PCams gets added
 
 	_limit_checker()
 
@@ -716,7 +716,7 @@ func process_logic(delta: float) -> void:
 
 
 func _limit_checker() -> void:
-	## TODO - Needs to see if this can be triggerd only from CollisionShape2D Transform changes
+	##  - Needs to see if this can be triggerd only from CollisionShape2D Transform changes
 	if not Engine.is_editor_hint(): return
 	if draw_limits:
 		update_limit_all_sides()
@@ -1061,7 +1061,7 @@ func update_limit_all_sides() -> void:
 	elif _limit_node is TileMap or _limit_node.is_class("TileMapLayer"):
 		var tile_map := _limit_node
 
-		if not tile_map.tile_set: return # TODO: This should be removed once https://github.com/godotengine/godot/issues/96898 is resolved
+		if not tile_map.tile_set: return # : This should be removed once https://github.com/godotengine/godot/issues/96898 is resolved
 
 		var tile_map_size: Vector2 = Vector2(tile_map.get_used_rect().size) * Vector2(tile_map.tile_set.tile_size) * tile_map.get_scale()
 		var tile_map_position: Vector2 = tile_map.global_position + Vector2(tile_map.get_used_rect().position) * Vector2(tile_map.tile_set.tile_size) * tile_map.get_scale()
@@ -1163,7 +1163,7 @@ func teleport_position() -> void:
 	_phantom_camera_manager.pcam_teleport.emit(self)
 
 
-# TODO: Enum link does link to anywhere is being tracked in: https://github.com/godotengine/godot/issues/106828
+# : Enum link does link to anywhere is being tracked in: https://github.com/godotengine/godot/issues/106828
 ## Returns true if this [param PhantomCamera2D]'s [member follow_mode] is not set to [enum FollowMode]
 ## and has a valid [member follow_target].
 func is_following() -> bool:
@@ -1413,7 +1413,7 @@ func get_follow_damping() -> bool:
 
 ## Assigns new Damping value.
 func set_follow_damping_value(value: Vector2) -> void:
-	## TODO - Should be using @export_range once minimum version support is Godot 4.3
+	##  - Should be using @export_range once minimum version support is Godot 4.3
 	if value.x < 0: value.x = 0
 	elif value.y < 0: value.y = 0
 	follow_damping_value = value
@@ -1649,7 +1649,7 @@ func set_limit_target(value: NodePath) -> void:
 
 ## Get [member limit_target] node.
 func get_limit_target() -> NodePath:
-	if not limit_target: # TODO - Fixes an spam error if if limit_taret is empty
+	if not limit_target: #  - Fixes an spam error if if limit_taret is empty
 		return NodePath("")
 	else:
 		return limit_target

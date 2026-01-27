@@ -704,7 +704,7 @@ func _check_pcam_physics() -> void:
 				camera_3d.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_INHERIT
 
 
-## TODO - For 0.8 release
+##  - For 0.8 release
 #func _find_pcam_with_highest_priority() -> void:
 	#var highest_priority_pcam: Node
 	#for pcam in _pcam_list:
@@ -798,11 +798,11 @@ func _pcam_follow(_delta: float) -> void:
 
 	if Engine.is_editor_hint():
 		if not _is_2d:
-			# TODO - Signal-based solution pending merge of: https://github.com/godotengine/godot/pull/99729
+			#  - Signal-based solution pending merge of: https://github.com/godotengine/godot/pull/99729
 			if _active_pcam_3d.attributes != null:
 				camera_3d.attributes = _active_pcam_3d.attributes.duplicate()
 
-			# TODO - Signal-based solution pending merge of: https://github.com/godotengine/godot/pull/99873
+			#  - Signal-based solution pending merge of: https://github.com/godotengine/godot/pull/99873
 			if _active_pcam_3d.environment != null:
 				camera_3d.environment = _active_pcam_3d.environment.duplicate()
 
@@ -847,7 +847,7 @@ func _camera_3d_resource_property_changed(property: StringName, value: Variant) 
 
 
 func _pcam_tween(delta: float) -> void:
-	# TODO - Should be optimised
+	#  - Should be optimised
 	# Run at the first tween frame
 	if _tween_elapsed_time == 0:
 		if _is_2d:

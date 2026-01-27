@@ -865,7 +865,7 @@ func process_logic(delta: float) -> void:
 		match inactive_update_mode:
 			InactiveUpdateMode.NEVER: return
 			# InactiveUpdateMode.EXPONENTIALLY:
-			# TODO - Trigger positional updates less frequently as more PCams gets added
+			#  - Trigger positional updates less frequently as more PCams gets added
 
 	if _should_follow:
 		_follow(delta)
@@ -1409,13 +1409,13 @@ func teleport_position() -> void:
 	_phantom_camera_manager.pcam_teleport.emit(self)
 
 
-# TODO: Enum link does link to anywhere is being tracked in: https://github.com/godotengine/godot/issues/106828
+# : Enum link does link to anywhere is being tracked in: https://github.com/godotengine/godot/issues/106828
 ## Returns [code]true[/code] if this [param PhantomCamera3D]'s [member follow_mode] is not set to [constant FollowMode.NONE]
 ## and has a valid [member follow_target].
 func is_following() -> bool:
 	return _should_follow
 
-# TODO: Enum link does link to anywhere is being tracked in: https://github.com/godotengine/godot/issues/106828
+# : Enum link does link to anywhere is being tracked in: https://github.com/godotengine/godot/issues/106828
 ## Returns [code]true[/code] if this [param PhantomCamera3D]'s [member look_at_mode] is not set to [constant LookAtMode.NONE]
 ## and has a valid [member look_at_target].
 func is_looking() -> bool:
@@ -1665,7 +1665,7 @@ func get_follow_damping() -> bool:
 
 ## Assigns new [member follow_damping_value] value.
 func set_follow_damping_value(value: Vector3) -> void:
-	## TODO - Should be using @export_range once minimum version support is Godot 4.3
+	##  - Should be using @export_range once minimum version support is Godot 4.3
 	if value.x < 0: value.x = 0
 	elif value.y < 0: value.y = 0
 	elif value.z < 0: value.z = 0
