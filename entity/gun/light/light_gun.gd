@@ -6,14 +6,15 @@ extends Node2D
 #todo добавить еще разгон неточности от заспама
 
 @export var damage: Damage
+@export var bps: float:
+	set(value):
+		assert(value > 0, "bullets per second should be positive")
+		bps = value
+
 @export var _max_distance: float:
 	set(value):
 		assert(value >= 0, "distance cant be less than 0")
 		_max_distance = max(0, value)
-@export var _distance_to_shoot_above_ground: float:
-	set(value):
-		assert(MathExtended.is_in_range(value, 0.0, _max_distance), "the distance is restricted by max_distance and cant be < 0")
-		_distance_to_shoot_above_ground = clamp(value, 0, _max_distance)
 @export var _base_spread_angle: float:
 	set(value):
 		assert(MathExtended.is_in_range(value, 0.0, 180), "the angle must be 0 < 180")
@@ -25,6 +26,7 @@ extends Node2D
 @onready var _pointer_ray: RayCast2D = %PointerRay
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var _time_since_last_shot: float = 0
 
 var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -39,13 +41,19 @@ var pointer_position: Vector2 = Vector2.ZERO:
 func _ready() -> void:
 	_damaging_ray_component.damage = damage
 
+func _process(delta: float) -> void:
+	_time_since_last_shot += delta
+	
 func shoot() -> void:
+	if not _can_shoot(): 
+		return
 	var pointer_damageable_component: DamageableComponent = _get_damageable_component_at_pointer()
 	var distance_limit_by_pointer: float = _get_distance_limit_by(pointer_damageable_component)
 	_damaging_ray_component.rotation_degrees = _rng.randf_range(-_base_spread_angle/2, _base_spread_angle/2)
 	var distance: float = min(_max_distance, distance_limit_by_pointer)
 	_damaging_ray_component.shoot(distance)
 	_damage_if_not_damaged(pointer_damageable_component)
+	_time_since_last_shot = 0
 
 func _get_damageable_component_at_pointer() -> DamageableComponent:
 	_pointer_ray.force_raycast_update()
@@ -71,3 +79,5 @@ func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
 		if not damaged_parents.has(damageable_component.get_parent()):
 			damageable_component.take_damage(damage, "")
 	
+func _can_shoot() -> bool:
+	return _time_since_last_shot > 1 / bps

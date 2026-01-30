@@ -15,8 +15,8 @@ metadata/_custom_type_script = "uid://but4ln51v458i"
 [node name="LightGun" type="Node2D" unique_id=1705542247]
 script = ExtResource("1_looag")
 damage = SubResource("Resource_tjhnt")
+bps = 1.0
 _max_distance = 100.0
-_distance_to_shoot_above_ground = 35.0
 _base_spread_angle = 7.0
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1210744463]
@@ -30,6 +30,7 @@ texture = ExtResource("1_vbp2j")
 [node name="DamagingRayComponent" parent="Pivot/Sprite2D" unique_id=808572481 instance=ExtResource("3_w4ufm")]
 unique_name_in_owner = true
 position = Vector2(3, -0.5)
+damage = SubResource("Resource_tjhnt")
 _collision_filter = ExtResource("5_47k46")
 
 [node name="PointerRay" type="RayCast2D" parent="." unique_id=2055731923]
