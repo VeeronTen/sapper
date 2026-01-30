@@ -14,6 +14,7 @@ extends Node2D
 		assert(value > 0, "bullets per second should be positive")
 		bps = value
 		_allow_spam_with_multiplier = _allow_spam_with_multiplier
+		_spam_spread_angle = _spam_spread_angle
 @export var _allow_spam_with_multiplier: Curve:
 	set(value):
 		if value:
@@ -24,11 +25,13 @@ extends Node2D
 	set(value):
 		assert(value >= 0, "distance cant be less than 0")
 		_max_distance = max(0, value)
-@export var _base_spread_angle: float:
+@export var _spam_spread_angle: Curve:
 	set(value):
-		assert(MathExtended.is_in_range(value, 0.0, 180), "the angle must be 0 < 180")
-		_base_spread_angle = max(0, value)
-
+		if value:
+			value.max_domain = 1 / bps
+			value.max_value = 180
+		_spam_spread_angle = value
+		
 @onready var _pivot: Node2D = %Pivot
 @onready var _sprite_2d: Sprite2D = %Sprite2D
 @onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
@@ -57,7 +60,7 @@ func shoot() -> void:
 		return
 	var pointer_damageable_component: DamageableComponent = _get_damageable_component_at_pointer()
 	var distance_limit_by_pointer: float = _get_distance_limit_by(pointer_damageable_component)
-	_damaging_ray_component.rotation_degrees = _rng.randf_range(-_base_spread_angle/2, _base_spread_angle/2)
+	_damaging_ray_component.rotation_degrees = _get_spread()
 	var distance: float = min(_max_distance, distance_limit_by_pointer)
 	_damaging_ray_component.damage = _real_damage()
 	_damaging_ray_component.shoot(distance)
@@ -103,3 +106,7 @@ func _real_damage() -> Damage:
 		return real_damage
 	else:
 		return damage
+
+func _get_spread() -> float:
+	var samled_spread: float = _spam_spread_angle.sample(_time_since_last_shot)
+	return _rng.randf_range(-samled_spread/2, samled_spread/2)

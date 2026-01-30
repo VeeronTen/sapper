@@ -17,13 +17,18 @@ _limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 1.488227), 0.0, 0.895318, 0, 1, Vector2(0.9628821, 2.3503127), 0.895318, 17.503344, 1, 1, Vector2(1, 3), 17.503344, 0.0, 1, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_tjhnt"]
+_limits = [0.0, 180.0, 0.0, 1.0]
+_data = [Vector2(0.021, 30), 0.0, -23.493362, 0, 1, Vector2(1, 7), -23.493362, 0.0, 1, 0]
+point_count = 2
+
 [node name="LightGun" type="Node2D" unique_id=1705542247]
 script = ExtResource("1_looag")
 damage = SubResource("Resource_tjhnt")
 bps = 1.0
 _allow_spam_with_multiplier = SubResource("Curve_gm37q")
 _max_distance = 100.0
-_base_spread_angle = 7.0
+_spam_spread_angle = SubResource("Curve_tjhnt")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1210744463]
 unique_name_in_owner = true
