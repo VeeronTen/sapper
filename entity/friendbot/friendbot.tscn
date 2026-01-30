@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="4_uw4hx"]
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="5_81b7e"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="6_81b7e"]
-[ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="7_b3j3y"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1vqda"]
 
@@ -16,7 +15,7 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7uka"]
 radius = 51.0
 
-[sub_resource type="Resource" id="Resource_b3j3y"]
+[sub_resource type="Resource" id="Resource_81b7e"]
 script = ExtResource("5_81b7e")
 value = 1.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
@@ -46,9 +45,8 @@ shape = SubResource("CircleShape2D_v7uka")
 debug_color = Color(0.72118294, 0.4004418, 0.6892812, 0.41960785)
 
 [node name="DamagingRayComponent" parent="." unique_id=1038253489 instance=ExtResource("4_uw4hx")]
-_initial_damage = SubResource("Resource_b3j3y")
+damage = SubResource("Resource_81b7e")
 _is_piercing = true
 _collision_filter = ExtResource("6_81b7e")
-_collision_filter_at_end_point = ExtResource("7_b3j3y")
 
 [connection signal="body_entered" from="Area2DAggro" to="." method="_on_area_2d_aggro_body_entered"]

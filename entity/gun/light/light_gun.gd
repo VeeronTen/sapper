@@ -2,6 +2,10 @@
 class_name LightGun
 extends Node2D
 
+#todo давать бонус при заспаме стрельбы + краснеть оружие, непонятно, должны ли проахи уменьшать урон следующего попадания при заспаме
+#todo добавить еще разгон неточности от заспама
+
+@export var damage: Damage
 @export var _max_distance: float:
 	set(value):
 		assert(value >= 0, "distance cant be less than 0")
@@ -10,17 +14,15 @@ extends Node2D
 	set(value):
 		assert(MathExtended.is_in_range(value, 0.0, _max_distance), "the distance is restricted by max_distance and cant be < 0")
 		_distance_to_shoot_above_ground = clamp(value, 0, _max_distance)
-
-#todo добавить еще разгон неточности от заспама
 @export var _base_spread_angle: float:
 	set(value):
 		assert(MathExtended.is_in_range(value, 0.0, 180), "the angle must be 0 < 180")
 		_base_spread_angle = max(0, value)
-		
+
 @onready var _pivot: Node2D = %Pivot
 @onready var _sprite_2d: Sprite2D = %Sprite2D
 @onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
-#@onready var _damaging_ray_component_init_rotation: float = _damaging_ray_component.rotation_degrees
+@onready var _pointer_ray: RayCast2D = %PointerRay
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -31,17 +33,41 @@ var pointer_position: Vector2 = Vector2.ZERO:
 			_sprite_2d.scale.y = -1
 		else: 
 			_sprite_2d.scale.y = 1
+		_pointer_ray.global_position = value
 		pointer_position = value
-# todo получается фильтр должен и по лежащим сработать целям
+		
+func _ready() -> void:
+	_damaging_ray_component.damage = damage
 
-# todo Вот тут хотел жестко логику менять с стрельбой по высоте и т д
 func shoot() -> void:
+	var pointer_damageable_component: DamageableComponent = _get_damageable_component_at_pointer()
+	var distance_limit_by_pointer: float = _get_distance_limit_by(pointer_damageable_component)
 	_damaging_ray_component.rotation_degrees = _rng.randf_range(-_base_spread_angle/2, _base_spread_angle/2)
-	var horizontal_diviation = abs(_damaging_ray_component.rotation_degrees)/(_base_spread_angle/2)
-	var distance: float = pointer_position.distance_to(_damaging_ray_component.global_position)
-	var max_vertical_deviation = distance * sqrt(2 - 2 * cos(deg_to_rad(_base_spread_angle)))
-	var max_vertical_deviation_after_horizontal = max_vertical_deviation * (1 - horizontal_diviation)
-	distance = distance + _rng.randf_range(-max_vertical_deviation_after_horizontal / 2, max_vertical_deviation_after_horizontal / 2)
-	var over_ground_of_max_distance = (distance - _distance_to_shoot_above_ground) / (_max_distance - _distance_to_shoot_above_ground)
-	distance = clamp(distance * (1 + over_ground_of_max_distance), distance, _max_distance)
+	var distance: float = min(_max_distance, distance_limit_by_pointer)
 	_damaging_ray_component.shoot(distance)
+	_damage_if_not_damaged(pointer_damageable_component)
+
+func _get_damageable_component_at_pointer() -> DamageableComponent:
+	_pointer_ray.force_raycast_update()
+	while _pointer_ray.is_colliding():
+		var collider: Object = _pointer_ray.get_collider()
+		if collider is not DamageableComponent: return
+		var damageable: DamageableComponent = collider
+		_pointer_ray.clear_exceptions()
+		return damageable
+	return null
+
+func _get_distance_limit_by(damageableComponent: DamageableComponent) -> float:
+	if damageableComponent:
+		return global_position.distance_to(damageableComponent.global_position)
+	else:
+		return 9999999999
+
+func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
+	if _damaging_ray_component.last_shot_exceptions.has(damageable_component):
+		var damaged_parents: Array = _damaging_ray_component.last_shot_damaged.map(
+			func(node: DamageableComponent) -> Node: return node.get_parent()
+		)
+		if not damaged_parents.has(damageable_component.get_parent()):
+			damageable_component.take_damage(damage, "")
+	

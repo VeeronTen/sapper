@@ -1,32 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://qb3w45t4vdnh"]
+[gd_scene format=3 uid="uid://qb3w45t4vdnh"]
 
 [ext_resource type="Script" uid="uid://juyrg2fub5yp" path="res://entity/gun/light/light_gun.gd" id="1_looag"]
 [ext_resource type="Texture2D" uid="uid://fmvafa7fgr5w" path="res://entity/gun/light/image/light-gun.png" id="1_vbp2j"]
 [ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="3_w4ufm"]
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="4_l0bhc"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="5_47k46"]
+[ext_resource type="Texture2D" uid="uid://cgs010imk4t8r" path="res://addons/personal/pixel/pixel.png" id="7_bxgbb"]
 
-[sub_resource type="Resource" id="Resource_47k46"]
+[sub_resource type="Resource" id="Resource_tjhnt"]
 script = ExtResource("4_l0bhc")
 value = 3.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
-[node name="LightGun" type="Node2D"]
+[node name="LightGun" type="Node2D" unique_id=1705542247]
 script = ExtResource("1_looag")
+damage = SubResource("Resource_tjhnt")
 _max_distance = 100.0
 _distance_to_shoot_above_ground = 35.0
 _base_spread_angle = 7.0
 
-[node name="Pivot" type="Node2D" parent="."]
+[node name="Pivot" type="Node2D" parent="." unique_id=1210744463]
 unique_name_in_owner = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=678992814]
 unique_name_in_owner = true
 position = Vector2(6, 0)
 texture = ExtResource("1_vbp2j")
 
-[node name="DamagingRayComponent" parent="Pivot/Sprite2D" instance=ExtResource("3_w4ufm")]
+[node name="DamagingRayComponent" parent="Pivot/Sprite2D" unique_id=808572481 instance=ExtResource("3_w4ufm")]
 unique_name_in_owner = true
 position = Vector2(3, -0.5)
-_initial_damage = SubResource("Resource_47k46")
 _collision_filter = ExtResource("5_47k46")
+
+[node name="PointerRay" type="RayCast2D" parent="." unique_id=2055731923]
+unique_name_in_owner = true
+position = Vector2(25, -0.5)
+target_position = Vector2(0, 0)
+collision_mask = 1610612736
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="Pointer" type="Marker2D" parent="PointerRay" unique_id=37811573]
+
+[node name="Sprite2D" type="Sprite2D" parent="PointerRay/Pointer" unique_id=1246587151]
+texture = ExtResource("7_bxgbb")
