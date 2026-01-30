@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c44dinhcu2bbt"]
+[gd_scene format=3 uid="uid://c44dinhcu2bbt"]
 
 [ext_resource type="Script" uid="uid://bylnomfkhuyfq" path="res://entity/friendbot/friendbot.gd" id="1_1vqda"]
 [ext_resource type="Texture2D" uid="uid://rfvyncn5ee1i" path="res://entity/friendbot/image/friendbot.png" id="1_dafpt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="4_uw4hx"]
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="5_81b7e"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="6_81b7e"]
+[ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="7_b3j3y"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1vqda"]
 
@@ -20,33 +21,34 @@ script = ExtResource("5_81b7e")
 value = 1.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
-[node name="FriendBot" type="CharacterBody2D"]
+[node name="FriendBot" type="CharacterBody2D" unique_id=84199640]
 motion_mode = 1
 script = ExtResource("1_1vqda")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=669708560]
 texture = ExtResource("1_dafpt")
 
-[node name="BTPlayer" type="BTPlayer" parent="."]
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=1301705694]
 behavior_tree = ExtResource("2_lp7in")
 blackboard_plan = SubResource("BlackboardPlan_1vqda")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1984901713]
 debug_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=878221579]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_1vqda")
 
-[node name="Area2DAggro" type="Area2D" parent="."]
+[node name="Area2DAggro" type="Area2D" parent="." unique_id=647673575]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DAggro"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DAggro" unique_id=461873486]
 shape = SubResource("CircleShape2D_v7uka")
 debug_color = Color(0.72118294, 0.4004418, 0.6892812, 0.41960785)
 
-[node name="DamagingRayComponent" parent="." instance=ExtResource("4_uw4hx")]
+[node name="DamagingRayComponent" parent="." unique_id=1038253489 instance=ExtResource("4_uw4hx")]
 _initial_damage = SubResource("Resource_b3j3y")
 _is_piercing = true
 _collision_filter = ExtResource("6_81b7e")
+_collision_filter_at_end_point = ExtResource("7_b3j3y")
 
 [connection signal="body_entered" from="Area2DAggro" to="." method="_on_area_2d_aggro_body_entered"]
