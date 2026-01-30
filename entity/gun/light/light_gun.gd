@@ -2,15 +2,24 @@
 class_name LightGun
 extends Node2D
 
-#todo давать бонус при заспаме стрельбы + краснеть оружие, непонятно, должны ли проахи уменьшать урон следующего попадания при заспаме
+#todo оружие должно краснеть от заспама?
 #todo добавить еще разгон неточности от заспама
 
-@export var damage: Damage
+@export var damage: Damage:
+	set(value):
+		damage = value
+		_allow_spam_with_multiplier = _allow_spam_with_multiplier
 @export var bps: float:
 	set(value):
 		assert(value > 0, "bullets per second should be positive")
 		bps = value
-
+		_allow_spam_with_multiplier = _allow_spam_with_multiplier
+@export var _allow_spam_with_multiplier: Curve:
+	set(value):
+		if value:
+			value.max_domain = 1 / bps
+			value.max_value = damage.value
+		_allow_spam_with_multiplier = value
 @export var _max_distance: float:
 	set(value):
 		assert(value >= 0, "distance cant be less than 0")
@@ -27,6 +36,7 @@ extends Node2D
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _time_since_last_shot: float = 0
+var _time_since_last_sucessfull_shot: float = 0
 
 var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -37,12 +47,10 @@ var pointer_position: Vector2 = Vector2.ZERO:
 			_sprite_2d.scale.y = 1
 		_pointer_ray.global_position = value
 		pointer_position = value
-		
-func _ready() -> void:
-	_damaging_ray_component.damage = damage
 
 func _process(delta: float) -> void:
 	_time_since_last_shot += delta
+	_time_since_last_sucessfull_shot += delta
 	
 func shoot() -> void:
 	if not _can_shoot(): 
@@ -51,9 +59,12 @@ func shoot() -> void:
 	var distance_limit_by_pointer: float = _get_distance_limit_by(pointer_damageable_component)
 	_damaging_ray_component.rotation_degrees = _rng.randf_range(-_base_spread_angle/2, _base_spread_angle/2)
 	var distance: float = min(_max_distance, distance_limit_by_pointer)
+	_damaging_ray_component.damage = _real_damage()
 	_damaging_ray_component.shoot(distance)
 	_damage_if_not_damaged(pointer_damageable_component)
 	_time_since_last_shot = 0
+	if not _damaging_ray_component.last_shot_damaged.is_empty():
+		_time_since_last_sucessfull_shot = 0
 
 func _get_damageable_component_at_pointer() -> DamageableComponent:
 	_pointer_ray.force_raycast_update()
@@ -77,7 +88,18 @@ func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
 			func(node: DamageableComponent) -> Node: return node.get_parent()
 		)
 		if not damaged_parents.has(damageable_component.get_parent()):
-			damageable_component.take_damage(damage, "")
+			damageable_component.take_damage(_real_damage(), "")
+			_time_since_last_sucessfull_shot = 0
 	
 func _can_shoot() -> bool:
+	if _allow_spam_with_multiplier: 
+		return true
 	return _time_since_last_shot > 1 / bps
+	
+func _real_damage() -> Damage:
+	if _allow_spam_with_multiplier:
+		var real_damage: Damage = damage.duplicate()
+		real_damage.value = _allow_spam_with_multiplier.sample(_time_since_last_sucessfull_shot)	
+		return real_damage
+	else:
+		return damage
