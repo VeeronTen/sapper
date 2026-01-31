@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://c1xug7auajvfn"]
 
 [ext_resource type="PackedScene" uid="uid://c7mytol7o1133" path="res://entity/dummy/dummy.tscn" id="1_lf8r7"]
-[ext_resource type="PackedScene" uid="uid://bth6ovyey2j4r" path="res://entity/dog/dog.tscn" id="2_q8tew"]
+[ext_resource type="PackedScene" uid="uid://bth6ovyey2j4r" path="res://entity/mutant_dog/mutant_dog.tscn" id="2_q8tew"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln17t"]
 scenes/1/scene = ExtResource("1_lf8r7")

@@ -1,17 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://bth6ovyey2j4r"]
+[gd_scene format=3 uid="uid://bth6ovyey2j4r"]
 
-[ext_resource type="Script" uid="uid://oj8riv1ysmha" path="res://entity/dog/dog.gd" id="1_cr7u6"]
-[ext_resource type="Texture2D" uid="uid://cpoycmarlsh3l" path="res://entity/dog/image/sapper-dog.png" id="1_eu4xl"]
-[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_cnqqh"]
-[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_i13kc"]
-[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_sk661"]
-[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_s85yq"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="6_x4pd8"]
-[ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="8_e0evb"]
-[ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="9_fp3cy"]
-[ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="10_wcwrh"]
-[ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="11_sks4y"]
-[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="12_fp3cy"]
+[ext_resource type="Script" uid="uid://oj8riv1ysmha" path="res://entity/mutant_dog/mutant_dog.gd" id="1_k2r53"]
+[ext_resource type="Texture2D" uid="uid://cpoycmarlsh3l" path="res://entity/mutant_dog/image/mutant-dog.png" id="2_gol3d"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_5p7c0"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_jwmfk"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_uy1yb"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_nndy6"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="7_esaah"]
+[ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="8_vmaoy"]
+[ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="9_1671i"]
+[ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="10_fyhl8"]
+[ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="11_0hyd5"]
+[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="12_1mkby"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eu4xl"]
 radius = 4.0
@@ -118,114 +118,112 @@ size = Vector2(15, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rt1c"]
 size = Vector2(15, 1)
 
-[node name="Dog" type="CharacterBody2D" groups=["enemy"]]
+[node name="MutantDog" type="CharacterBody2D" unique_id=1756377939 groups=["enemy"]]
 motion_mode = 1
-script = ExtResource("1_cr7u6")
+script = ExtResource("1_k2r53")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111055984]
 unique_name_in_owner = true
-texture = ExtResource("1_eu4xl")
+texture = ExtResource("2_gol3d")
 hframes = 5
 vframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=450916238]
 position = Vector2(0, 3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_eu4xl")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=834968710]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_i13kc")
-}
+libraries/ = SubResource("AnimationLibrary_i13kc")
 
-[node name="WatchArea" type="Area2D" parent="."]
+[node name="WatchArea" type="Area2D" parent="." unique_id=2049667600]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WatchArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WatchArea" unique_id=1010276245]
 shape = SubResource("CircleShape2D_sk661")
 debug_color = Color(0, 0.6, 0.69803923, 0.07450981)
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=1095971676]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=2055742464]
 shape = SubResource("CircleShape2D_eu4xl")
 debug_color = Color(0.81960785, 0.37254903, 0.41568628, 0.34901962)
 
-[node name="StateChart" type="Node" parent="."]
+[node name="StateChart" type="Node" parent="." unique_id=423677819]
 unique_name_in_owner = true
-script = ExtResource("2_cnqqh")
+script = ExtResource("3_5p7c0")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Root" type="Node" parent="StateChart"]
-script = ExtResource("3_i13kc")
+[node name="Root" type="Node" parent="StateChart" unique_id=782504627]
+script = ExtResource("4_jwmfk")
 initial_state = NodePath("Chilling")
 
-[node name="Chilling" type="Node" parent="StateChart/Root"]
-script = ExtResource("3_i13kc")
+[node name="Chilling" type="Node" parent="StateChart/Root" unique_id=1506759783]
+script = ExtResource("4_jwmfk")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/Root/Chilling"]
-script = ExtResource("4_sk661")
+[node name="Idle" type="Node" parent="StateChart/Root/Chilling" unique_id=1995424650]
+script = ExtResource("5_uy1yb")
 
-[node name="StartWalk" type="Node" parent="StateChart/Root/Chilling/Idle"]
-script = ExtResource("6_s85yq")
+[node name="StartWalk" type="Node" parent="StateChart/Root/Chilling/Idle" unique_id=1490044051]
+script = ExtResource("6_nndy6")
 to = NodePath("../../Walk")
 delay_in_seconds = "randf_range(1, 3)"
 
-[node name="Walk" type="Node" parent="StateChart/Root/Chilling"]
-script = ExtResource("4_sk661")
+[node name="Walk" type="Node" parent="StateChart/Root/Chilling" unique_id=1779531105]
+script = ExtResource("5_uy1yb")
 
-[node name="ToIdle" type="Node" parent="StateChart/Root/Chilling/Walk"]
-script = ExtResource("6_s85yq")
+[node name="ToIdle" type="Node" parent="StateChart/Root/Chilling/Walk" unique_id=823849364]
+script = ExtResource("6_nndy6")
 to = NodePath("../../Idle")
 delay_in_seconds = "randf_range(1, 3)"
 
-[node name="FoundTarget" type="Node" parent="StateChart/Root/Chilling"]
-script = ExtResource("6_s85yq")
+[node name="FoundTarget" type="Node" parent="StateChart/Root/Chilling" unique_id=2099532970]
+script = ExtResource("6_nndy6")
 to = NodePath("../../Angry")
 event = &"found_target"
 delay_in_seconds = "0.0"
 
-[node name="Angry" type="Node" parent="StateChart/Root"]
-script = ExtResource("3_i13kc")
+[node name="Angry" type="Node" parent="StateChart/Root" unique_id=1355175217]
+script = ExtResource("4_jwmfk")
 initial_state = NodePath("Chasing")
 
-[node name="Chasing" type="Node" parent="StateChart/Root/Angry"]
-script = ExtResource("4_sk661")
+[node name="Chasing" type="Node" parent="StateChart/Root/Angry" unique_id=2080041090]
+script = ExtResource("5_uy1yb")
 
-[node name="StartAttack" type="Node" parent="StateChart/Root/Angry/Chasing"]
-script = ExtResource("6_s85yq")
+[node name="StartAttack" type="Node" parent="StateChart/Root/Angry/Chasing" unique_id=127041196]
+script = ExtResource("6_nndy6")
 to = NodePath("../../Attacking")
 event = &"ready_to_attack"
 delay_in_seconds = "0.0"
 
-[node name="RecalculatePath" type="Node" parent="StateChart/Root/Angry/Chasing"]
-script = ExtResource("6_s85yq")
+[node name="RecalculatePath" type="Node" parent="StateChart/Root/Angry/Chasing" unique_id=485714916]
+script = ExtResource("6_nndy6")
 to = NodePath("..")
 delay_in_seconds = "1"
 
-[node name="Attacking" type="Node" parent="StateChart/Root/Angry"]
-script = ExtResource("3_i13kc")
+[node name="Attacking" type="Node" parent="StateChart/Root/Angry" unique_id=62935305]
+script = ExtResource("4_jwmfk")
 initial_state = NodePath("PreparingToAttack")
 
-[node name="PreparingToAttack" type="Node" parent="StateChart/Root/Angry/Attacking"]
-script = ExtResource("4_sk661")
+[node name="PreparingToAttack" type="Node" parent="StateChart/Root/Angry/Attacking" unique_id=890706347]
+script = ExtResource("5_uy1yb")
 
-[node name="Attack" type="Node" parent="StateChart/Root/Angry/Attacking/PreparingToAttack"]
-script = ExtResource("6_s85yq")
+[node name="Attack" type="Node" parent="StateChart/Root/Angry/Attacking/PreparingToAttack" unique_id=883848854]
+script = ExtResource("6_nndy6")
 to = NodePath("../../Attacking")
 delay_in_seconds = "1"
 
-[node name="Attacking" type="Node" parent="StateChart/Root/Angry/Attacking"]
-script = ExtResource("4_sk661")
+[node name="Attacking" type="Node" parent="StateChart/Root/Angry/Attacking" unique_id=1986726593]
+script = ExtResource("5_uy1yb")
 
-[node name="ContinueAngry" type="Node" parent="StateChart/Root/Angry/Attacking/Attacking"]
-script = ExtResource("6_s85yq")
+[node name="ContinueAngry" type="Node" parent="StateChart/Root/Angry/Attacking/Attacking" unique_id=1423236328]
+script = ExtResource("6_nndy6")
 to = NodePath("../../..")
 delay_in_seconds = "0.5"
 
-[node name="StateChartDebugger" parent="." instance=ExtResource("6_x4pd8")]
+[node name="StateChartDebugger" parent="." unique_id=2068065036 instance=ExtResource("7_esaah")]
 visible = false
 offset_left = 18.999998
 offset_top = -50.0
@@ -235,36 +233,36 @@ scale = Vector2(0.26281777, 0.26281777)
 enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1709568130]
 debug_enabled = true
 
-[node name="DamageableAir" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("8_e0evb")]
-collision_filter = ExtResource("9_fp3cy")
+[node name="DamageableAir" parent="." unique_id=296747577 node_paths=PackedStringArray("_health") instance=ExtResource("8_vmaoy")]
+collision_filter = ExtResource("9_1671i")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableAir"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableAir" unique_id=523051658]
 position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_wr1da")
 debug_color = Color(0, 0.470588, 0, 0.368627)
 
-[node name="DamageableGround" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("8_e0evb")]
-collision_filter = ExtResource("10_wcwrh")
+[node name="DamageableGround" parent="." unique_id=1031431700 node_paths=PackedStringArray("_health") instance=ExtResource("8_vmaoy")]
+collision_filter = ExtResource("10_fyhl8")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableGround"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableGround" unique_id=1175295383]
 position = Vector2(0.5, 6.5)
 shape = SubResource("RectangleShape2D_2rt1c")
 debug_color = Color(0, 0.470588, 0, 0.74902)
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." unique_id=1512480288]
 position = Vector2(0, -4)
-script = ExtResource("11_sks4y")
+script = ExtResource("11_0hyd5")
 show_debug_healthbar = true
 _initial_value = 10.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 
-[node name="TweenerTwitchComponent" type="Node" parent="." node_paths=PackedStringArray("target_node")]
-script = ExtResource("12_fp3cy")
+[node name="TweenerTwitchComponent" type="Node" parent="." unique_id=873555848 node_paths=PackedStringArray("target_node")]
+script = ExtResource("12_1mkby")
 target_node = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://c5mm22a8mpvos"
 
