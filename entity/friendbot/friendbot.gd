@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 30
 
-@onready var _sprite_2d: Sprite2D = $Sprite2D
+@onready var _sprites: Node2D = %Sprites
 @onready var _navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var _bt_player: BTPlayer = $BTPlayer
 @onready var _damaging_ray_component: DamagingRayComponent = $DamagingRayComponent
@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 	
 func _physics_process(_delta: float) -> void:
-	_sprite_2d.flip_h = velocity.x < 0
+	_sprites.scale.x = 1 if velocity.x < 0 else -1
 	
 func _draw() -> void:
 	var target: Variant = _bt_player.blackboard.get_var("enemy_target")

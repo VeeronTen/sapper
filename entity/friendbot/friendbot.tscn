@@ -10,7 +10,7 @@
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1vqda"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vqda"]
-radius = 9.0
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7uka"]
 radius = 51.0
@@ -24,8 +24,51 @@ metadata/_custom_type_script = "uid://but4ln51v458i"
 motion_mode = 1
 script = ExtResource("1_1vqda")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=669708560]
+[node name="Sprites" type="Node2D" parent="." unique_id=1730282090]
+unique_name_in_owner = true
+
+[node name="Drone" type="Sprite2D" parent="Sprites" unique_id=669708560]
 texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+
+[node name="FireUp" type="Sprite2D" parent="Sprites" unique_id=1826778024]
+texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+frame = 6
+
+[node name="FireDown" type="Sprite2D" parent="Sprites" unique_id=2005692968]
+texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+frame = 12
+
+[node name="Hologram" type="Sprite2D" parent="Sprites" unique_id=21820814]
+texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+frame = 18
+
+[node name="FaceSmile" type="Sprite2D" parent="Sprites" unique_id=453296124]
+texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+frame = 24
+
+[node name="FaceSpeak" type="Sprite2D" parent="Sprites" unique_id=1431141345]
+visible = false
+texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+frame = 30
+
+[node name="FaceAngry" type="Sprite2D" parent="Sprites" unique_id=288563390]
+visible = false
+texture = ExtResource("1_dafpt")
+hframes = 6
+vframes = 7
+frame = 36
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1301705694]
 behavior_tree = ExtResource("2_lp7in")
@@ -35,14 +78,15 @@ blackboard_plan = SubResource("BlackboardPlan_1vqda")
 debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=878221579]
-position = Vector2(0, 1)
+position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_1vqda")
+debug_color = Color(0, 0.6, 0.69803923, 0.21176471)
 
 [node name="Area2DAggro" type="Area2D" parent="." unique_id=647673575]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DAggro" unique_id=461873486]
 shape = SubResource("CircleShape2D_v7uka")
-debug_color = Color(0.72118294, 0.4004418, 0.6892812, 0.41960785)
+debug_color = Color(0.72156864, 0.4, 0.6901961, 0.2)
 
 [node name="DamagingRayComponent" parent="." unique_id=1038253489 instance=ExtResource("4_uw4hx")]
 damage = SubResource("Resource_81b7e")
