@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: float = 30
+@export_range(0, 90, 1, "radians") var max_move_skew: float
 
 @onready var _sprites: Node2D = %Sprites
 @onready var _navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
@@ -10,8 +11,9 @@ extends CharacterBody2D
 func _ready() -> void:
 	_bt_player.blackboard.set_var("nav_agent", _navigation_agent_2d)
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	queue_redraw()
+	_sprites.skew = lerpf(_sprites.skew, max_move_skew if velocity.x > 0 else -max_move_skew, delta)
 	
 func _physics_process(_delta: float) -> void:
 	_sprites.scale.x = 1 if velocity.x < 0 else -1

@@ -23,6 +23,7 @@ metadata/_custom_type_script = "uid://but4ln51v458i"
 [node name="FriendBot" type="CharacterBody2D" unique_id=84199640]
 motion_mode = 1
 script = ExtResource("1_1vqda")
+max_move_skew = 0.2617993877991494
 
 [node name="Sprites" type="Node2D" parent="." unique_id=1730282090]
 unique_name_in_owner = true
