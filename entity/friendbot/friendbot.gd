@@ -8,15 +8,20 @@ extends CharacterBody2D
 @onready var _bt_player: BTPlayer = $BTPlayer
 @onready var _damaging_ray_component: DamagingRayComponent = $DamagingRayComponent
 
+var _max_registered_horizontal_velocity: float = 0.0
+
 func _ready() -> void:
 	_bt_player.blackboard.set_var("nav_agent", _navigation_agent_2d)
 	
 func _process(delta: float) -> void:
 	queue_redraw()
-	_sprites.skew = lerpf(_sprites.skew, max_move_skew if velocity.x > 0 else -max_move_skew, delta)
+	var target_skew: float = max_move_skew if velocity.x > 0 else -max_move_skew
+	target_skew *= absf(velocity.x) / _max_registered_horizontal_velocity
+	_sprites.skew = lerpf(_sprites.skew, target_skew, delta)
 	
 func _physics_process(_delta: float) -> void:
 	_sprites.scale.x = 1 if velocity.x < 0 else -1
+	_max_registered_horizontal_velocity = max(_max_registered_horizontal_velocity, absf(velocity.x))
 	
 func _draw() -> void:
 	var target: Variant = _bt_player.blackboard.get_var("enemy_target")
