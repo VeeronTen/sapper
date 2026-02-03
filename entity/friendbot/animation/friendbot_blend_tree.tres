@@ -1,0 +1,25 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://cn6j4qdmr83l2"]
+
+[ext_resource type="AnimationNodeBlendTree" uid="uid://dtmpwkqkb3uwj" path="res://entity/friendbot/animation/angry_animation_node_blend_tree.tres" id="1_udh6g"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://ccg5iswflf7g6" path="res://entity/friendbot/animation/smile_animation_node_blend_tree.tres" id="2_14ddx"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_udh6g"]
+input_0/name = "smile"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "angry"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[resource]
+graph_offset = Vector2(-852.9176, 278.22705)
+nodes/output/position = Vector2(-64, 368)
+nodes/Smile/node = ExtResource("2_14ddx")
+nodes/Smile/position = Vector2(-496, 400)
+nodes/Angry/node = ExtResource("1_udh6g")
+nodes/Angry/position = Vector2(-496, 624)
+nodes/Transition/node = SubResource("AnimationNodeTransition_udh6g")
+nodes/Transition/position = Vector2(-272, 368)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Smile", &"Transition", 1, &"Angry"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="4_uw4hx"]
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="5_81b7e"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="6_81b7e"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://dtmpwkqkb3uwj" path="res://entity/friendbot/animation/angry_animation_node_blend_tree.tres" id="7_b3j3y"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cn6j4qdmr83l2" path="res://entity/friendbot/animation/friendbot_blend_tree.tres" id="7_b3j3y"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1vqda"]
 
@@ -351,11 +351,19 @@ _collision_filter = ExtResource("6_81b7e")
 libraries/ = SubResource("AnimationLibrary_pnc7y")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=86262821]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
 tree_root = ExtResource("7_b3j3y")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/BaseAnimationBlendTree/Add2/add_amount = 1.0
-parameters/BaseAnimationBlendTree/TimeScale/scale = 3.0
-parameters/Add2/add_amount = 1.0
+parameters/Smile/BaseAnimationBlendTree/Add2/add_amount = 1.0
+parameters/Smile/BaseAnimationBlendTree/TimeScale/scale = 3.0
+parameters/Smile/Add2/add_amount = 1.0
+parameters/Angry/BaseAnimationBlendTree/Add2/add_amount = 1.0
+parameters/Angry/BaseAnimationBlendTree/TimeScale/scale = 5.0
+parameters/Angry/Add2/add_amount = 1.0
+parameters/Transition/current_state = "smile"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
 
 [connection signal="body_entered" from="Area2DAggro" to="." method="_on_area_2d_aggro_body_entered"]

@@ -7,11 +7,21 @@ extends CharacterBody2D
 @onready var _navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var _bt_player: BTPlayer = $BTPlayer
 @onready var _damaging_ray_component: DamagingRayComponent = $DamagingRayComponent
+@onready var _animation_tree: AnimationTree = %AnimationTree
 
 var _max_registered_horizontal_velocity: float = 0.0
+var _blackboard_enemy_target: Node2D:
+	set(value):
+		_blackboard_enemy_target = value
+		if is_instance_valid(value):
+			_animation_tree.set("parameters/Transition/transition_request", "angry")
+		else: 		
+			_animation_tree.set("parameters/Transition/transition_request", "smile")
 
+#todo заюзать анимацию говорения
 func _ready() -> void:
 	_bt_player.blackboard.set_var("nav_agent", _navigation_agent_2d)
+	_bt_player.blackboard.bind_var_to_property(&"enemy_target", self, "_blackboard_enemy_target")
 	
 func _process(delta: float) -> void:
 	queue_redraw()
