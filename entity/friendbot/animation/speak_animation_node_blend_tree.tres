@@ -1,0 +1,19 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://cmcehab6i7l54"]
+
+[ext_resource type="AnimationNodeBlendTree" uid="uid://blsbcq13ifel2" path="res://entity/friendbot/animation/base_animation_blend_tree.tres" id="1_20kk2"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_hggee"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnc7y"]
+animation = &"hologram_speak"
+
+[resource]
+graph_offset = Vector2(-292.5646, 68.1523)
+nodes/output/position = Vector2(432, 144)
+nodes/BaseAnimationBlendTree/node = ExtResource("1_20kk2")
+nodes/BaseAnimationBlendTree/position = Vector2(-64, 176)
+nodes/Speak/node = SubResource("AnimationNodeAnimation_pnc7y")
+nodes/Speak/position = Vector2(-64, 400)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_hggee")
+nodes/Add2/position = Vector2(224, 144)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"BaseAnimationBlendTree", &"Add2", 1, &"Speak"]

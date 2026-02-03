@@ -1,0 +1,20 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://blsbcq13ifel2"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_81b7e"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b3j3y"]
+animation = &"hologram_base"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hggee"]
+animation = &"fire"
+
+[resource]
+graph_offset = Vector2(-687.2822, -35.52193)
+nodes/output/position = Vector2(-32, 48)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_81b7e")
+nodes/Add2/position = Vector2(-240, 48)
+nodes/fire/node = SubResource("AnimationNodeAnimation_hggee")
+nodes/fire/position = Vector2(-480, 80)
+"nodes/Hologram Base/node" = SubResource("AnimationNodeAnimation_b3j3y")
+"nodes/Hologram Base/position" = Vector2(-480, 320)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"fire", &"Add2", 1, &"Hologram Base"]

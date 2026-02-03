@@ -1,0 +1,19 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dtmpwkqkb3uwj"]
+
+[ext_resource type="AnimationNodeBlendTree" uid="uid://blsbcq13ifel2" path="res://entity/friendbot/animation/base_animation_blend_tree.tres" id="1_o2r5g"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_hggee"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnc7y"]
+animation = &"hologram_angry"
+
+[resource]
+graph_offset = Vector2(-291.7646, 92.1523)
+nodes/output/position = Vector2(432, 144)
+nodes/BaseAnimationBlendTree/node = ExtResource("1_o2r5g")
+nodes/BaseAnimationBlendTree/position = Vector2(-64, 176)
+nodes/Angry/node = SubResource("AnimationNodeAnimation_pnc7y")
+nodes/Angry/position = Vector2(-64, 400)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_hggee")
+nodes/Add2/position = Vector2(224, 144)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"BaseAnimationBlendTree", &"Add2", 1, &"Angry"]
