@@ -2,10 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://c7mytol7o1133" path="res://entity/dummy/dummy.tscn" id="1_lf8r7"]
 [ext_resource type="PackedScene" uid="uid://bth6ovyey2j4r" path="res://entity/mutant_dog/mutant_dog.tscn" id="2_q8tew"]
+[ext_resource type="PackedScene" uid="uid://dq3gr7ei455xu" path="res://entity/bomb/bomb.tscn" id="3_2maml"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ln17t"]
 scenes/1/scene = ExtResource("1_lf8r7")
 scenes/2/scene = ExtResource("2_q8tew")
+scenes/3/scene = ExtResource("3_2maml")
 
 [resource]
 sources/0 = SubResource("TileSetScenesCollectionSource_ln17t")
