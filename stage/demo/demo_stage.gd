@@ -7,14 +7,12 @@ extends Node2D
 #todo особая зона на врагах, в которой хитмаркеры появляются
 #todo Прицел с искривлением пространства
 #todo что-то было про отельный файл с ссылками на сцены, чтобы их пути не хардкодить
-#todo сделать камеру зависимой от направления мыши
-#todo положение камеры в зависимости от прицела
 #todo поправить коллизии для нав агентов
 
 @onready var _sapper: Sapper = %Sapper
 @onready var _light_gun: LightGun = %LightGun
-@onready var regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
-@onready var world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
+@onready var _regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
+@onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	
@@ -45,10 +43,10 @@ func _on_demo_controls_roll_pressed() -> void:
 
 func _on_zoom_out_area_body_entered(body: Node2D) -> void:
 	if body.name == "Sapper":
-		regular_phantom_camera_2d.priority = 0
-		world_edge_phantom_camera_2d.priority = 1
+		_regular_phantom_camera_2d.priority = 0
+		_world_edge_phantom_camera_2d.priority = 1
 
 func _on_zoom_out_area_body_exited(body: Node2D) -> void:
 		if body.name == "Sapper":
-			regular_phantom_camera_2d.priority = 1
-			world_edge_phantom_camera_2d.priority = 0
+			_regular_phantom_camera_2d.priority = 1
+			_world_edge_phantom_camera_2d.priority = 0
