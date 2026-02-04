@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var max_roll_time_secs: float = 0.4
 @export_range(0, 1, 0.01, "suffix:%") var roll_contorlability: float = 0.5
 
-@onready var _sprite_2d: Sprite2D = %Sprite2D
+@onready var _sprites: Node2D = $Sprites
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _damageable_component_ground: DamageableComponent = %DamageableComponentGround
 
@@ -29,9 +29,9 @@ var is_moving: bool = false:
 	set(value):
 		#hack анимации играть в аним ноде
 		if value:
-			_animation_player.play("walk_bomb")
+			_animation_player.play("walk")
 		else: 
-			_animation_player.play("idle_bomb")
+			_animation_player.play("idle")
 		if not value:
 			_walking_time = 0.0
 		is_moving = value
@@ -76,7 +76,7 @@ func try_to_roll() -> void:
 	var animation_direction: int = 1
 	if _sprite_is_flipped_h_or_gonna:
 		animation_direction = -1
-	_sprite_roll_tween.tween_property(_sprite_2d, "rotation", 2 * PI * animation_direction, max_roll_time_secs).as_relative()	
+	_sprite_roll_tween.tween_property(_sprites, "rotation", 2 * PI * animation_direction, max_roll_time_secs).as_relative()	
 	await get_tree().create_timer(max_roll_time_secs).timeout 
 	_is_rolling = false
 	
@@ -99,7 +99,7 @@ func _flip_sprit_horizontal(flip_h: bool) -> void:
 	const full_flip_difference: float = 2
 	var final_scale: float = 1
 	if flip_h: final_scale = -1
-	var needed_flip_difference: float = absf(final_scale - _sprite_2d.scale.x)
+	var needed_flip_difference: float = absf(final_scale - _sprites.scale.x)
 	var duration: float = horizontal_flip_duration * (needed_flip_difference / full_flip_difference)
 	_sprite_flip_tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
-	_sprite_flip_tween.tween_property(_sprite_2d, "scale:x", final_scale, duration)	
+	_sprite_flip_tween.tween_property(_sprites, "scale:x", final_scale, duration)	
