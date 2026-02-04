@@ -11,10 +11,14 @@ extends CharacterBody2D
 @export_range(0, 1, 0.01, "suffix:%") var roll_contorlability: float = 0.5
 
 @onready var _sprites: Node2D = $Sprites
+@onready var _bomb_sprite: Sprite2D = %Bomb
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _damageable_component_ground: DamageableComponent = %DamageableComponentGround
 
-var _is_carrying_bomb: bool = true
+var _is_carrying_bomb: bool = false:
+	set(value):
+		_is_carrying_bomb  = value
+		_bomb_sprite.visible = _is_carrying_bomb
 var _sprite_flip_tween: Tween = create_tween()
 var _sprite_is_flipped_h_or_gonna: bool = false 
 
@@ -48,6 +52,7 @@ var _roll_direction: Vector2 = Vector2.ZERO
 var _sprite_roll_tween: Tween = create_tween()
 
 func _ready() -> void:
+	_is_carrying_bomb = _is_carrying_bomb
 	watch_position = watch_position
 	move_direction = move_direction
 	is_moving = is_moving
