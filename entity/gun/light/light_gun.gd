@@ -3,7 +3,7 @@ class_name LightGun
 extends Node2D
 
 #todo оружие должно краснеть от заспама?
-
+#fixme когда стреляем в стену - нет выстрела
 @export var damage: Damage:
 	set(value):
 		damage = value
