@@ -224,15 +224,15 @@ top_level = true
 position = Vector2(-15, -36)
 script = ExtResource("10_jj4g0")
 priority = 1
-follow_mode = 5
+follow_mode = 2
 follow_target = NodePath("../Sapper")
 zoom = Vector2(7, 7)
 tween_resource = SubResource("Resource_fxrrq")
 tween_on_load = false
 follow_damping = true
 follow_damping_value = Vector2(0.2, 0.2)
-dead_zone_width = 0.07
-dead_zone_height = 0.04
+dead_zone_width = 0.141
+dead_zone_height = 0.16
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="FriendBot" parent="." unique_id=661969995 instance=ExtResource("13_dk5wi")]

@@ -9,6 +9,12 @@ extends Node2D
 #todo что-то было про отельный файл с ссылками на сцены, чтобы их пути не хардкодить
 #todo поправить коллизии для нав агентов
 
+@export var pointer_camera_affect: float = 0.4
+@export var pointer_min_distance_to_offset: float = 25
+@export var pointer_max_distance_to_offset: float = 40
+@export var pointer_max_zoom: float = 7
+@export var pointer_min_zoom: float = 6.6
+
 @onready var _sapper: Sapper = %Sapper
 @onready var _light_gun: LightGun = %LightGun
 @onready var _regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
@@ -25,6 +31,7 @@ func _on_demo_controls_move_direction_changed(direction: Vector2) -> void:
 func _on_demo_controls_pointer_position_changed(pointer: Vector2) -> void:
 	_light_gun.pointer_position = pointer
 	_sapper.watch_position = pointer
+	_apply_pointer_to_regular_camera(pointer)
 
 func _on_demo_controls_pointer_click(_pointer: Vector2) -> void:
 	_light_gun.shoot()
@@ -40,7 +47,6 @@ func _on_spawn_dummy_timer_timeout() -> void:
 func _on_demo_controls_roll_pressed() -> void:
 	_sapper.try_to_roll()
 
-
 func _on_zoom_out_area_body_entered(body: Node2D) -> void:
 	if body.name == "Sapper":
 		_regular_phantom_camera_2d.priority = 0
@@ -50,3 +56,10 @@ func _on_zoom_out_area_body_exited(body: Node2D) -> void:
 		if body.name == "Sapper":
 			_regular_phantom_camera_2d.priority = 1
 			_world_edge_phantom_camera_2d.priority = 0
+			
+func _apply_pointer_to_regular_camera(pointer: Vector2) -> void:
+	var offset: Vector2 = (pointer - _sapper.global_position) * pointer_camera_affect
+	offset = Vector2.ZERO if offset.length() < pointer_min_distance_to_offset else offset.limit_length(pointer_max_distance_to_offset)
+	var zoom_factor: float = remap(offset.length(), pointer_min_distance_to_offset, pointer_max_distance_to_offset, pointer_max_zoom, pointer_min_zoom)
+	_regular_phantom_camera_2d.zoom = Vector2.ONE * clampf(zoom_factor, pointer_min_zoom, pointer_max_zoom)
+	_regular_phantom_camera_2d.follow_offset = offset
