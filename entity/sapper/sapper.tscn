@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://c37uogod3vrww"]
+[gd_scene format=3 uid="uid://c37uogod3vrww"]
 
-[ext_resource type="Texture2D" uid="uid://bpf2uc4lh43f7" path="res://entity/sapper/image/sapper-spritesheet.png" id="1_in5lr"]
+[ext_resource type="Texture2D" path="res://entity/sapper/image/sapper-spritesheet.png" id="1_in5lr"]
 [ext_resource type="Script" uid="uid://bftdrom7daad0" path="res://entity/sapper/sapper.gd" id="1_mab4w"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="4_bnsai"]
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="4_xmvwd"]
@@ -108,28 +108,26 @@ height = 14.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ollty"]
 size = Vector2(8, 2)
 
-[node name="Sapper" type="CharacterBody2D" groups=["player"]]
+[node name="Sapper" type="CharacterBody2D" unique_id=1593754236 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_mab4w")
 time_to_walk_speed_modifier = SubResource("Curve_mab4w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832215788]
 unique_name_in_owner = true
 texture = ExtResource("1_in5lr")
 hframes = 6
 vframes = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2125205514]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_3olne")
-}
+libraries/ = SubResource("AnimationLibrary_3olne")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=5080018]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_mab4w")
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." unique_id=294696523]
 position = Vector2(0, -8)
 scale = Vector2(1.9200009, 0.48000032)
 script = ExtResource("5_e3idf")
@@ -137,12 +135,12 @@ show_debug_healthbar = true
 _initial_value = 3.0
 metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 
-[node name="DamageableComponentGround" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("4_xmvwd")]
+[node name="DamageableComponentGround" parent="." unique_id=1428099920 node_paths=PackedStringArray("_health") instance=ExtResource("4_xmvwd")]
 unique_name_in_owner = true
 collision_filter = ExtResource("4_bnsai")
 _health = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround" unique_id=1871084601]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ollty")
 debug_color = Color(0, 0.470588, 0, 0.74902)
