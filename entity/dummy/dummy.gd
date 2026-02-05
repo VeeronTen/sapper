@@ -10,7 +10,7 @@ static func new_scene() -> Dummy:
 	
 func _on_health_component_dead() -> void:
 	queue_free()
-
+#fixme статичный объект + надо будет ребейкать навигацию
 func _on_damageable_component_air_took_damage() -> void:
 	tweener_twitch_component.twitch()
 	on_hit_particle_component.emit()
