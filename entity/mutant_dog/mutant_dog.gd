@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var tweener_twitch_component: TweenerTwitchComponent = $TweenerTwitchComponent
 
 #todo крутую навигацию добавить
+#todo когда дамажим - должна понимать это и нападать еще и лая, агря других
 
 var _target: Node2D = null
 var _attack_direction: Vector2 = Vector2.ZERO
