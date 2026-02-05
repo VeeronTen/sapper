@@ -19,6 +19,7 @@ extends Node2D
 @onready var _light_gun: LightGun = %LightGun
 @onready var _regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
+@onready var navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	
@@ -42,7 +43,7 @@ func _on_spawn_dummy_timer_timeout() -> void:
 	var random_y: float = _rng.randf_range(-1.0, 1.0)
 	var direction: Vector2 = Vector2(random_x, random_y).normalized()
 	dummy.global_position = _sapper.global_position + direction * 40
-	add_child(dummy)
+	navigation_region_2d.add_child(dummy)
 
 func _on_demo_controls_roll_pressed() -> void:
 	_sapper.try_to_roll()
@@ -57,6 +58,7 @@ func _on_zoom_out_area_body_exited(body: Node2D) -> void:
 			_regular_phantom_camera_2d.priority = 1
 			_world_edge_phantom_camera_2d.priority = 0
 			
+#fixme довольно неудобно вышло
 func _apply_pointer_to_regular_camera(pointer: Vector2) -> void:
 	var offset: Vector2 = (pointer - _sapper.global_position) * pointer_camera_affect
 	offset = Vector2.ZERO if offset.length() < pointer_min_distance_to_offset else offset.limit_length(pointer_max_distance_to_offset)

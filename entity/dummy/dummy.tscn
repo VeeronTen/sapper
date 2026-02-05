@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="6_518d7"]
 [ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="7_1nodl"]
 [ext_resource type="PackedScene" uid="uid://ck78f6xiexdkn" path="res://component/on_hit_particle/on_hit_particle_component.tscn" id="8_uiaq1"]
+[ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation_region_updater_component.gd" id="9_l3n2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
 size = Vector2(14, 14)
@@ -18,8 +19,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nodl"]
 size = Vector2(16, 2)
 
-[node name="Dummy" type="CharacterBody2D" unique_id=2607212 groups=["enemy"]]
-motion_mode = 1
+[node name="Dummy" type="StaticBody2D" unique_id=1415645592 groups=["enemy"]]
 script = ExtResource("1_ttpty")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1094953945]
@@ -62,6 +62,10 @@ metadata/_custom_type_script = "uid://c5mm22a8mpvos"
 
 [node name="OnHitParticleComponent" parent="." unique_id=1577882112 instance=ExtResource("8_uiaq1")]
 unique_name_in_owner = true
+
+[node name="NavigationRegionUpdaterComponent" type="Node2D" parent="." unique_id=1529801791]
+script = ExtResource("9_l3n2g")
+metadata/_custom_type_script = "uid://dc0e601ti36dw"
 
 [connection signal="took_damage" from="DamageableComponentAir" to="." method="_on_damageable_component_air_took_damage"]
 [connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]
