@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="1_hsm17"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="2_ucbb0"]
-[ext_resource type="Texture2D" uid="uid://roilgifkgiii" path="res://godot_state_charts_examples/platformer/fireworks_box/box.png" id="3_sgq3v"]
+[ext_resource type="Texture2D" uid="uid://cgs010imk4t8r" path="res://addons/personal/pixel/pixel.png" id="3_3e51k"]
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="4_fi5w0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_736u6"]
@@ -16,20 +16,24 @@ _health = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent" unique_id=1022234230]
 shape = SubResource("RectangleShape2D_736u6")
+debug_color = Color(0, 0.470588, 0, 0.74902)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=25561004]
-scale = Vector2(1, 0.20833333)
-texture = ExtResource("3_sgq3v")
+modulate = Color(0.7949012, 0.58607984, 0.41974393, 1)
+scale = Vector2(20, 3.6)
+texture = ExtResource("3_3e51k")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=104206984]
+modulate = Color(0.47063047, 0.3051938, 0.1118576, 1)
 position = Vector2(0, 4)
-scale = Vector2(1, 0.20833333)
-texture = ExtResource("3_sgq3v")
+scale = Vector2(20, 3.6)
+texture = ExtResource("3_3e51k")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1754187847]
+modulate = Color(0.37460053, 0.23227623, 0.070003815, 1)
 position = Vector2(0, -4)
-scale = Vector2(1, 0.20833333)
-texture = ExtResource("3_sgq3v")
+scale = Vector2(20, 3.6)
+texture = ExtResource("3_3e51k")
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1416791512]
 position = Vector2(0, -8)
