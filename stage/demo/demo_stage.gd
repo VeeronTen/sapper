@@ -17,7 +17,6 @@ extends Node2D
 @export var pointer_min_zoom: float = 6.6
 
 @onready var _sapper: Sapper = %Sapper
-@onready var _light_gun: LightGun = %LightGun
 @onready var _regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
 @onready var navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
@@ -31,12 +30,11 @@ func _on_demo_controls_move_direction_changed(direction: Vector2) -> void:
 	_sapper.move_direction = direction
 
 func _on_demo_controls_pointer_position_changed(pointer: Vector2) -> void:
-	_light_gun.pointer_position = pointer
 	_sapper.watch_position = pointer
 	_apply_pointer_to_regular_camera(pointer)
 
 func _on_demo_controls_pointer_click(_pointer: Vector2) -> void:
-	_light_gun.shoot()
+	_sapper.try_to_shoot()
 
 func _on_spawn_dummy_timer_timeout() -> void:
 	var dummy: Dummy = Dummy.new_scene()

@@ -16,11 +16,15 @@ extends CharacterBody2D
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _damageable_component_ground: DamageableComponent = %DamageableComponentGround
 @onready var _interacting_component: InteractingComponent = %InteractingComponent
+@onready var _light_gun: LightGun = %LightGun
+@onready var _heavy_gun: HeavyGun = %HeavyGun
 
 var _is_carrying_bomb: bool = false:
 	set(value):
 		_is_carrying_bomb  = value
 		_bomb_sprite.visible = _is_carrying_bomb
+		_heavy_gun.visible = _is_carrying_bomb
+		_light_gun.visible = not _is_carrying_bomb
 var _sprite_flip_tween: Tween = create_tween()
 var _sprite_is_flipped_h_or_gonna: bool = false 
 
@@ -28,6 +32,8 @@ var watch_position: Vector2 = Vector2.RIGHT:
 	set(value):
 		_flip_sprit_horizontal(global_position.x > value.x)
 		watch_position = value
+		_light_gun.pointer_position = value
+		_heavy_gun.pointer_position = value
 		
 var move_direction: Vector2 = Vector2.ZERO
 
@@ -100,6 +106,12 @@ func try_to_drop() -> void:
 	node_to_drop_bomb.add_child(bomb)
 	_is_carrying_bomb = false
 
+func try_to_shoot() -> void:
+	if _is_carrying_bomb:
+		_heavy_gun.shoot()
+	else:
+		_light_gun.shoot()
+	
 func _compute_speed() -> float:
 	var result: float = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)
 	if _is_walking_backwards(): result *= walk_backwards_penalty

@@ -30,7 +30,7 @@ extends Node2D
 		_spam_spread_angle = value
 		
 @onready var _pivot: Node2D = %Pivot
-@onready var _sprite_2d: Sprite2D = %Sprite2D
+@onready var _sprites: Node2D = %Sprites
 @onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
 @onready var _pointer_ray: RayCast2D = %PointerRay
 
@@ -42,9 +42,9 @@ var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
 		_pivot.look_at(value)
 		if global_position.x > value.x:
-			_sprite_2d.scale.y = -1
+			_sprites.scale.y = -1
 		else: 
-			_sprite_2d.scale.y = 1
+			_sprites.scale.y = 1
 		_pointer_ray.global_position = value
 		pointer_position = value
 

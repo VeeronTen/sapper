@@ -6,7 +6,6 @@
 [ext_resource type="TileSet" uid="uid://deu2u6slac2vq" path="res://stage/demo/tilemap/demo_desert.tres" id="3_jj4g0"]
 [ext_resource type="TileSet" uid="uid://2d7hcthqc830" path="res://stage/demo/tilemap/demo_walls.tres" id="3_k46ji"]
 [ext_resource type="TileSet" uid="uid://bjea5f63ldn35" path="res://stage/demo/tilemap/demo_acid.tres" id="3_ln17t"]
-[ext_resource type="PackedScene" uid="uid://qb3w45t4vdnh" path="res://entity/gun/light/light_gun.tscn" id="4_4royo"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://stage/demo/demo_controls.gd" id="4_vte7o"]
 [ext_resource type="TileSet" uid="uid://c1xug7auajvfn" path="res://stage/demo/tilemap/demo_entities.tres" id="5_k46ji"]
 [ext_resource type="PackedScene" uid="uid://dl4pjnfmukica" path="res://stage/demo/damageable_floor/damageable_floor.tscn" id="5_y18u6"]
@@ -199,9 +198,6 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 unique_name_in_owner = true
 position = Vector2(-15, -36)
 node_to_drop_bomb = NodePath("../Map/NavigationRegion2D")
-
-[node name="LightGun" parent="Sapper" unique_id=1748159001 instance=ExtResource("4_4royo")]
-unique_name_in_owner = true
 
 [node name="DemoControls" type="Node2D" parent="." unique_id=1164976340]
 script = ExtResource("4_vte7o")
