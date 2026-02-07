@@ -34,6 +34,7 @@ extends Node2D
 @onready var _sprite_2d: Sprite2D = %Sprite2D
 @onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
 @onready var _pointer_ray: RayCast2D = %PointerRay
+@onready var _gun_computer: GunComputer = %GunComputer
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _time_since_last_shot: float = 0

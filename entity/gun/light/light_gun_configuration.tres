@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="GunConfiguration" format=3 uid="uid://chxa4f4dx8jtu"]
+
+[ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="1_8thpi"]
+[ext_resource type="Script" uid="uid://c1bd1yssgvxyr" path="res://entity/gun/gun_configuration.gd" id="1_d2gp2"]
+
+[sub_resource type="Resource" id="Resource_pg6h8"]
+script = ExtResource("1_8thpi")
+value = 3.0
+metadata/_custom_type_script = "uid://but4ln51v458i"
+
+[sub_resource type="Curve" id="Curve_8thpi"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1.4979367), 0.0, 0.0, 0, 0, Vector2(0.8807531, 2.225126), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_pg6h8"]
+_limits = [0.0, 180.0, 0.0, 1.0]
+_data = [Vector2(0, 180), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_d2gp2")
+_damage = SubResource("Resource_pg6h8")
+_bps = 1.0
+_damage_spam_override = SubResource("Curve_8thpi")
+_max_distance = 100.0
+_spread_spam_override = SubResource("Curve_pg6h8")
+metadata/_custom_type_script = "uid://c1bd1yssgvxyr"

@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="4_l0bhc"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="5_47k46"]
 [ext_resource type="Texture2D" uid="uid://cgs010imk4t8r" path="res://addons/personal/pixel/pixel.png" id="7_bxgbb"]
+[ext_resource type="Script" uid="uid://gful57krfk4c" path="res://entity/gun/gun_computer.gd" id="7_gm37q"]
+[ext_resource type="Resource" uid="uid://chxa4f4dx8jtu" path="res://entity/gun/light/light_gun_configuration.tres" id="8_gm37q"]
 
 [sub_resource type="Resource" id="Resource_tjhnt"]
 script = ExtResource("4_l0bhc")
@@ -56,3 +58,9 @@ collide_with_areas = true
 
 [node name="Sprite2D" type="Sprite2D" parent="PointerRay/Pointer" unique_id=1246587151]
 texture = ExtResource("7_bxgbb")
+
+[node name="GunComputer" type="Node" parent="." unique_id=194290014]
+unique_name_in_owner = true
+script = ExtResource("7_gm37q")
+_configuration = ExtResource("8_gm37q")
+metadata/_custom_type_script = "uid://gful57krfk4c"

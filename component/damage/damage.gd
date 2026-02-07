@@ -5,4 +5,6 @@ extends Resource
 @export var value: float:
 	set(new_value):
 		assert(new_value >= 0.0, "damage cant be < 0")
-		value = new_value
+		if value != new_value:
+			value = new_value
+			emit_changed()
