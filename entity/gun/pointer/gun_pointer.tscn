@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cbsxhofbkax67"]
+
+[ext_resource type="Script" uid="uid://bgqh4qg5o7cfq" path="res://entity/gun/pointer/gun_pointer.gd" id="1_101y5"]
+[ext_resource type="Texture2D" uid="uid://cgs010imk4t8r" path="res://addons/personal/pixel/pixel.png" id="2_h6eka"]
+
+[node name="GunPointer" type="RayCast2D" unique_id=577594137]
+position = Vector2(25, -0.5)
+target_position = Vector2(0, 0)
+collision_mask = 1610612736
+hit_from_inside = true
+collide_with_areas = true
+script = ExtResource("1_101y5")
+
+[node name="Marker" type="Marker2D" parent="." unique_id=857234419]
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker" unique_id=955301120]
+texture = ExtResource("2_h6eka")

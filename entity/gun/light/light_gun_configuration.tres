@@ -8,9 +8,15 @@ script = ExtResource("1_8thpi")
 value = 2.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
+[sub_resource type="Curve" id="Curve_8thpi"]
+_limits = [0.0, 180.0, 0.0, 0.2]
+_data = [Vector2(0, 180), 0.0, 0.0, 0, 0, Vector2(0.2, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [resource]
 script = ExtResource("1_d2gp2")
 damage = SubResource("Resource_8thpi")
 bps = 5.0
-max_distance = null
+max_distance = 100.0
+spread_spam_override = SubResource("Curve_8thpi")
 metadata/_custom_type_script = "uid://c1bd1yssgvxyr"

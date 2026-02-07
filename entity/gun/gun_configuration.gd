@@ -35,7 +35,7 @@ extends Resource
 	set(value):
 		assert(value >= 0, "distance cant be < 0")
 		max_distance = max(0, value)
-
+#todo вместо сырых значений нужны коэфициенты, чтобы можно было перемножать
 @export var spread_spam_override: Curve:
 	set(value):
 		if value:
