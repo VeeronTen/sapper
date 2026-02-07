@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation_region_updater_component.gd" id="9_l3n2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
-size = Vector2(14, 14)
+size = Vector2(14, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkyos"]
 size = Vector2(16, 16)
@@ -26,6 +26,7 @@ script = ExtResource("1_ttpty")
 texture = ExtResource("2_ttpty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320596196]
+position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_vlewu")
 
 [node name="DamageableComponentAir" parent="." unique_id=332337403 node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
@@ -64,6 +65,7 @@ metadata/_custom_type_script = "uid://c5mm22a8mpvos"
 unique_name_in_owner = true
 
 [node name="NavigationRegionUpdaterComponent" type="Node2D" parent="." unique_id=1529801791]
+position = Vector2(0, 5)
 script = ExtResource("9_l3n2g")
 metadata/_custom_type_script = "uid://dc0e601ti36dw"
 

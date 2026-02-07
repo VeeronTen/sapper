@@ -19,6 +19,7 @@ var _blackboard_enemy_target: Node2D:
 			_animation_tree.set("parameters/Transition/transition_request", "smile")
 
 #todo заюзать анимацию говорения
+#todo коллизию изменить
 func _ready() -> void:
 	_bt_player.blackboard.set_var("nav_agent", _navigation_agent_2d)
 	_bt_player.blackboard.bind_var_to_property(&"enemy_target", self, "_blackboard_enemy_target")

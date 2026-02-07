@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="12_1mkby"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eu4xl"]
-radius = 4.0
+radius = 2.0
 height = 17.0
 
 [sub_resource type="Animation" id="Animation_fl20y"]
@@ -129,7 +129,7 @@ hframes = 5
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=450916238]
-position = Vector2(0, 3)
+position = Vector2(0, 5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_eu4xl")
 
