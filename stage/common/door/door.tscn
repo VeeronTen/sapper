@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://ck6gi1coy17xo"]
+
+[ext_resource type="Script" uid="uid://isv2uq6au18y" path="res://stage/common/door/door.gd" id="1_4wotv"]
+[ext_resource type="Texture2D" uid="uid://cc1ec37b3w5lp" path="res://stage/common/door/image/door.png" id="2_oow1o"]
+[ext_resource type="PackedScene" uid="uid://4a7juyiudcgm" path="res://component/interaction/interactable_component/interactable_component.tscn" id="3_l3x7k"]
+[ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation_region_updater_component.gd" id="4_ir47g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3x7k"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l3x7k"]
+radius = 18.0
+
+[node name="Door" type="StaticBody2D" unique_id=1125865375]
+collision_mask = 0
+script = ExtResource("1_4wotv")
+
+[node name="Image" type="Node2D" parent="." unique_id=1308121035]
+unique_name_in_owner = true
+
+[node name="LeftDoor" type="Sprite2D" parent="Image" unique_id=953155918]
+texture = ExtResource("2_oow1o")
+vframes = 4
+
+[node name="RightDoor" type="Sprite2D" parent="Image" unique_id=976541256]
+texture = ExtResource("2_oow1o")
+vframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818889093]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_l3x7k")
+
+[node name="OpenInteractableComponent" parent="." unique_id=1870383549 instance=ExtResource("3_l3x7k")]
+unique_name_in_owner = true
+interaction_tag = "open_door"
+
+[node name="Indicator" type="Sprite2D" parent="OpenInteractableComponent" unique_id=1697631122]
+texture = ExtResource("2_oow1o")
+vframes = 4
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpenInteractableComponent" unique_id=508299368]
+shape = SubResource("CircleShape2D_l3x7k")
+
+[node name="CloseInteractableComponent" parent="." unique_id=1035147663 instance=ExtResource("3_l3x7k")]
+unique_name_in_owner = true
+interaction_tag = "close_door"
+
+[node name="Indicator" type="Sprite2D" parent="CloseInteractableComponent" unique_id=713422657]
+texture = ExtResource("2_oow1o")
+vframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CloseInteractableComponent" unique_id=1094235201]
+shape = SubResource("CircleShape2D_l3x7k")
+
+[node name="NavigationRegionUpdaterComponent" type="Node2D" parent="." unique_id=255736843]
+unique_name_in_owner = true
+script = ExtResource("4_ir47g")
+metadata/_custom_type_script = "uid://dc0e601ti36dw"
+
+[connection signal="interacted" from="OpenInteractableComponent" to="." method="_on_open_interactable_component_interacted"]
+[connection signal="is_interactable_changed" from="OpenInteractableComponent" to="." method="_on_open_interactable_component_is_interactable_changed"]
+[connection signal="interacted" from="CloseInteractableComponent" to="." method="_on_close_interactable_component_interacted"]
+[connection signal="is_interactable_changed" from="CloseInteractableComponent" to="." method="_on_close_interactable_component_is_interactable_changed"]

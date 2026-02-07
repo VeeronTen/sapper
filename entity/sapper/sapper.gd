@@ -72,9 +72,6 @@ func _physics_process(delta: float) -> void:
 		_animation_player.speed_scale = speed / walk_speed
 	velocity = speed * direction
 	move_and_slide()
-
-func _on_interacting_component_can_interact_changed(can_interact: bool) -> void:
-	prints("sapper can_interact", can_interact)
 	
 func try_to_roll() -> void:
 	if _is_rolling or not is_moving:
