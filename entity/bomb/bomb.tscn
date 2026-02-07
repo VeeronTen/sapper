@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://frta0vs2bval" path="res://entity/bomb/bomb.gd" id="1_o4mmy"]
 [ext_resource type="Texture2D" uid="uid://dml4rcsdyj43u" path="res://entity/bomb/image/bomb.png" id="1_y3op7"]
+[ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation_region_updater_component.gd" id="3_5b3v0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4mmy"]
 size = Vector2(6, 11)
@@ -16,3 +17,9 @@ texture = ExtResource("1_y3op7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=352774893]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_o4mmy")
+
+[node name="NavigationRegionUpdaterComponent" type="Node2D" parent="." unique_id=78482263]
+position = Vector2(0, 2)
+script = ExtResource("3_5b3v0")
+max_distance_to_update = 13.63
+metadata/_custom_type_script = "uid://dc0e601ti36dw"
