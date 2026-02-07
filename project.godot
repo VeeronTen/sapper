@@ -95,6 +95,7 @@ ui_down={
 
 2d_physics/layer_1="Default"
 2d_navigation/layer_1="Default"
+2d_physics/layer_29="InteractableComponent"
 2d_physics/layer_30="FakeDamageableComponent"
 2d_physics/layer_31="DamageableComponent"
 
