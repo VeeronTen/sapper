@@ -255,6 +255,7 @@ texture = SubResource("PlaceholderTexture2D_y18u6")
 
 [connection signal="body_entered" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_entered"]
 [connection signal="body_exited" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_exited"]
+[connection signal="interact_pressed" from="DemoControls" to="." method="_on_demo_controls_interact_pressed"]
 [connection signal="is_moving_changed" from="DemoControls" to="." method="_on_demo_controls_is_moving_changed"]
 [connection signal="move_direction_changed" from="DemoControls" to="." method="_on_demo_controls_move_direction_changed"]
 [connection signal="pointer_click" from="DemoControls" to="." method="_on_demo_controls_pointer_click"]

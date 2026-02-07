@@ -48,7 +48,10 @@ func _on_spawn_dummy_timer_timeout() -> void:
 
 func _on_demo_controls_roll_pressed() -> void:
 	_sapper.try_to_roll()
-
+	
+func _on_demo_controls_interact_pressed() -> void:
+	_sapper.try_to_interact()
+	
 func _on_zoom_out_area_body_entered(body: Node2D) -> void:
 	if body.name == "Sapper":
 		_regular_phantom_camera_2d.priority = 0

@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var _bomb_sprite: Sprite2D = %Bomb
 @onready var _animation_player: AnimationPlayer = %AnimationPlayer
 @onready var _damageable_component_ground: DamageableComponent = %DamageableComponentGround
+@onready var _interacting_component: InteractingComponent = %InteractingComponent
 
 var _is_carrying_bomb: bool = false:
 	set(value):
@@ -71,6 +72,9 @@ func _physics_process(delta: float) -> void:
 	velocity = speed * direction
 	move_and_slide()
 
+func _on_interacting_component_can_interact_changed(can_interact: bool) -> void:
+	prints("sapper can_interact", can_interact)
+	
 func try_to_roll() -> void:
 	if _is_rolling or not is_moving:
 		return
@@ -84,7 +88,10 @@ func try_to_roll() -> void:
 	_sprite_roll_tween.tween_property(_sprites, "rotation", 2 * PI * animation_direction, max_roll_time_secs).as_relative()	
 	await get_tree().create_timer(max_roll_time_secs).timeout 
 	_is_rolling = false
-	
+
+func try_to_interact() -> void:
+	_interacting_component.interact()
+
 func _compute_speed() -> float:
 	var result: float = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)
 	if _is_walking_backwards(): result *= walk_backwards_penalty

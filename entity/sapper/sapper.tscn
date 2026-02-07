@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="4_bnsai"]
 [ext_resource type="PackedScene" uid="uid://dritu1gi701ck" path="res://component/damage/damageable_component/damageable_component.tscn" id="4_xmvwd"]
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="5_e3idf"]
+[ext_resource type="PackedScene" uid="uid://b6k3ircjwqljs" path="res://component/interaction/interacting_component/interacting_component.tscn" id="6_bnsai"]
 
 [sub_resource type="Curve" id="Curve_mab4w"]
 _limits = [1.0, 2.0, 0.0, 4.0]
@@ -145,6 +146,9 @@ height = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ollty"]
 size = Vector2(8, 2)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3idf"]
+radius = 12.0
+
 [node name="Sapper" type="CharacterBody2D" unique_id=1593754236 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_mab4w")
@@ -197,3 +201,12 @@ _health = NodePath("../HealthComponent")
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ollty")
 debug_color = Color(0, 0.470588, 0, 0.74902)
+
+[node name="InteractingComponent" parent="." unique_id=1945638187 instance=ExtResource("6_bnsai")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractingComponent" unique_id=1652822865]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_e3idf")
+
+[connection signal="can_interact_changed" from="InteractingComponent" to="." method="_on_interacting_component_can_interact_changed"]
