@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var roll_speed_modifier: float = 3
 @export var max_roll_time_secs: float = 0.4
 @export_range(0, 1, 0.01, "suffix:%") var roll_contorlability: float = 0.5
+@export var node_to_drop_bomb: Node2D
 
 @onready var _sprites: Node2D = $Sprites
 @onready var _bomb_sprite: Sprite2D = %Bomb
@@ -90,7 +91,17 @@ func try_to_roll() -> void:
 	_is_rolling = false
 
 func try_to_interact() -> void:
-	_interacting_component.interact()
+	match _interacting_component.interact():
+		"equip_bomb":
+			_is_carrying_bomb = true
+
+func try_to_drop() -> void:
+	if not _is_carrying_bomb:
+		return
+	var bomb: Bomb = Bomb.new_scene()
+	bomb.global_position = global_position + Vector2(0, -10)
+	node_to_drop_bomb.add_child(bomb)
+	_is_carrying_bomb = false
 
 func _compute_speed() -> float:
 	var result: float = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)

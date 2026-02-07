@@ -51,7 +51,10 @@ func _on_demo_controls_roll_pressed() -> void:
 	
 func _on_demo_controls_interact_pressed() -> void:
 	_sapper.try_to_interact()
-	
+
+func _on_demo_controls_drop_pressed() -> void:
+	_sapper.try_to_drop()
+
 func _on_zoom_out_area_body_entered(body: Node2D) -> void:
 	if body.name == "Sapper":
 		_regular_phantom_camera_2d.priority = 0

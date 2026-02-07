@@ -204,6 +204,7 @@ debug_color = Color(0, 0.470588, 0, 0.74902)
 
 [node name="InteractingComponent" parent="." unique_id=1945638187 instance=ExtResource("6_bnsai")]
 unique_name_in_owner = true
+_can_interact_with_tags = Array[String](["equip_bomb"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractingComponent" unique_id=1652822865]
 position = Vector2(0, 7)

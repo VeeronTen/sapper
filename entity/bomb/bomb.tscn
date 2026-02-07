@@ -4,16 +4,38 @@
 [ext_resource type="Texture2D" uid="uid://dml4rcsdyj43u" path="res://entity/bomb/image/bomb.png" id="1_y3op7"]
 [ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation_region_updater_component.gd" id="3_5b3v0"]
 [ext_resource type="PackedScene" uid="uid://4a7juyiudcgm" path="res://component/interaction/interactable_component/interactable_component.tscn" id="4_58oxu"]
+[ext_resource type="Shader" uid="uid://dsi1kh5wrbk1i" path="res://common/shader/scale_recolor.gdshader" id="5_jcs1m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4mmy"]
-size = Vector2(6, 3)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qxuo"]
+shader = ExtResource("5_jcs1m")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/scale = 1.342000016245
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcs1m"]
 radius = 14.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4mmy"]
+size = Vector2(6, 3)
+
 [node name="Bomb" type="StaticBody2D" unique_id=593105538]
 collision_mask = 0
 script = ExtResource("1_o4mmy")
+
+[node name="InteractableComponent" parent="." unique_id=1870383549 instance=ExtResource("4_58oxu")]
+interaction_tag = "equip_bomb"
+
+[node name="InteractionIndicator" type="Node2D" parent="InteractableComponent" unique_id=2039480391]
+
+[node name="Sprite2D" type="Sprite2D" parent="InteractableComponent/InteractionIndicator" unique_id=1142875895]
+material = SubResource("ShaderMaterial_2qxuo")
+position = Vector2(0, -1)
+texture = ExtResource("1_y3op7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1198825425]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_jcs1m")
+debug_color = Color(0.592995, 0.49502462, 0.629239, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1459495052]
 texture = ExtResource("1_y3op7")
@@ -23,18 +45,11 @@ position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_o4mmy")
 
 [node name="NavigationRegionUpdaterComponent" type="Node2D" parent="." unique_id=78482263]
+unique_name_in_owner = true
 position = Vector2(0, 7)
 script = ExtResource("3_5b3v0")
 max_distance_to_update = 13.63
 metadata/_custom_type_script = "uid://dc0e601ti36dw"
-
-[node name="InteractableComponent" parent="." unique_id=1870383549 instance=ExtResource("4_58oxu")]
-position = Vector2(0, 5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=1198825425]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_jcs1m")
-debug_color = Color(0.592995, 0.49502462, 0.629239, 0.41960785)
 
 [connection signal="interacted" from="InteractableComponent" to="." method="_on_interactable_component_interacted"]
 [connection signal="is_interactable_changed" from="InteractableComponent" to="." method="_on_interactable_component_is_interactable_changed"]

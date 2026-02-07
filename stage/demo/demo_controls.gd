@@ -6,6 +6,7 @@ signal pointer_position_changed(pointer: Vector2)
 signal pointer_click(pointer: Vector2)
 signal roll_pressed
 signal interact_pressed
+signal drop_pressed
 
 var _prev_move_direction: Vector2 = Vector2.ZERO
 var _prev_is_moving: bool = false
@@ -43,4 +44,6 @@ func _handle_key(event: InputEventKey) -> void:
 		roll_pressed.emit()
 	elif event.is_action("interact"):
 		interact_pressed.emit()
+	elif event.is_action("drop"):
+		drop_pressed.emit()
 	
