@@ -1,35 +1,37 @@
-@tool
 class_name InteractingComponent
 extends Area2D
 
-@export var _damage: Damage
-@export var _collision_filter: DamageableComponentCollisionFilter
-@export var is_continuous: bool
-@export var block_stacking_tag: String
+signal can_interact_changed(can_interact: bool)
 
-@onready var _collisions_recolorer: CollisionsRecolorer = %CollisionsRecolorer
+var _interactable_target: InteractableComponent:
+	set(value):
+		if value == _interactable_target:
+			return
+		if is_instance_valid(_interactable_target):
+			_interactable_target.set_is_interactable(false)
+		_interactable_target = value
+		if is_instance_valid(value):
+			value.set_is_interactable(true)
+		
+var _interactables_nearby: int = 0:
+	set(value):
+		if value == 0 and _interactables_nearby != 0:
+			can_interact_changed.emit(false)
+		if value != 0 and _interactables_nearby == 0:
+			can_interact_changed.emit(true)
+		_interactables_nearby = value
 
-func _ready() -> void:
-	_collisions_recolorer.collisions_color = _collision_filter.debug_color_damaging
-	assert(_damage != null, "damage must be set")
-	assert(_collision_filter != null, "coolision filter must be set")
-
-func _physics_process(delta: float) -> void:
-	if not is_continuous: return
-	var areas: Array[Area2D] = get_overlapping_areas()
-	for area: Area2D in areas:
-		if area is DamageableComponent:
-			var damageable_area: DamageableComponent = area
-			if (_collision_filter.is_compatible_with(damageable_area.collision_filter)):
-				var continuous_damage: Damage = _damage.duplicate()
-				continuous_damage.value = _damage.value * delta
-				damageable_area.take_damage(continuous_damage, block_stacking_tag)
-			
 func _on_area_entered(area: Area2D) -> void:
-	if is_continuous: return
-	if area is DamageableComponent:
-		var damageable_area: DamageableComponent = area
-		if (_collision_filter.is_compatible_with(damageable_area.collision_filter)):
-			damageable_area.take_damage(_damage, block_stacking_tag)
-			
-			
+	if area is InteractableComponent:
+		_interactable_target = area
+		_interactables_nearby += 1
+
+func _on_area_exited(area: Area2D) -> void:
+	if area is InteractableComponent:
+		if area == _interactable_target:
+			_interactable_target.set_is_interactable(false)
+		_interactables_nearby -= 1
+
+func interact() -> void:
+	if is_instance_valid(_interactable_target):
+		_interactable_target.interact()
