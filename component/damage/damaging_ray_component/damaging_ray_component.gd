@@ -33,7 +33,9 @@ func shoot(distance: float) -> void:
 	force_raycast_update()
 	while is_colliding():
 		var collider: Object = get_collider()
-		if collider is not DamageableComponent: return
+		if collider is not DamageableComponent:
+			collisions.append(get_collision_point())
+			break
 		var damageable: DamageableComponent = collider
 		var is_compatible: bool = _collision_filter.is_compatible_with(damageable.collision_filter)
 		if not is_compatible:
