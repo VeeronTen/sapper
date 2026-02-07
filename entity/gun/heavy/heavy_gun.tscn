@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://e1j4g8pjnl4v"]
+
+[ext_resource type="Script" uid="uid://dfwlwkhfeqoop" path="res://entity/gun/heavy/heavy_gun.gd" id="1_wtrra"]
+[ext_resource type="Texture2D" uid="uid://ul5e8rbg7cp2" path="res://entity/gun/heavy/image/heavy-gun.png" id="2_yf2rb"]
+
+[node name="HeavyGun" type="Node2D" unique_id=1256870141]
+script = ExtResource("1_wtrra")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1124514709]
+position = Vector2(7, 0)
+
+[node name="Sprites" type="Node2D" parent="Pivot" unique_id=825849770]
+
+[node name="Gun" type="Sprite2D" parent="Pivot/Sprites" unique_id=976607125]
+texture = ExtResource("2_yf2rb")
+hframes = 7
+vframes = 2
+
+[node name="WarmUp" type="Sprite2D" parent="Pivot/Sprites" unique_id=679708229]
+texture = ExtResource("2_yf2rb")
+hframes = 7
+vframes = 2
+frame = 7
