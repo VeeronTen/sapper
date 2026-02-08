@@ -27,12 +27,23 @@ func can_shoot() -> bool:
 			return false
 
 func get_damage() -> Damage:
-	if _configuration.damage_spam_override:
-		var real_damage: Damage = _configuration.damage.duplicate()
-		real_damage.value = _configuration.damage_spam_override.sample(_time_since_last_sucessfull_shot)	
-		return real_damage
-	else:
-		return _configuration.damage
+	var damage: Damage
+	match _configuration.fire_mode:
+		var mode when mode is GunConfigurationFireModeConstant:
+			var constant: GunConfigurationFireModeConstant = mode
+			damage = constant.damage
+		var mode when mode is GunConfigurationFireModeAuto:
+			var auto: GunConfigurationFireModeAuto = mode
+			damage = auto.damage #todo
+		var mode when mode is GunConfigurationFireModeSpam:
+			var spam: GunConfigurationFireModeSpam = mode
+			damage = spam.damage.duplicate()
+			if spam.damage_time_coefficient:
+				damage.value *= spam.damage_time_coefficient.sample(_time_since_last_sucessfull_shot)
+		_:
+			assert(false)
+			return null
+	return damage
 
 func get_spread() -> float:
 	var spread: float
@@ -54,7 +65,23 @@ func get_spread() -> float:
 	return _rng.randf_range(-spread/2, spread/2)
 
 func get_distance() -> float:
-	return _configuration.max_distance
+	var distance: float
+	match _configuration.fire_mode:
+		var mode when mode is GunConfigurationFireModeConstant:
+			var constant: GunConfigurationFireModeConstant = mode
+			distance = constant.distance
+		var mode when mode is GunConfigurationFireModeAuto:
+			var auto: GunConfigurationFireModeAuto = mode
+			distance = auto.distance  #todo
+		var mode when mode is GunConfigurationFireModeSpam:
+			var spam: GunConfigurationFireModeSpam = mode
+			distance = spam.distance
+			if spam.distance_time_coefficient:
+				distance *= spam.distance_time_coefficient.sample(_time_since_last_shot)
+		_:
+			assert(false)
+			return 0
+	return distance
 	
 func on_shot() -> void:
 	_time_since_last_shot = 0

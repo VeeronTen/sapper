@@ -3,20 +3,20 @@ class_name CurveExtended
 static func set_strict_bounds(curve: Curve, domain_min: Variant, domain_max: Variant, value_min: Variant, value_max: Variant, tag: String = "", require_points_at_borders: bool = false) -> void:
 	assert(domain_min != domain_max, "%s curve have no sense: no domain spread" % tag)
 	assert(value_min != value_max, "%s curve have no sense: no value spread" % tag)
-	if domain_min: curve.min_domain = domain_min
-	if domain_max: curve.max_domain = domain_max
-	if value_min: curve.min_value = value_min
-	if value_max: curve.max_value = value_max
+	if domain_min is float: curve.min_domain = domain_min
+	if domain_max is float: curve.max_domain = domain_max
+	if value_min is float: curve.min_value = value_min
+	if value_max is float: curve.max_value = value_max
 	curve.domain_changed.connect(func() -> void: 
 		curve.set_block_signals(true)
-		if domain_min: curve.min_domain = domain_min
-		if domain_max: curve.max_domain = domain_max
+		if domain_min is float: curve.min_domain = domain_min
+		if domain_max is float: curve.max_domain = domain_max
 		curve.set_block_signals(false)
 	)
 	curve.range_changed.connect(func() -> void: 
 		curve.set_block_signals(true)
-		if value_min: curve.min_value = value_min
-		if value_max: curve.max_value = value_max
+		if value_min is float: curve.min_value = value_min
+		if value_max is float: curve.max_value = value_max
 		curve.set_block_signals(false)
 	)
 	assert_curve_within_its_own_bounds(curve, domain_min, domain_max, value_min, value_max, tag)
