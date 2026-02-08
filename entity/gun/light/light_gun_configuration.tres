@@ -9,27 +9,10 @@ script = ExtResource("1_pg6h8")
 value = 4.99
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
-[sub_resource type="Curve" id="Curve_d5a81"]
-_data = [Vector2(0.03912543, 0.0528692), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_uitd0"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0.017890772, 0.8762989), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_pg6h8"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0.014, 10), 0.0, 0.0, 0, 0, Vector2(0.61475414, 3.3621812), 0.0, 0.0, 0, 0, Vector2(0.8752399, 0.99733126), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="Resource" id="Resource_d5a81"]
 script = ExtResource("2_pg6h8")
 damage = SubResource("Resource_uitd0")
-damage_time_coefficient = SubResource("Curve_d5a81")
-spread_time_coefficient = SubResource("Curve_pg6h8")
 distance = 25.0
-distance_time_coefficient = SubResource("Curve_uitd0")
 metadata/_custom_type_script = "uid://cec1hx5in1ke1"
 
 [resource]

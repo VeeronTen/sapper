@@ -4,28 +4,16 @@
 [ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="1_u13rn"]
 [ext_resource type="Script" uid="uid://c1bd1yssgvxyr" path="res://entity/gun/configuration/gun_configuration.gd" id="3_j6gj8"]
 
-[sub_resource type="Curve" id="Curve_vlfoi"]
-_limits = [0.0, 3.0, 0.0, 3.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 0, 0, Vector2(3, 3), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="Resource" id="Resource_2rn26"]
 script = ExtResource("1_u13rn")
 value = 2.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
-[sub_resource type="Curve" id="Curve_u13rn"]
-_limits = [0.0, 3.0, 0.0, 3.0]
-_data = [Vector2(0.978, 1), 0.0, 0.0, 0, 0, Vector2(3, 3), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="Resource" id="Resource_u13rn"]
 script = ExtResource("1_5nsqd")
 damage = SubResource("Resource_2rn26")
 bps = 5.0
-bps_time_coefficient = SubResource("Curve_vlfoi")
 distance = 50.0
-distance_time_coefficient = SubResource("Curve_u13rn")
 metadata/_custom_type_script = "uid://d2m1vxwst1w2t"
 
 [resource]
