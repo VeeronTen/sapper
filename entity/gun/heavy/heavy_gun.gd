@@ -3,7 +3,7 @@ class_name HeavyGun
 extends Node2D
 
 #todo оружие должно краснеть от заспама?
-
+#todo аниммки сделать
 @onready var _pivot: Node2D = %Pivot
 @onready var _sprites: Node2D = %Sprites
 @onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
