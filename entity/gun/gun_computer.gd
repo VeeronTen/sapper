@@ -39,7 +39,8 @@ func get_damage() -> Damage:
 			var spam: GunConfigurationFireModeSpam = mode
 			damage = spam.damage.duplicate()
 			if spam.damage_time_coefficient:
-				damage.value *= spam.damage_time_coefficient.sample(_time_since_last_sucessfull_shot)
+				var time: float = _time_since_last_shot if spam.enable_damage_time_coefficient_at_misses else _time_since_last_sucessfull_shot
+				damage.value *= spam.damage_time_coefficient.sample(time)
 		_:
 			assert(false)
 			return null

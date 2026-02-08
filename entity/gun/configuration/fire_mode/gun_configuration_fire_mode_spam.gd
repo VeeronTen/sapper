@@ -11,7 +11,14 @@ extends GunConfigurationFireMode
 		if value:
 			CurveExtended.set_strict_bounds(value, 0.0, null, 0.0, 1.0, "spam spread_time_coefficient")
 		damage_time_coefficient = value
-				
+
+@export var enable_damage_time_coefficient_at_misses: bool:
+	set(value):
+		if not damage_time_coefficient:
+			enable_damage_time_coefficient_at_misses = false
+			return
+		enable_damage_time_coefficient_at_misses = value
+		
 @export_range(0, 180, 1, "degrees") var spread: float = 0.0
 @export var spread_time_coefficient: Curve:
 	set(value):
