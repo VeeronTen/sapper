@@ -19,6 +19,7 @@ extends Node2D
 @onready var _regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
 @onready var navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
+@onready var scene_changer_component: SceneChangerComponent = $SceneChangerComponent
 
 var click_is_holded: bool = false
 
@@ -54,6 +55,7 @@ func _on_spawn_dummy_timer_timeout() -> void:
 
 func _on_demo_controls_roll_pressed() -> void:
 	_sapper.try_to_roll()
+	scene_changer_component.change_scene()
 	
 func _on_demo_controls_interact_pressed() -> void:
 	_sapper.try_to_interact()
