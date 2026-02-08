@@ -18,3 +18,12 @@ extends GunConfigurationFireMode
 	set(value):
 		assert(value >= 0, "distance cant be < 0")
 		distance = value
+
+func _init() -> void:
+	call_deferred("_validate")
+	
+func _validate() -> void:
+	damage = damage
+	bps = bps
+	spread = spread
+	distance = distance

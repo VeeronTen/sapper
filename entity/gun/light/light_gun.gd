@@ -20,8 +20,8 @@ var pointer_position: Vector2 = Vector2.ZERO:
 		_gun_pointer.global_position = value
 		pointer_position = value
 
-func shoot() -> void:
-	if not _gun_computer.can_shoot(): 
+func shoot(hold: bool) -> void:
+	if not _gun_computer.can_shoot(hold): 
 		return
 	var pointer_damageable_component: DamageableComponent = _gun_pointer.get_damageable_component_at_pointer()
 	var distance_limit_by_pointer: float = _get_distance_limit_by(pointer_damageable_component)

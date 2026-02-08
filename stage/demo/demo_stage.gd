@@ -21,7 +21,13 @@ extends Node2D
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
 @onready var navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
 
+var click_is_holded: bool = false
+
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	
+func _physics_process(delta: float) -> void:
+	if click_is_holded:
+		_sapper.try_to_shoot(true)
 	
 func _on_demo_controls_is_moving_changed(is_moving: bool) -> void:
 	_sapper.is_moving = is_moving
@@ -34,8 +40,11 @@ func _on_demo_controls_pointer_position_changed(pointer: Vector2) -> void:
 	_apply_pointer_to_regular_camera(pointer)
 
 func _on_demo_controls_pointer_click(_pointer: Vector2) -> void:
-	_sapper.try_to_shoot()
+	_sapper.try_to_shoot(false)
 
+func _on_demo_controls_pointer_pressed(is_pressed: bool) -> void:
+	click_is_holded = is_pressed
+	
 func _on_spawn_dummy_timer_timeout() -> void:
 	var dummy: Dummy = Dummy.new_scene()
 	var random_x: float = _rng.randf_range(-1.0, 1.0)

@@ -39,3 +39,16 @@ extends GunConfigurationFireMode
 		if value:
 			CurveExtended.set_strict_bounds(value, 0.0, null, 0.0, null, "auto distance_time_coefficient")
 		distance_time_coefficient = value
+
+func _init() -> void:
+	call_deferred("_validate")
+	
+func _validate() -> void:
+	damage = damage
+	damage_time_coefficient = damage_time_coefficient
+	bps = bps
+	bps_time_coefficient = bps_time_coefficient
+	spread = spread
+	spread_time_coefficient = spread_time_coefficient
+	distance = distance
+	distance_time_coefficient = distance_time_coefficient

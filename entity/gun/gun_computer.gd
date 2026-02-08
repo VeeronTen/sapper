@@ -6,20 +6,22 @@ extends Node
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _time_since_last_shot: float = 0
 var _time_since_last_sucessfull_shot: float = 0
-
+	
 func _process(delta: float) -> void:
 	_time_since_last_shot += delta
 	_time_since_last_sucessfull_shot += delta
 	
-func can_shoot() -> bool:
+func can_shoot(hold: bool) -> bool:
 	match _configuration.fire_mode:
 		var mode when mode is GunConfigurationFireModeConstant:
+			if hold: return false
 			var constant: GunConfigurationFireModeConstant = mode
 			return _time_since_last_shot > 1 / constant.bps
 		var mode when mode is GunConfigurationFireModeAuto:
 			var auto: GunConfigurationFireModeAuto = mode
 			return true #todo
 		var mode when mode is GunConfigurationFireModeSpam:
+			if hold: return false
 			var spam: GunConfigurationFireModeSpam = mode
 			return true
 		_:

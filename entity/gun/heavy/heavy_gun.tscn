@@ -1,28 +1,16 @@
 [gd_scene format=3 uid="uid://e1j4g8pjnl4v"]
 
 [ext_resource type="Script" uid="uid://dfwlwkhfeqoop" path="res://entity/gun/heavy/heavy_gun.gd" id="1_wtrra"]
-[ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="2_fa8o4"]
 [ext_resource type="Texture2D" uid="uid://ul5e8rbg7cp2" path="res://entity/gun/heavy/image/heavy-gun.png" id="2_yf2rb"]
 [ext_resource type="PackedScene" uid="uid://mvxp5ceg0qt1" path="res://component/damage/damaging_ray_component/damaging_ray_component.tscn" id="3_ipq2j"]
 [ext_resource type="Texture2D" uid="uid://cgs010imk4t8r" path="res://addons/personal/pixel/pixel.png" id="3_yf2rb"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="5_i6n6v"]
-
-[sub_resource type="Resource" id="Resource_i6n6v"]
-script = ExtResource("2_fa8o4")
-value = 2.0
-metadata/_custom_type_script = "uid://but4ln51v458i"
-
-[sub_resource type="Curve" id="Curve_vf0ev"]
-_limits = [0.0, 180.0, 0.0, 0.1]
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
-point_count = 1
+[ext_resource type="Script" uid="uid://gful57krfk4c" path="res://entity/gun/gun_computer.gd" id="5_vf0ev"]
+[ext_resource type="Resource" uid="uid://ee52uudjgoth" path="res://entity/gun/heavy/heavy_gun_configuration.tres" id="6_agdnt"]
+[ext_resource type="PackedScene" uid="uid://cbsxhofbkax67" path="res://entity/gun/pointer/gun_pointer.tscn" id="6_rcvb8"]
 
 [node name="HeavyGun" type="Node2D" unique_id=1256870141]
 script = ExtResource("1_wtrra")
-damage = SubResource("Resource_i6n6v")
-bps = 10.0
-_max_distance = 80.0
-_spam_spread_angle = SubResource("Curve_vf0ev")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1124514709]
 unique_name_in_owner = true
@@ -47,15 +35,12 @@ unique_name_in_owner = true
 position = Vector2(6, -0.5)
 _collision_filter = ExtResource("5_i6n6v")
 
-[node name="PointerRay" type="RayCast2D" parent="." unique_id=2087213873]
+[node name="GunComputer" type="Node" parent="." unique_id=39519873]
 unique_name_in_owner = true
-position = Vector2(25, -0.5)
-target_position = Vector2(0, 0)
-collision_mask = 1610612736
-hit_from_inside = true
-collide_with_areas = true
+script = ExtResource("5_vf0ev")
+_configuration = ExtResource("6_agdnt")
+metadata/_custom_type_script = "uid://gful57krfk4c"
 
-[node name="Pointer" type="Marker2D" parent="PointerRay" unique_id=1318690755]
-
-[node name="Sprite2D" type="Sprite2D" parent="PointerRay/Pointer" unique_id=326359638]
-texture = ExtResource("3_yf2rb")
+[node name="GunPointer" parent="." unique_id=577594137 instance=ExtResource("6_rcvb8")]
+unique_name_in_owner = true
+marker = ExtResource("3_yf2rb")

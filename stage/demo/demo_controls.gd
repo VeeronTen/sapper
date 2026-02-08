@@ -11,8 +11,14 @@ signal drop_pressed
 var _prev_move_direction: Vector2 = Vector2.ZERO
 var _prev_is_moving: bool = false
 
+signal pointer_pressed(is_pressed: bool)
+
 func _process(_delta: float) -> void:
 	pointer_position_changed.emit(get_global_mouse_position())
+	if Input.is_action_just_pressed("pointer_click"):
+		pointer_pressed.emit(true)
+	if Input.is_action_just_released("pointer_click"):
+		pointer_pressed.emit(false)
 	
 func _physics_process(_delta: float) -> void:
 	var move_direction: Vector2 = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')

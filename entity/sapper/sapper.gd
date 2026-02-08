@@ -106,11 +106,11 @@ func try_to_drop() -> void:
 	node_to_drop_bomb.add_child(bomb)
 	_is_carrying_bomb = false
 
-func try_to_shoot() -> void:
+func try_to_shoot(hold: bool) -> void:
 	if _is_carrying_bomb:
-		_heavy_gun.shoot()
+		_heavy_gun.shoot(hold)
 	else:
-		_light_gun.shoot()
+		_light_gun.shoot(hold)
 	
 func _compute_speed() -> float:
 	var result: float = walk_speed * time_to_walk_speed_modifier.sample(_walking_time)

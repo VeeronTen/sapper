@@ -8,3 +8,9 @@ extends Resource
 		if value != new_value:
 			value = new_value
 			emit_changed()
+
+func _init() -> void:
+	call_deferred("_validate")
+	
+func _validate() -> void:
+	value = value
