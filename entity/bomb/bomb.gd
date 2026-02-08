@@ -6,7 +6,7 @@ class_name Bomb
 @onready var _collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 static func new_scene() -> Bomb: 
-	return (load("res://entity/bomb/bomb.tscn") as PackedScene).instantiate()
+	return (load("uid://dq3gr7ei455xu") as PackedScene).instantiate()
 	
 func _ready() -> void:
 	_interaction_indicator.visible = false

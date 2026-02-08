@@ -7,7 +7,7 @@ extends StaticBody2D
 @onready var _collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 static func new_scene() -> Dummy: 
-	return (load("res://entity/dummy/dummy.tscn") as PackedScene).instantiate()
+	return (load("uid://c7mytol7o1133") as PackedScene).instantiate()
 	
 func _ready() -> void:
 	_navigation_region_updater_component.update()
