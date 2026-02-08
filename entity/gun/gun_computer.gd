@@ -28,8 +28,8 @@ func can_shoot(hold: bool) -> bool:
 		var mode when mode is GunConfigurationFireModeAuto:
 			var auto: GunConfigurationFireModeAuto = mode
 			var bps: float = auto.bps
-			if auto.bps_time_coefficient:
-				bps *= auto.bps_time_coefficient.sample(_time_hold)
+			if auto.bps_hold_time_coefficient:
+				bps *= auto.bps_hold_time_coefficient.sample(_time_hold)
 			return _time_since_last_shot > 1 / bps
 		var mode when mode is GunConfigurationFireModeSpam:
 			if hold: return false
@@ -48,14 +48,14 @@ func get_damage() -> Damage:
 		var mode when mode is GunConfigurationFireModeAuto:
 			var auto: GunConfigurationFireModeAuto = mode
 			damage = auto.damage.duplicate()
-			if auto.damage_time_coefficient:
-				damage.value *= auto.damage_time_coefficient.sample(_time_hold)
+			if auto.damage_hold_time_coefficient:
+				damage.value *= auto.damage_hold_time_coefficient.sample(_time_hold)
 		var mode when mode is GunConfigurationFireModeSpam:
 			var spam: GunConfigurationFireModeSpam = mode
 			damage = spam.damage.duplicate()
-			if spam.damage_time_coefficient:
-				var time: float = _time_since_last_shot if spam.enable_damage_time_coefficient_at_misses else _time_since_last_sucessfull_shot
-				damage.value *= spam.damage_time_coefficient.sample(time)
+			if spam.damage_click_time_coefficient:
+				var time: float = _time_since_last_shot if spam.enable_damage_click_time_coefficient_at_misses else _time_since_last_sucessfull_shot
+				damage.value *= spam.damage_click_time_coefficient.sample(time)
 		_:
 			assert(false)
 			return null
@@ -70,13 +70,13 @@ func get_spread() -> float:
 		var mode when mode is GunConfigurationFireModeAuto:
 			var auto: GunConfigurationFireModeAuto = mode
 			spread = auto.spread
-			if auto.spread_time_coefficient:
-				spread *= auto.spread_time_coefficient.sample(_time_hold)
+			if auto.spread_hold_time_coefficient:
+				spread *= auto.spread_hold_time_coefficient.sample(_time_hold)
 		var mode when mode is GunConfigurationFireModeSpam:
 			var spam: GunConfigurationFireModeSpam = mode
 			spread = spam.spread
-			if spam.spread_time_coefficient:
-				spread *= spam.spread_time_coefficient.sample(_time_since_last_shot)
+			if spam.spread_click_time_coefficient:
+				spread *= spam.spread_click_time_coefficient.sample(_time_since_last_shot)
 		_:
 			assert(false)
 			return 0
@@ -91,13 +91,13 @@ func get_distance() -> float:
 		var mode when mode is GunConfigurationFireModeAuto:
 			var auto: GunConfigurationFireModeAuto = mode
 			distance = auto.distance
-			if auto.distance_time_coefficient:
-				distance *= auto.distance_time_coefficient.sample(_time_hold)
+			if auto.distance_hold_time_coefficient:
+				distance *= auto.distance_hold_time_coefficient.sample(_time_hold)
 		var mode when mode is GunConfigurationFireModeSpam:
 			var spam: GunConfigurationFireModeSpam = mode
 			distance = spam.distance
-			if spam.distance_time_coefficient:
-				distance *= spam.distance_time_coefficient.sample(_time_since_last_shot)
+			if spam.distance_click_time_coefficient:
+				distance *= spam.distance_click_time_coefficient.sample(_time_since_last_shot)
 		_:
 			assert(false)
 			return 0
