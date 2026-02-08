@@ -12,9 +12,19 @@ func _process(delta: float) -> void:
 	_time_since_last_sucessfull_shot += delta
 	
 func can_shoot() -> bool:
-	if _configuration.damage_spam_override: 
-		return true
-	return _time_since_last_shot > 1 / _configuration.bps
+	match _configuration.fire_mode:
+		var mode when mode is GunConfigurationFireModeConstant:
+			var constant: GunConfigurationFireModeConstant = mode
+			return _time_since_last_shot > 1 / constant.bps
+		var mode when mode is GunConfigurationFireModeAuto:
+			var auto: GunConfigurationFireModeAuto = mode
+			return true #todo
+		var mode when mode is GunConfigurationFireModeSpam:
+			var spam: GunConfigurationFireModeSpam = mode
+			return true
+		_:
+			assert(false)
+			return false
 
 func get_damage() -> Damage:
 	if _configuration.damage_spam_override:
@@ -25,8 +35,23 @@ func get_damage() -> Damage:
 		return _configuration.damage
 
 func get_spread() -> float:
-	var samled_spread: float = _configuration.spread_spam_override.sample(_time_since_last_shot)
-	return _rng.randf_range(-samled_spread/2, samled_spread/2)
+	var spread: float
+	match _configuration.fire_mode:
+		var mode when mode is GunConfigurationFireModeConstant:
+			var constant: GunConfigurationFireModeConstant = mode
+			spread = constant.spread
+		var mode when mode is GunConfigurationFireModeAuto:
+			var auto: GunConfigurationFireModeAuto = mode
+			spread = 10  #todo
+		var mode when mode is GunConfigurationFireModeSpam:
+			var spam: GunConfigurationFireModeSpam = mode
+			spread = spam.spread
+			if spam.spread_time_coefficient:
+				spread *= spam.spread_time_coefficient.sample(_time_since_last_shot)
+		_:
+			assert(false)
+			return 0
+	return _rng.randf_range(-spread/2, spread/2)
 
 func get_distance() -> float:
 	return _configuration.max_distance

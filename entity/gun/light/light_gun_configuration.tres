@@ -1,22 +1,22 @@
 [gd_resource type="Resource" script_class="GunConfiguration" format=3 uid="uid://chxa4f4dx8jtu"]
 
-[ext_resource type="Script" uid="uid://but4ln51v458i" path="res://component/damage/damage.gd" id="1_8thpi"]
-[ext_resource type="Script" uid="uid://c1bd1yssgvxyr" path="res://entity/gun/gun_configuration.gd" id="1_d2gp2"]
+[ext_resource type="Script" uid="uid://c1bd1yssgvxyr" path="res://entity/gun/configuration/gun_configuration.gd" id="1_d2gp2"]
+[ext_resource type="Script" uid="uid://cec1hx5in1ke1" path="res://entity/gun/configuration/fire_mode/gun_configuration_fire_mode_spam.gd" id="2_pg6h8"]
 
-[sub_resource type="Resource" id="Resource_8thpi"]
-script = ExtResource("1_8thpi")
-value = 2.0
-metadata/_custom_type_script = "uid://but4ln51v458i"
+[sub_resource type="Curve" id="Curve_pg6h8"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0.014, 10), 0.0, 0.0, 0, 0, Vector2(0.61475414, 3.3621812), 0.0, 0.0, 0, 0, Vector2(0.8752399, 0.99733126), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="Curve" id="Curve_8thpi"]
-_limits = [0.0, 180.0, 0.0, 0.2]
-_data = [Vector2(0, 180), 0.0, 0.0, 0, 0, Vector2(0.2, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Resource" id="Resource_d5a81"]
+script = ExtResource("2_pg6h8")
+spread = 7.0
+spread_time_coefficient = SubResource("Curve_pg6h8")
+metadata/_custom_type_script = "uid://cec1hx5in1ke1"
 
 [resource]
 script = ExtResource("1_d2gp2")
-damage = SubResource("Resource_8thpi")
-bps = 5.0
+fire_mode = SubResource("Resource_d5a81")
+bps = null
 max_distance = 100.0
-spread_spam_override = SubResource("Curve_8thpi")
 metadata/_custom_type_script = "uid://c1bd1yssgvxyr"
