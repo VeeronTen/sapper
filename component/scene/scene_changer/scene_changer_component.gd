@@ -17,6 +17,8 @@ func change_scene() -> void:
 	var packed_scene: PackedScene = load(uid)
 	var new_scene: Node = packed_scene.instantiate()
 	var old_scene: Node = get_tree().current_scene
-	get_tree().root.add_child(new_scene)
-	get_tree().current_scene = new_scene
+	var tree: SceneTree = get_tree()
+	tree.root.remove_child(old_scene) 
+	tree.root.add_child(new_scene)
+	tree.current_scene = new_scene
 	old_scene.queue_free()
