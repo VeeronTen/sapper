@@ -28,7 +28,8 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	var target_skew: float = max_move_skew if velocity.x > 0 else -max_move_skew
 	target_skew *= absf(velocity.x) / _max_registered_horizontal_velocity
-	_sprites.skew = lerpf(_sprites.skew, target_skew, delta)
+	if is_finite(target_skew):
+		_sprites.skew = lerpf(_sprites.skew, target_skew, delta)
 	
 func _physics_process(_delta: float) -> void:
 	_sprites.scale.x = 1 if velocity.x < 0 else -1
