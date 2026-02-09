@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://t46bj6q6tl45"]
+
+[ext_resource type="Script" uid="uid://c74c3bdxd3u6n" path="res://component/scene/scene_changer_area/scene_changer_area_component.gd" id="1_n4dxv"]
+[ext_resource type="Script" uid="uid://cd1h5hu6lbkip" path="res://component/scene/scene_changer/scene_changer_component.gd" id="2_5g7tu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g7tu"]
+font_size = 4
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="SceneChangerAreaComponent" type="Area2D" unique_id=418170468]
+monitorable = false
+script = ExtResource("1_n4dxv")
+time_to_change = null
+
+[node name="SceneChangerComponent" type="Node" parent="." unique_id=186773772]
+unique_name_in_owner = true
+script = ExtResource("2_5g7tu")
+metadata/_custom_type_script = "uid://cd1h5hu6lbkip"
+
+[node name="SceneName" type="Label" parent="." unique_id=1760517334]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "DEMO_STAGE"
+label_settings = SubResource("LabelSettings_5g7tu")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

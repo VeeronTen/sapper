@@ -16,7 +16,7 @@
 [ext_resource type="Shader" uid="uid://b4r7p31cdxr82" path="res://stage/demo/shader/anomaly.gdshader" id="14_fxrrq"]
 [ext_resource type="Shader" uid="uid://dvroe85kopapo" path="res://stage/demo/shader/chromatic_aberration.gdshader" id="15_xk4ec"]
 [ext_resource type="Texture2D" uid="uid://jfmyonhwvpk0" path="res://stage/demo/image/parallax/desert_320_125_spritesheet.png" id="16_3p7ug"]
-[ext_resource type="Script" uid="uid://cd1h5hu6lbkip" path="res://component/scene/scene_changer/scene_changer_component.gd" id="17_y18u6"]
+[ext_resource type="PackedScene" uid="uid://t46bj6q6tl45" path="res://component/scene/scene_changer_area/scene_changer_area_component.tscn" id="17_y18u6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jj4g0"]
 vertices = PackedVector2Array(-27, 5, 44, 4, 59, 4, 59, 7, 44, 7, 311.64063, -281.0078, 181, 251, 155, 251, 149, 245, 149, 187, 404.2578, 393.96875, 181, 309, 44, -9, -27, -21, 32, -27, 117, 187, 117, 171, 101, 171, 101, 155, 37, 155, 37, 101, 69, 101, 69, 85, 85, 85, 85, 69, 101, 69, 101, 11, 85, 11, 85, -69, 37, -69, 37, -85, 21, -85, 21, -101, -27, -59, -5, -101, -5, -59, -27, -101, -53, -101, -53, -85, -69, -85, -179.11719, -282.9922, -69, -69, -85, -69, -43, -43, -43, -59, 11, -59, 11, -43, 59, -43, 59, -40, 32, -40, 59, -27, 59, -9, 44, 20, 59, 20, 59, 23, 44, 23, 44, 36, 59, 36, 59, 37, 44, 39, 75, 37, 75, 43, 68, 43, 68, 39, 44, 52, 59, 52, 59, 59, 43, 59, 43, 75, 11, 75, 11, 107, -27, 107, -27, 75, -43, 75, -43, 59, -59, 59, -59, 27, -53, 5, -85, 85, -69, 85, -69, 101, -85, 139, -101, 155, -53, 101, -53, 139, -85, 155, -101, 171, -117, 171, -117, 203, -133, 203, -91, 229, -91, 197, -75, 197, -75, 181, -59, 181, -59, 165, -43, 165, -43, 149, -27, 149, 11, 165, -27, 133, 11, 133, -91, 299, -107, 267, 27, 165, 27, 181, -59, 315, 75, 181, 75, 197, 107, 197, 107, 213, 123, 213, 123, 245, 91, 315, -59, 331, 155, 299, 139, 299, 139, 315, 91, 331, -91, 315, -107, 299, -133, 325, -117, 325, -117, 341, -231.17969, 391.0078, -85, 341, -85, 357, 117, 357, 117, 341, 149, 341, 149, 325, 165, 325, 165, 309, -53, -21, -59, -43, -59, 5, -462.09375, 13.0703125, -297.71875, -239.85938, -133, 267, -85, 5, -85, 27, -133, 229)
@@ -64,6 +64,9 @@ shader_parameter/extract_color_right = Color(0.99479204, 0.91009253, 0.8521871, 
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y18u6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g02l8"]
+size = Vector2(29, 14)
+
 [node name="DemoStage" type="Node2D" unique_id=1459200863]
 script = ExtResource("1_3sebb")
 
@@ -94,7 +97,7 @@ tile_map_data = PackedByteArray("AAADAAEAAAACAAIAAAAEAAAAAAAAAAIAAAD8////AAACAAI
 tile_set = ExtResource("3_jj4g0")
 
 [node name="TileMapWalls" type="TileMapLayer" parent="Map/NavigationRegion2D" unique_id=1944708271]
-tile_map_data = PackedByteArray("AAD7//z/AgAEAAAAAAD7//3/AgAAAAEAAAD7//7/AgAAAAEAAAD7////AgAAAAEAAAD7/wIAAgAAAAEAAAD7/wMAAgAAAAEAAAADAPz/AgACAAMAAAAEAPz/AgAGAAAAAAAEAP3/AgAAAAEAAAAEAP7/AgAAAAEAAAAEAP//AgAAAAEAAAAEAAAAAgAAAAEAAAAEAAEAAgAEAAIAAAAFAAEAAgAGAAAAAAAFAAIAAgAAAAEAAAAFAAMAAgAGAAIAAAAEAAMAAgAEAAAAAAAEAAQAAgAGAAIAAAADAAQAAgAEAAAAAAADAAUAAgAGAAIAAAACAAUAAgACAAMAAAABAAUAAgAEAAAAAAD9//r/AgAAAAAAAAD9//v/AgAGAAIAAAD8//v/AgAEAAAAAAD8//z/AgAGAAIAAAAAAPr/AgAAAAAAAAAAAPv/AgAEAAIAAAABAPv/AgAGAAAAAAABAPz/AgAEAAIAAAACAPz/AgACAAMAAAD7/wQAAgAEAAIAAAD8/wQAAgAGAAAAAAD8/wUAAgAEAAIAAAD9/wUAAgAGAAAAAAD9/wYAAgAAAAEAAAD9/wcAAgAEAAEAAAD9/wgAAgAAAAIAAAABAAYAAgAAAAEAAAABAAcAAgAGAAEAAAABAAgAAgAAAAEAAAABAAkAAgAAAAIAAAD8/wkAAgADAAMAAAD7/wkAAgAEAAAAAAD7/woAAgAGAAIAAAD6/woAAgAEAAAAAAD6/wsAAgAGAAIAAAD5/wsAAgAEAAAAAAD5/wwAAgAAAAEAAAD5/w0AAgAGAAIAAAD4/w0AAgABAAMAAAD4/xEAAgAAAAAAAAD4/xIAAgAAAAEAAAD4/xMAAgAEAAIAAAD5/xMAAgAGAAAAAAD5/xQAAgAEAAIAAAD6/xQAAgACAAMAAAD7/xQAAgAGAAAAAAD7/xUAAgAEAAIAAAD8/xUAAgACAAMAAAD9/xUAAgACAAMAAAD+/xUAAgACAAMAAAD//xUAAgACAAMAAAAAABUAAgACAAMAAAABABUAAgACAAMAAAACABUAAgACAAMAAAADABUAAgACAAMAAAAEABUAAgACAAMAAAAFABUAAgACAAMAAAAGABUAAgAGAAIAAAAGABQAAgAEAAAAAAAHABQAAgACAAMAAAAIABQAAgADAAMAAAAJABMAAgAAAAQAAAAKABIAAgAAAAIAAAAKABEAAgAAAAEAAAAKABAAAgAAAAAAAAAIAA4AAgAAAAIAAAAIAA0AAgAAAAEAAAAIAAwAAgAGAAAAAAAHAAwAAgABAAMAAAAGAAsAAgADAAMAAAAFAAsAAgAEAAIAAAAFAAoAAgAGAAAAAAAEAAoAAgACAAMAAAADAAoAAgACAAMAAAACAAoAAgABAAMAAAD+/wcAAgADAAMAAAAAAAcAAgABAAMAAAA=")
+tile_map_data = PackedByteArray("AAD7//3/AgAGAAAAAAD7//7/AgAAAAEAAAD7////AgAAAAEAAAD7/wIAAgAAAAEAAAD7/wMAAgAAAAEAAAADAPz/AgACAAMAAAAEAPz/AgAGAAAAAAAEAP3/AgAAAAEAAAAEAP7/AgAAAAEAAAAEAP//AgAAAAEAAAAEAAAAAgAAAAEAAAAEAAEAAgAEAAIAAAAFAAEAAgAGAAAAAAAFAAIAAgAAAAEAAAAFAAMAAgAGAAIAAAAEAAMAAgAEAAAAAAAEAAQAAgAGAAIAAAADAAQAAgAEAAAAAAADAAUAAgAGAAIAAAACAAUAAgACAAMAAAABAAUAAgAEAAAAAAD9//r/AgAAAAAAAAD9//v/AgAGAAIAAAD8//v/AgACAAMAAAAAAPr/AgAAAAAAAAAAAPv/AgAEAAIAAAABAPv/AgAGAAAAAAABAPz/AgAEAAIAAAACAPz/AgACAAMAAAD7/wQAAgAEAAIAAAD8/wQAAgAGAAAAAAD8/wUAAgAEAAIAAAD9/wUAAgAGAAAAAAD9/wYAAgAAAAEAAAD9/wcAAgAEAAEAAAD9/wgAAgAAAAIAAAABAAYAAgAAAAEAAAABAAcAAgAGAAEAAAABAAgAAgAAAAEAAAABAAkAAgAAAAIAAAD8/wkAAgADAAMAAAD7/wkAAgAEAAAAAAD7/woAAgAGAAIAAAD6/woAAgAEAAAAAAD6/wsAAgAGAAIAAAD5/wsAAgAEAAAAAAD5/wwAAgAAAAEAAAD5/w0AAgAGAAIAAAD4/w0AAgABAAMAAAD4/xEAAgAAAAAAAAD4/xIAAgAAAAEAAAD4/xMAAgAEAAIAAAD5/xMAAgAGAAAAAAD5/xQAAgAEAAIAAAD6/xQAAgACAAMAAAD7/xQAAgAGAAAAAAD7/xUAAgAEAAIAAAD8/xUAAgACAAMAAAD9/xUAAgACAAMAAAD+/xUAAgACAAMAAAD//xUAAgACAAMAAAAAABUAAgACAAMAAAABABUAAgACAAMAAAACABUAAgACAAMAAAADABUAAgACAAMAAAAEABUAAgACAAMAAAAFABUAAgACAAMAAAAGABUAAgAGAAIAAAAGABQAAgAEAAAAAAAHABQAAgACAAMAAAAIABQAAgADAAMAAAAJABMAAgAAAAQAAAAKABIAAgAAAAIAAAAKABEAAgAAAAEAAAAKABAAAgAAAAAAAAAIAA4AAgAAAAIAAAAIAA0AAgAAAAEAAAAIAAwAAgAGAAAAAAAHAAwAAgABAAMAAAAGAAsAAgADAAMAAAAFAAsAAgAEAAIAAAAFAAoAAgAGAAAAAAAEAAoAAgACAAMAAAADAAoAAgACAAMAAAACAAoAAgABAAMAAAD+/wcAAgADAAMAAAAAAAcAAgABAAMAAAD6//3/AgAEAAIAAAD6//z/AgAAAAEAAAD6//v/AgAEAAAAAAD7//v/AgACAAMAAAA=")
 tile_set = ExtResource("3_k46ji")
 
 [node name="TileMapEntities" type="TileMapLayer" parent="Map/NavigationRegion2D" unique_id=552531852]
@@ -252,9 +255,17 @@ position = Vector2(-32, -2)
 scale = Vector2(55.280006, 55.280006)
 texture = SubResource("PlaceholderTexture2D_y18u6")
 
-[node name="SceneChangerComponent" type="Node" parent="." unique_id=1772418417]
-script = ExtResource("17_y18u6")
-metadata/_custom_type_script = "uid://cd1h5hu6lbkip"
+[node name="SceneChangerAreaComponent" parent="." unique_id=418170468 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("17_y18u6")]
+unique_name_in_owner = true
+position = Vector2(-65, -57)
+_trigger_object = NodePath("../Sapper")
+move_during_transition = Vector2(-20, 0)
+_time_to_change = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerAreaComponent" unique_id=322458201]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_g02l8")
+debug_color = Color(0.6987125, 0.47562742, 0.36706594, 0.41960785)
 
 [connection signal="body_entered" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_entered"]
 [connection signal="body_exited" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_exited"]
@@ -267,3 +278,4 @@ metadata/_custom_type_script = "uid://cd1h5hu6lbkip"
 [connection signal="pointer_pressed" from="DemoControls" to="." method="_on_demo_controls_pointer_pressed"]
 [connection signal="roll_pressed" from="DemoControls" to="." method="_on_demo_controls_roll_pressed"]
 [connection signal="timeout" from="SpawnDummyTimer" to="." method="_on_spawn_dummy_timer_timeout"]
+[connection signal="triggered" from="SceneChangerAreaComponent" to="." method="_on_scene_changer_area_component_triggered"]

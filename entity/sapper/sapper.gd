@@ -35,7 +35,9 @@ var watch_position: Vector2 = Vector2.RIGHT:
 		_light_gun.pointer_position = value
 		_heavy_gun.pointer_position = value
 		
-var move_direction: Vector2 = Vector2.ZERO
+var move_direction: Vector2 = Vector2.ZERO:
+	set(value):
+		move_direction = value.normalized()
 
 var is_moving: bool = false:
 	set(value):

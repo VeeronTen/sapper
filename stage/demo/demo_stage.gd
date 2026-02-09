@@ -18,14 +18,14 @@ extends Node2D
 @onready var _sapper: Sapper = %Sapper
 @onready var _regular_phantom_camera_2d: PhantomCamera2D = $RegularPhantomCamera2D
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
-@onready var navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
-@onready var scene_changer_component: SceneChangerComponent = $SceneChangerComponent
+@onready var _navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
+@onready var _scene_changer_area_component: SceneChangerAreaComponent = %SceneChangerAreaComponent
 
 var click_is_holded: bool = false
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if click_is_holded:
 		_sapper.try_to_shoot(true)
 	
@@ -51,11 +51,10 @@ func _on_spawn_dummy_timer_timeout() -> void:
 	var random_y: float = _rng.randf_range(-1.0, 1.0)
 	var direction: Vector2 = Vector2(random_x, random_y).normalized()
 	dummy.global_position = _sapper.global_position + direction * 40
-	navigation_region_2d.add_child(dummy)
+	_navigation_region_2d.add_child(dummy)
 
 func _on_demo_controls_roll_pressed() -> void:
 	_sapper.try_to_roll()
-	scene_changer_component.change_scene()
 	
 func _on_demo_controls_interact_pressed() -> void:
 	_sapper.try_to_interact()
@@ -80,3 +79,11 @@ func _apply_pointer_to_regular_camera(pointer: Vector2) -> void:
 	var zoom_factor: float = remap(offset.length(), pointer_min_distance_to_offset, pointer_max_distance_to_offset, pointer_max_zoom, pointer_min_zoom)
 	_regular_phantom_camera_2d.zoom = Vector2.ONE * clampf(zoom_factor, pointer_min_zoom, pointer_max_zoom)
 	_regular_phantom_camera_2d.follow_offset = offset
+
+
+func _on_scene_changer_area_component_triggered() -> void:
+	_sapper.move_direction = _scene_changer_area_component.move_during_transition
+	set_physics_process(false)
+	for conn: Dictionary in get_incoming_connections():
+		@warning_ignore("unsafe_method_access")
+		conn.signal.disconnect(conn.callable)
