@@ -1,21 +1,17 @@
 [gd_scene format=3 uid="uid://cmpu4remk7hc6"]
 
 [ext_resource type="Script" uid="uid://caqs1yownd71n" path="res://component/scene/transitions/transition_test.gd" id="1_arubr"]
-[ext_resource type="Shader" uid="uid://dvroe85kopapo" path="res://stage/demo/shader/chromatic_aberration.gdshader" id="1_irqij"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qkc8"]
-shader = ExtResource("1_irqij")
-shader_parameter/aberration_distance = 0.0070000003325
-shader_parameter/extract_color_left = Color(0, 0, 0, 1)
-shader_parameter/extract_color_right = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node" unique_id=2083419544]
 script = ExtResource("1_arubr")
 
-[node name="TransitionTestOut" type="CanvasLayer" parent="." unique_id=592902507]
+[node name="TransitionTest" type="CanvasLayer" parent="." unique_id=592902507]
 
-[node name="ColorRect" type="ColorRect" parent="TransitionTestOut" unique_id=1009452806]
-material = SubResource("ShaderMaterial_8qkc8")
-offset_right = 1980.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
+[node name="ColorRect" type="ColorRect" parent="TransitionTest" unique_id=1009452806]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
