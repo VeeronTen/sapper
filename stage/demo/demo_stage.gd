@@ -8,6 +8,7 @@ extends Node2D
 #todo Прицел с искривлением пространства
 #todo поправить коллизии для нав агентов
 #todo порядок отрисовки всех
+#todo подправить реакцию камеры на мышку
 
 @export var pointer_camera_affect: float = 0.4
 @export var pointer_min_distance_to_offset: float = 25
