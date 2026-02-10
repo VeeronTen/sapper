@@ -12,7 +12,7 @@ func _scene_to_uid(scene: Scene) -> String:
 		Scene.DEMO_STAGE: return "uid://kqkvasn678ry"
 		_: return ""
 
-func change_scene() -> void:
+func change_scene() -> Node:
 	var uid: String = _scene_to_uid(change_to)
 	var packed_scene: PackedScene = load(uid)
 	var new_scene: Node = packed_scene.instantiate()
@@ -22,3 +22,4 @@ func change_scene() -> void:
 	tree.root.add_child(new_scene)
 	tree.current_scene = new_scene
 	old_scene.queue_free()
+	return new_scene
