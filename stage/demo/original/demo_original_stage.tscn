@@ -11,13 +11,13 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_k763h"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_jnjvq"]
 [ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="11_012p4"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="12_fcdba"]
 [ext_resource type="PackedScene" uid="uid://c44dinhcu2bbt" path="res://entity/friendbot/friendbot.tscn" id="13_wfqv8"]
 [ext_resource type="Shader" uid="uid://b4r7p31cdxr82" path="res://stage/common/shader/anomaly.gdshader" id="14_w2dwc"]
 [ext_resource type="Shader" uid="uid://dvroe85kopapo" path="res://stage/common/shader/chromatic_aberration.gdshader" id="15_bs7jx"]
 [ext_resource type="PackedScene" uid="uid://t46bj6q6tl45" path="res://component/scene/scene_changer_area/scene_changer_area_component.tscn" id="16_jkwlr"]
 [ext_resource type="PackedScene" uid="uid://cmpu4remk7hc6" path="res://component/scene/transitions/transition_test.tscn" id="17_a8ga4"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="18_kroc5"]
+[ext_resource type="PackedScene" uid="uid://cjv032swxriro" path="res://component/camera_component/camera_component.tscn" id="19_5e0ey"]
 [ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="19_etew6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jj4g0"]
@@ -209,33 +209,6 @@ node_to_drop_bomb = NodePath("../Map/NavigationRegion2D")
 wait_time = 3.0
 autostart = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=117272490]
-physics_interpolation_mode = 1
-position = Vector2(-15, -36)
-zoom = Vector2(7, 7)
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=368408749]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("12_fcdba")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
-[node name="RegularPhantomCamera2D" type="Node2D" parent="." unique_id=874350480 node_paths=PackedStringArray("follow_target")]
-top_level = true
-position = Vector2(-15, -36)
-script = ExtResource("9_k763h")
-priority = 1
-follow_mode = 2
-follow_target = NodePath("../Sapper")
-zoom = Vector2(7, 7)
-tween_resource = SubResource("Resource_fxrrq")
-tween_on_load = false
-follow_damping = true
-follow_damping_value = Vector2(0.2, 0.2)
-dead_zone_width = 0.141
-dead_zone_height = 0.16
-metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
-
 [node name="FriendBot" parent="." unique_id=661969995 instance=ExtResource("13_wfqv8")]
 
 [node name="Anomaly" type="Node2D" parent="." unique_id=170017468]
@@ -272,11 +245,15 @@ debug_color = Color(0.6987125, 0.47562742, 0.36706594, 0.41960785)
 [node name="InputSourceComponent" type="Node2D" parent="Input" unique_id=1164976340]
 script = ExtResource("18_kroc5")
 
-[node name="SapperInputMapper" type="Node" parent="Input" unique_id=720450268 node_paths=PackedStringArray("_input_source", "_sapper")]
+[node name="SapperInputMapper" type="Node" parent="Input" unique_id=720450268 node_paths=PackedStringArray("_input_source", "_camera_component", "_sapper")]
 script = ExtResource("19_etew6")
 _input_source = NodePath("../InputSourceComponent")
+_camera_component = NodePath("../../CameraComponent")
 _sapper = NodePath("../../Sapper")
 metadata/_custom_type_script = "uid://r30p1rnme8hn"
+
+[node name="CameraComponent" parent="." unique_id=1504718468 node_paths=PackedStringArray("_follow_target") instance=ExtResource("19_5e0ey")]
+_follow_target = NodePath("../Sapper")
 
 [connection signal="body_entered" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_entered"]
 [connection signal="body_exited" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_exited"]

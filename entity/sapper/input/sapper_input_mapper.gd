@@ -2,6 +2,7 @@ class_name SapperInputMapper
 extends Node
 
 @export var _input_source: InputSourceComponent
+@export var _camera_component: CameraComponent
 @export var _sapper: Sapper
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _physics_process(_delta: float) -> void:
 	
 func _on_pointer_position_changed(pointer: Vector2) -> void:
 	_sapper.watch_position = pointer
+	_camera_component.change_watch_point(pointer)
 	
 func _on_is_moving_changed(is_moving: bool) -> void:
 	_sapper.is_moving = is_moving
@@ -37,3 +39,4 @@ func _on_interact_pressed() -> void:
 
 func _on_drop_pressed() -> void:
 	_sapper.try_to_drop()
+	
