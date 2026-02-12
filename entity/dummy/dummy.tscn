@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="3_wblws"]
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="4_avckc"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="6_518d7"]
-[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="7_1nodl"]
+[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch/tweener_twitch_component.gd" id="7_1nodl"]
 [ext_resource type="PackedScene" uid="uid://ck78f6xiexdkn" path="res://component/on_hit_particle/on_hit_particle_component.tscn" id="8_uiaq1"]
-[ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation_region_updater_component.gd" id="9_l3n2g"]
+[ext_resource type="Script" uid="uid://dc0e601ti36dw" path="res://component/navigation/navigation_region_updater_component.gd" id="9_l3n2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlewu"]
 size = Vector2(14, 3)

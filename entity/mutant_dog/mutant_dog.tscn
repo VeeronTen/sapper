@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://xk5ss8evnc3k" path="res://component/damage/damageable_component/collision_filter/instance/in_air.tres" id="9_1671i"]
 [ext_resource type="Resource" uid="uid://245hbuao6ncn" path="res://component/damage/damageable_component/collision_filter/instance/on_ground.tres" id="10_fyhl8"]
 [ext_resource type="Script" uid="uid://b5plkl8rxjx3l" path="res://component/damage/health_component.gd" id="11_0hyd5"]
-[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch_component.gd" id="12_1mkby"]
+[ext_resource type="Script" uid="uid://c5mm22a8mpvos" path="res://component/tweener_twitch/tweener_twitch_component.gd" id="12_1mkby"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eu4xl"]
 radius = 2.0
