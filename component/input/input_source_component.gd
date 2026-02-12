@@ -46,6 +46,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if key_event.pressed and not key_event.echo:
 			_handle_key_input(key_event)
 
+func disable() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+
 func _handle_mouse_input(event: InputEventMouseButton) -> void:
 	match event.button_index:
 		MOUSE_BUTTON_LEFT: 

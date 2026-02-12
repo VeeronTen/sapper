@@ -21,6 +21,7 @@ extends Node2D
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
 @onready var _navigation_region_2d: NavigationRegion2D = $Map/NavigationRegion2D
 @onready var _scene_changer_area_component: SceneChangerAreaComponent = %SceneChangerAreaComponent
+@onready var _input_source_component: InputSourceComponent = $Input/InputSourceComponent
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -47,10 +48,7 @@ func _on_zoom_out_area_body_exited(body: Node2D) -> void:
 
 func _on_scene_changer_area_component_triggered() -> void:
 	_sapper.move_direction = _scene_changer_area_component.move_during_transition
-	set_physics_process(false)
-	for conn: Dictionary in get_incoming_connections():
-		@warning_ignore("unsafe_method_access")
-		conn.signal.disconnect(conn.callable)
+	_input_source_component.disable()
 
 #fixme довольно неудобно вышло
 func _apply_pointer_to_regular_camera(pointer: Vector2) -> void:
