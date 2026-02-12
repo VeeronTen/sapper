@@ -9,28 +9,32 @@ signal pointer_click(pointer: Vector2)
 signal roll_pressed
 signal interact_pressed
 signal drop_pressed
-var _move_direction: Vector2 = Vector2.ZERO:
-	set(value):
-		if _move_direction != value:
-			_move_direction = value
-			move_direction_changed.emit(_move_direction)
-			_is_moving = _move_direction != Vector2.ZERO
 
-var _is_moving: bool = false:
+var move_direction: Vector2 = Vector2.ZERO:
 	set(value):
-		if _is_moving != value:
-			_is_moving = value
-			is_moving_changed.emit(_is_moving)
+		if move_direction != value:
+			move_direction = value
+			move_direction_changed.emit(move_direction)
+			is_moving = move_direction != Vector2.ZERO
+
+var is_moving: bool = false:
+	set(value):
+		if is_moving != value:
+			is_moving = value
+			is_moving_changed.emit(is_moving)
+
+var pointer_is_pressed: bool:
+	set(value):
+		if pointer_is_pressed != value:
+			pointer_is_pressed = value
+			pointer_pressed.emit(pointer_is_pressed)
 
 func _process(_delta: float) -> void:
 	pointer_position_changed.emit(get_global_mouse_position())
-	if Input.is_action_just_pressed("pointer_click"):
-		pointer_pressed.emit(true)
-	if Input.is_action_just_released("pointer_click"):
-		pointer_pressed.emit(false)
+	pointer_is_pressed = Input.is_action_pressed("pointer_click")
 	
 func _physics_process(_delta: float) -> void:
-	_move_direction = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
+	move_direction = Input.get_vector('move_left', 'move_right', 'move_up', 'move_down')
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
