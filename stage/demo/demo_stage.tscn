@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://deu2u6slac2vq" path="res://stage/demo/tilemap/demo_desert.tres" id="3_jj4g0"]
 [ext_resource type="TileSet" uid="uid://2d7hcthqc830" path="res://stage/demo/tilemap/demo_walls.tres" id="3_k46ji"]
 [ext_resource type="TileSet" uid="uid://bjea5f63ldn35" path="res://stage/demo/tilemap/demo_acid.tres" id="3_ln17t"]
-[ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/demo_controls.gd" id="4_vte7o"]
+[ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="4_vte7o"]
 [ext_resource type="TileSet" uid="uid://c1xug7auajvfn" path="res://stage/demo/tilemap/demo_entities.tres" id="5_k46ji"]
 [ext_resource type="PackedScene" uid="uid://dl4pjnfmukica" path="res://stage/demo/damageable_floor/damageable_floor.tscn" id="5_y18u6"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_xrwbm"]

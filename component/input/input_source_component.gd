@@ -1,3 +1,4 @@
+class_name InputSourceComponent
 extends Node2D
 
 signal move_direction_changed(direction: Vector2)
