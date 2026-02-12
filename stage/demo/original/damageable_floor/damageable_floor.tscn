@@ -20,18 +20,19 @@ debug_color = Color(0, 0.470588, 0, 0.74902)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=25561004]
 modulate = Color(0.7949012, 0.58607984, 0.41974393, 1)
+position = Vector2(-10, -2)
 scale = Vector2(20, 3.6)
 texture = ExtResource("3_3e51k")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=104206984]
 modulate = Color(0.47063047, 0.3051938, 0.1118576, 1)
-position = Vector2(0, 4)
+position = Vector2(-10, 2)
 scale = Vector2(20, 3.6)
 texture = ExtResource("3_3e51k")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1754187847]
 modulate = Color(0.37460053, 0.23227623, 0.070003815, 1)
-position = Vector2(0, -4)
+position = Vector2(-10, -6)
 scale = Vector2(20, 3.6)
 texture = ExtResource("3_3e51k")
 

@@ -2,14 +2,14 @@ class_name SceneChangerComponent
 extends Node
 
 enum Scene {
-	DEMO_STAGE
+	DEMO_ORIGINAL_STAGE
 }
 
 @export var change_to: Scene
 
 func _scene_to_uid(scene: Scene) -> String:
 	match scene:
-		Scene.DEMO_STAGE: return "uid://kqkvasn678ry"
+		Scene.DEMO_ORIGINAL_STAGE: return "uid://kqkvasn678ry"
 		_: return ""
 
 func change_scene() -> Node:
