@@ -2,13 +2,16 @@
 class_name SceneChangerAreaComponent
 extends Node2D
 
-signal triggered
+signal triggered(component: SceneChangerAreaComponent)
 
 @export var _trigger_object: Node2D
 @export var _change_to: SceneChangerComponent.Scene:
 	set(value):
 		_change_to = value
-		_scene_name.text = SceneChangerComponent.Scene.keys()[_change_to]
+		if _scene_name:
+			_scene_name.text = SceneChangerComponent.Scene.keys()[_change_to]
+		if _scene_changer_component:
+			_scene_changer_component.change_to = _change_to
 @export var move_during_transition: Vector2:
 	set(value):
 		move_during_transition = value
@@ -34,7 +37,7 @@ func _draw() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if _trigger_object == body:
-		triggered.emit()
+		triggered.emit(self)
 		await _play_transition(self, SceneTransition.TransitionDirection.OUT)
 		var new_scene: Node = _scene_changer_component.change_scene()
 		_play_transition(new_scene, SceneTransition.TransitionDirection.IN)

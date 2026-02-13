@@ -1,5 +1,38 @@
-[gd_scene format=3 uid="uid://cu6qm7l1y18nx"]
+[gd_scene format=4 uid="uid://cu6qm7l1y18nx"]
 
 [ext_resource type="PackedScene" uid="uid://buunq4cs5di7c" path="res://stage/template/template_stage.tscn" id="1_krf5s"]
+[ext_resource type="Script" uid="uid://carbkcqq4rmn4" path="res://stage/demo/demo_shaders_stage/demo_shaders_stage.gd" id="2_awp1e"]
+[ext_resource type="PackedScene" uid="uid://t46bj6q6tl45" path="res://component/scene/scene_changer_area/scene_changer_area_component.tscn" id="2_mjhfw"]
+[ext_resource type="PackedScene" uid="uid://cmpu4remk7hc6" path="res://component/scene/transitions/transition_test.tscn" id="3_awp1e"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_awp1e"]
+resource_local_to_scene = true
+agent_radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edknj"]
+size = Vector2(60, 37)
 
 [node name="DemoShadersStage" unique_id=1558274316 instance=ExtResource("1_krf5s")]
+script = ExtResource("2_awp1e")
+
+[node name="NavigationRegion2D" parent="Map" parent_id_path=PackedInt32Array(666650282) index="1" unique_id=2116342513]
+navigation_polygon = SubResource("NavigationPolygon_awp1e")
+
+[node name="TestWallsTileMapLayer" parent="Map/NavigationRegion2D" index="0" unique_id=241192235]
+tile_map_data = PackedByteArray("AAD9/wMAAgAEAAIAAAD+/wMAAgACAAMAAAD//wMAAgACAAMAAAAAAAMAAgACAAMAAAABAAMAAgACAAMAAAACAAMAAgAGAAIAAAD9/wIAAgAAAAEAAAD9/wEAAgAAAAEAAAACAAEAAgAAAAEAAAACAAIAAgAAAAEAAAD9/wAAAgAAAAEAAAD9////AgAAAAEAAAD9//7/AgAAAAEAAAD9//3/AgAAAAEAAAD9//z/AgAAAAEAAAD9//v/AgAAAAEAAAD9//r/AgAAAAEAAAD9//n/AgAAAAEAAAD9//j/AgAAAAEAAAD9//f/AgAAAAEAAAD9//b/AgAAAAEAAAD9//X/AgAAAAAAAAACAPX/AgAAAAAAAAACAPb/AgAAAAEAAAACAPf/AgAAAAEAAAACAPj/AgAAAAEAAAACAPn/AgAAAAEAAAACAPr/AgAAAAEAAAACAPv/AgAAAAEAAAACAPz/AgAAAAEAAAACAP3/AgAAAAEAAAACAP7/AgAAAAEAAAACAP//AgAAAAEAAAACAAAAAgAAAAEAAAA=")
+
+[node name="DemoHub" parent="Map/SceneChangerAreas" parent_id_path=PackedInt32Array(702820013) index="0" unique_id=418170468 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("2_mjhfw")]
+position = Vector2(-7, 26)
+_trigger_object = NodePath("../../../Sapper")
+move_during_transition = Vector2(0, 18.145)
+_transition_in_scene = ExtResource("3_awp1e")
+_transition_out_scene = ExtResource("3_awp1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneChangerAreas/DemoHub" index="2" unique_id=905709642]
+position = Vector2(8, 0.5)
+shape = SubResource("RectangleShape2D_edknj")
+
+[node name="Sapper" parent="." index="2" unique_id=1593754236]
+position = Vector2(0, -10)
+
+[connection signal="triggered" from="Map/SceneChangerAreas/DemoHub" to="." method="_on_scene_changer_area_component_triggered"]

@@ -34,6 +34,6 @@ func _on_zoom_out_area_body_exited(body: Node2D) -> void:
 		if body.name == "Sapper":
 			_world_edge_phantom_camera_2d.priority = -1
 
-func _on_scene_changer_area_component_triggered() -> void:
+func _on_scene_changer_area_component_triggered(component: SceneChangerAreaComponent) -> void:
 	_input_source_component.move_direction = _scene_changer_area_component.move_during_transition
 	_input_source_component.disable()

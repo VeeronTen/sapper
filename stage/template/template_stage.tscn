@@ -43,6 +43,7 @@ node_to_drop_bomb = NodePath("../Map/NavigationRegion2D")
 [node name="Input" type="Node" parent="." unique_id=510070723]
 
 [node name="InputSourceComponent" type="Node2D" parent="Input" unique_id=347451189]
+unique_name_in_owner = true
 script = ExtResource("3_vcyxt")
 
 [node name="SapperInputMapper" type="Node" parent="Input" unique_id=1539001325 node_paths=PackedStringArray("_input_source", "_camera_component", "_sapper")]
