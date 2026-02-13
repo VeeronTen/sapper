@@ -14,7 +14,7 @@ agent_radius = 5.0
 
 [node name="Map" type="Node2D" parent="." unique_id=666650282]
 
-[node name="SceneChangerAreas" type="Node" parent="Map" unique_id=1613541403]
+[node name="TileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235]
 
 [node name="DefaultBackground" type="Parallax2D" parent="Map" unique_id=2036730478]
 repeat_size = Vector2(1022, 1022)
@@ -25,6 +25,8 @@ texture = ExtResource("1_10q3y")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" unique_id=2116342513]
 navigation_polygon = SubResource("NavigationPolygon_10q3y")
+
+[node name="SceneChangerAreas" type="Node2D" parent="Map" unique_id=702820013]
 
 [node name="CameraComponent" parent="." unique_id=1504718468 node_paths=PackedStringArray("_follow_target") instance=ExtResource("1_est0r")]
 _follow_target = NodePath("../Sapper")
