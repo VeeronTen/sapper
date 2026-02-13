@@ -1,0 +1,21 @@
+[gd_resource type="TileSet" format=3 uid="uid://cfjcpd5lab1w6"]
+
+[ext_resource type="PackedScene" uid="uid://c6gh6x8an7v0y" path="res://stage/common/acid/demo_acid.tscn" id="1_74qha"]
+[ext_resource type="PackedScene" uid="uid://ck6gi1coy17xo" path="res://stage/common/door/door.tscn" id="2_1xthk"]
+[ext_resource type="PackedScene" uid="uid://dl4pjnfmukica" path="res://stage/demo/demo_original_stage/damageable_floor/damageable_floor.tscn" id="3_ppy45"]
+[ext_resource type="PackedScene" uid="uid://dq3gr7ei455xu" path="res://entity/bomb/bomb.tscn" id="4_2blk5"]
+[ext_resource type="PackedScene" uid="uid://c7mytol7o1133" path="res://entity/dummy/dummy.tscn" id="5_v1uke"]
+[ext_resource type="PackedScene" uid="uid://c44dinhcu2bbt" path="res://entity/friendbot/friendbot.tscn" id="6_oum2d"]
+[ext_resource type="PackedScene" uid="uid://bth6ovyey2j4r" path="res://entity/mutant_dog/mutant_dog.tscn" id="7_yaqlm"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qi5ai"]
+scenes/1/scene = ExtResource("1_74qha")
+scenes/2/scene = ExtResource("2_1xthk")
+scenes/3/scene = ExtResource("3_ppy45")
+scenes/4/scene = ExtResource("4_2blk5")
+scenes/5/scene = ExtResource("5_v1uke")
+scenes/6/scene = ExtResource("6_oum2d")
+scenes/7/scene = ExtResource("7_yaqlm")
+
+[resource]
+sources/0 = SubResource("TileSetScenesCollectionSource_qi5ai")

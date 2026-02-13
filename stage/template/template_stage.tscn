@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dskvu0ifsxjhx" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="1_10q3y"]
 [ext_resource type="PackedScene" uid="uid://cjv032swxriro" path="res://component/camera_component/camera_component.tscn" id="1_est0r"]
+[ext_resource type="TileSet" uid="uid://cfjcpd5lab1w6" path="res://stage/common/tileset/scenes_tile_set.tres" id="2_6ua3g"]
 [ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="2_meiqh"]
+[ext_resource type="TileSet" uid="uid://cqolv8i1fjmpn" path="res://stage/common/tileset/test_walls_tile_set.tres" id="2_qi5ai"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="3_vcyxt"]
 [ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="4_10q3y"]
 
@@ -14,8 +16,6 @@ agent_radius = 5.0
 
 [node name="Map" type="Node2D" parent="." unique_id=666650282]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235]
-
 [node name="DefaultBackground" type="Parallax2D" parent="Map" unique_id=2036730478]
 repeat_size = Vector2(1022, 1022)
 repeat_times = 4
@@ -25,6 +25,12 @@ texture = ExtResource("1_10q3y")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" unique_id=2116342513]
 navigation_polygon = SubResource("NavigationPolygon_10q3y")
+
+[node name="TestWallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235]
+tile_set = ExtResource("2_qi5ai")
+
+[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1080650706]
+tile_set = ExtResource("2_6ua3g")
 
 [node name="SceneChangerAreas" type="Node2D" parent="Map" unique_id=702820013]
 

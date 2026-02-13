@@ -36,21 +36,21 @@ metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2vgr"]
 
-[node name="DemoAcid" type="Node2D"]
+[node name="DemoAcid" type="Node2D" unique_id=1492536153]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=497586911]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_1p0fy")
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_q01te")
 
-[node name="DamagingAreaComponent" parent="." instance=ExtResource("2_x2v3l")]
+[node name="DamagingAreaComponent" parent="." unique_id=1938846400 instance=ExtResource("2_x2v3l")]
 visible = false
 _damage = SubResource("Resource_ndf6f")
 _collision_filter = ExtResource("3_a2vgr")
 is_continuous = true
 block_stacking_tag = "demo_acid"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagingAreaComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagingAreaComponent" unique_id=728348123]
 shape = SubResource("RectangleShape2D_a2vgr")
 debug_color = Color(0.741176, 0.243137, 0.0862745, 0.819608)

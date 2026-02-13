@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://deu2u6slac2vq" path="res://stage/demo/demo_original_stage/tilemap/demo_desert.tres" id="3_3p1tg"]
 [ext_resource type="TileSet" uid="uid://bjea5f63ldn35" path="res://stage/demo/demo_original_stage/tilemap/demo_acid.tres" id="4_0nmao"]
 [ext_resource type="PackedScene" uid="uid://dl4pjnfmukica" path="res://stage/demo/demo_original_stage/damageable_floor/damageable_floor.tscn" id="5_gpcbt"]
-[ext_resource type="TileSet" uid="uid://2d7hcthqc830" path="res://stage/demo/demo_original_stage/tilemap/demo_walls.tres" id="6_3xyio"]
+[ext_resource type="TileSet" uid="uid://cqolv8i1fjmpn" path="res://stage/common/tileset/test_walls_tile_set.tres" id="6_yxocx"]
 [ext_resource type="TileSet" uid="uid://c1xug7auajvfn" path="res://stage/demo/demo_original_stage/tilemap/demo_entities.tres" id="7_6xmg8"]
 [ext_resource type="Texture2D" uid="uid://jfmyonhwvpk0" path="res://stage/demo/demo_original_stage/image/parallax/desert_320_125_spritesheet.png" id="8_t54ep"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_k763h"]
@@ -100,7 +100,7 @@ tile_set = ExtResource("3_3p1tg")
 
 [node name="TileMapWalls" type="TileMapLayer" parent="Map/NavigationRegion2D" unique_id=1944708271]
 tile_map_data = PackedByteArray("AAD7//3/AgAGAAAAAAD7//7/AgAAAAEAAAD7////AgAAAAEAAAD7/wIAAgAAAAEAAAD7/wMAAgAAAAEAAAADAPz/AgACAAMAAAAEAPz/AgAGAAAAAAAEAP3/AgAAAAEAAAAEAP7/AgAAAAEAAAAEAP//AgAAAAEAAAAEAAAAAgAAAAEAAAAEAAEAAgAEAAIAAAAFAAEAAgAGAAAAAAAFAAIAAgAAAAEAAAAFAAMAAgAGAAIAAAAEAAMAAgAEAAAAAAAEAAQAAgAGAAIAAAADAAQAAgAEAAAAAAADAAUAAgAGAAIAAAACAAUAAgACAAMAAAABAAUAAgAEAAAAAAD9//r/AgAAAAAAAAD9//v/AgAGAAIAAAD8//v/AgACAAMAAAAAAPr/AgAAAAAAAAAAAPv/AgAEAAIAAAABAPv/AgAGAAAAAAABAPz/AgAEAAIAAAACAPz/AgACAAMAAAD7/wQAAgAEAAIAAAD8/wQAAgAGAAAAAAD8/wUAAgAEAAIAAAD9/wUAAgAGAAAAAAD9/wYAAgAAAAEAAAD9/wcAAgAEAAEAAAD9/wgAAgAAAAIAAAABAAYAAgAAAAEAAAABAAcAAgAGAAEAAAABAAgAAgAAAAEAAAABAAkAAgAAAAIAAAD8/wkAAgADAAMAAAD7/wkAAgAEAAAAAAD7/woAAgAGAAIAAAD6/woAAgAEAAAAAAD6/wsAAgAGAAIAAAD5/wsAAgAEAAAAAAD5/wwAAgAAAAEAAAD5/w0AAgAGAAIAAAD4/w0AAgABAAMAAAD4/xEAAgAAAAAAAAD4/xIAAgAAAAEAAAD4/xMAAgAEAAIAAAD5/xMAAgAGAAAAAAD5/xQAAgAEAAIAAAD6/xQAAgACAAMAAAD7/xQAAgAGAAAAAAD7/xUAAgAEAAIAAAD8/xUAAgACAAMAAAD9/xUAAgACAAMAAAD+/xUAAgACAAMAAAD//xUAAgACAAMAAAAAABUAAgACAAMAAAABABUAAgACAAMAAAACABUAAgACAAMAAAADABUAAgACAAMAAAAEABUAAgACAAMAAAAFABUAAgACAAMAAAAGABUAAgAGAAIAAAAGABQAAgAEAAAAAAAHABQAAgACAAMAAAAIABQAAgADAAMAAAAJABMAAgAAAAQAAAAKABIAAgAAAAIAAAAKABEAAgAAAAEAAAAKABAAAgAAAAAAAAAIAA4AAgAAAAIAAAAIAA0AAgAAAAEAAAAIAAwAAgAGAAAAAAAHAAwAAgABAAMAAAAGAAsAAgADAAMAAAAFAAsAAgAEAAIAAAAFAAoAAgAGAAAAAAAEAAoAAgACAAMAAAADAAoAAgACAAMAAAACAAoAAgABAAMAAAD+/wcAAgADAAMAAAAAAAcAAgABAAMAAAD6//3/AgAEAAIAAAD6//z/AgAAAAEAAAD6//v/AgAEAAAAAAD7//v/AgACAAMAAAA=")
-tile_set = ExtResource("6_3xyio")
+tile_set = ExtResource("6_yxocx")
 
 [node name="TileMapEntities" type="TileMapLayer" parent="Map/NavigationRegion2D" unique_id=552531852]
 tile_map_data = PackedByteArray("AAADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQADAAAAAAAAAAAAAQADAP//AAAAAAAAAQD9/xQAAAAAAAAAAgADABQAAAAAAAAAAgADAP3/AAAAAAAAAwD//wcAAAAAAAAABAACAP3/AAAAAAAAAwD9////AAAAAAAABAA=")
