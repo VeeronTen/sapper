@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btod5ddh5ji40"
-path="res://.godot/imported/Desert1.png-ac921dc3e1710cdabcbaf8126c5ab20b.ctex"
+uid="uid://jfmyonhwvpk0"
+path="res://.godot/imported/desert_320_125_spritesheet.png-3d8330fe9035b1badd300e59d446727c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stage/demo/original/tilemap/Desert1.png"
-dest_files=["res://.godot/imported/Desert1.png-ac921dc3e1710cdabcbaf8126c5ab20b.ctex"]
+source_file="res://stage/demo/demo_original_stage/image/parallax/desert_320_125_spritesheet.png"
+dest_files=["res://.godot/imported/desert_320_125_spritesheet.png-3d8330fe9035b1badd300e59d446727c.ctex"]
 
 [params]
 
