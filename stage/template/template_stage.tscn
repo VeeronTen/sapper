@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://buunq4cs5di7c"]
+
+[ext_resource type="Texture2D" uid="uid://dskvu0ifsxjhx" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="1_10q3y"]
+[ext_resource type="PackedScene" uid="uid://cjv032swxriro" path="res://component/camera_component/camera_component.tscn" id="1_est0r"]
+[ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="2_meiqh"]
+[ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="3_vcyxt"]
+[ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="4_10q3y"]
+
+[node name="TemplateStage" type="Node2D" unique_id=1558274316]
+
+[node name="Map" type="Node2D" parent="." unique_id=666650282]
+
+[node name="SceneChangerAreas" type="Node" parent="Map" unique_id=1613541403]
+
+[node name="DefaultBackground" type="Parallax2D" parent="Map" unique_id=2036730478]
+repeat_size = Vector2(1022, 1022)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/DefaultBackground" unique_id=478587894]
+texture = ExtResource("1_10q3y")
+
+[node name="CameraComponent" parent="." unique_id=1504718468 node_paths=PackedStringArray("_follow_target") instance=ExtResource("1_est0r")]
+_follow_target = NodePath("../Sapper")
+
+[node name="Sapper" parent="." unique_id=1593754236 instance=ExtResource("2_meiqh")]
+
+[node name="Input" type="Node" parent="." unique_id=510070723]
+
+[node name="InputSourceComponent" type="Node2D" parent="Input" unique_id=347451189]
+script = ExtResource("3_vcyxt")
+
+[node name="SapperInputMapper" type="Node" parent="Input" unique_id=1539001325 node_paths=PackedStringArray("_input_source", "_camera_component", "_sapper")]
+script = ExtResource("4_10q3y")
+_input_source = NodePath("../InputSourceComponent")
+_camera_component = NodePath("../../CameraComponent")
+_sapper = NodePath("../../Sapper")
+metadata/_custom_type_script = "uid://r30p1rnme8hn"
