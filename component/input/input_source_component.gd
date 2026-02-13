@@ -12,22 +12,23 @@ signal drop_pressed
 
 var move_direction: Vector2 = Vector2.ZERO:
 	set(value):
-		if move_direction != value:
-			move_direction = value
-			move_direction_changed.emit(move_direction)
-			is_moving = move_direction != Vector2.ZERO
+		if move_direction == value: return
+		move_direction = value
+		move_direction_changed.emit(move_direction)
+		is_moving = is_moving
 
 var is_moving: bool = false:
 	set(value):
-		if is_moving != value:
-			is_moving = value
-			is_moving_changed.emit(is_moving)
+		value = move_direction != Vector2.ZERO
+		if is_moving == value: return
+		is_moving = value
+		is_moving_changed.emit(is_moving)
 
 var pointer_is_pressed: bool:
 	set(value):
-		if pointer_is_pressed != value:
-			pointer_is_pressed = value
-			pointer_pressed.emit(pointer_is_pressed)
+		if pointer_is_pressed == value: return
+		pointer_is_pressed = value
+		pointer_pressed.emit(pointer_is_pressed)
 
 func _process(_delta: float) -> void:
 	pointer_position_changed.emit(get_global_mouse_position())

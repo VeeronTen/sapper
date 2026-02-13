@@ -30,10 +30,12 @@ var _sprite_is_flipped_h_or_gonna: bool = false
 
 var watch_position: Vector2 = Vector2.RIGHT:
 	set(value):
-		_flip_sprit_horizontal(global_position.x > value.x)
+		if watch_position == value: return
 		watch_position = value
-		_light_gun.pointer_position = value
-		_heavy_gun.pointer_position = value
+		_flip_sprit_horizontal(global_position.x > watch_position.x)
+		watch_position = watch_position
+		_light_gun.pointer_position = watch_position
+		_heavy_gun.pointer_position = watch_position
 		
 var move_direction: Vector2 = Vector2.ZERO:
 	set(value):
@@ -42,13 +44,13 @@ var move_direction: Vector2 = Vector2.ZERO:
 var is_moving: bool = false:
 	set(value):
 		#hack анимации играть в аним ноде
-		if value:
+		if is_moving == value: return
+		is_moving = value
+		if is_moving:
 			_animation_player.play("walk")
 		else: 
 			_animation_player.play("idle")
-		if not value:
 			_walking_time = 0.0
-		is_moving = value
 
 var _walking_time: float = 0.0
 
@@ -56,7 +58,7 @@ var _is_rolling: bool = false:
 	set(value):
 		_damageable_component_ground.enable_childs(not value)
 		_is_rolling = value
-		
+
 var _roll_direction: Vector2 = Vector2.ZERO
 
 var _sprite_roll_tween: Tween = create_tween()
