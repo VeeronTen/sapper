@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="3_vcyxt"]
 [ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="4_10q3y"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_10q3y"]
+resource_local_to_scene = true
+agent_radius = 5.0
+
 [node name="TemplateStage" type="Node2D" unique_id=1558274316]
 
 [node name="Map" type="Node2D" parent="." unique_id=666650282]
@@ -18,6 +22,9 @@ repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Map/DefaultBackground" unique_id=478587894]
 texture = ExtResource("1_10q3y")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" unique_id=2116342513]
+navigation_polygon = SubResource("NavigationPolygon_10q3y")
 
 [node name="CameraComponent" parent="." unique_id=1504718468 node_paths=PackedStringArray("_follow_target") instance=ExtResource("1_est0r")]
 _follow_target = NodePath("../Sapper")

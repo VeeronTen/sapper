@@ -2,4 +2,4 @@
 
 [ext_resource type="PackedScene" uid="uid://buunq4cs5di7c" path="res://stage/template/template_stage.tscn" id="1_4nt2t"]
 
-[node name="TemplateStage" unique_id=1558274316 instance=ExtResource("1_4nt2t")]
+[node name="DemoHubStage" unique_id=1558274316 instance=ExtResource("1_4nt2t")]
