@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dlilykokhgx8k"]
+[gd_scene format=4 uid="uid://dlilykokhgx8k"]
 
 [ext_resource type="PackedScene" uid="uid://buunq4cs5di7c" path="res://stage/template/template_stage.tscn" id="1_4nt2t"]
 
@@ -10,3 +10,6 @@ agent_radius = 5.0
 
 [node name="NavigationRegion2D" parent="Map" parent_id_path=PackedInt32Array(666650282) index="1" unique_id=2116342513]
 navigation_polygon = SubResource("NavigationPolygon_4nt2t")
+
+[node name="TestWallsTileMapLayer" parent="Map/NavigationRegion2D" index="0" unique_id=241192235]
+tile_map_data = PackedByteArray("AAD8/wMAAgAEAAIAAAD9/wMAAgACAAMAAAD+/wMAAgACAAMAAAD//wMAAgACAAMAAAAAAAMAAgACAAMAAAABAAMAAgACAAMAAAACAAMAAgACAAMAAAADAAMAAgACAAMAAAAEAAMAAgACAAMAAAAFAAMAAgACAAMAAAD8/wIAAgAAAAEAAAD8/wEAAgAAAAEAAAD8/wAAAgAAAAEAAAD8////AgAAAAEAAAD8//7/AgAAAAEAAAD8//3/AgAAAAEAAAD8//z/AgAAAAEAAAD8//v/AgAAAAEAAAD8//r/AgAAAAEAAAD8//n/AgAAAAEAAAD8//j/AgAEAAAAAAD9//j/AgACAAMAAAD+//j/AgACAAMAAAD///j/AgACAAMAAAAAAPj/AgACAAMAAAABAPj/AgACAAMAAAACAPj/AgACAAMAAAADAPj/AgACAAMAAAAEAPj/AgACAAMAAAAFAPj/AgACAAMAAAAGAPj/AgAGAAAAAAAGAPn/AgAAAAEAAAAGAPr/AgAAAAEAAAAGAPv/AgAAAAEAAAAGAPz/AgAAAAEAAAAGAP3/AgAAAAEAAAAGAP7/AgAAAAEAAAAGAP//AgAAAAEAAAAGAAAAAgAAAAEAAAAGAAEAAgAAAAEAAAAGAAIAAgAAAAEAAAAGAAMAAgAGAAIAAAA=")

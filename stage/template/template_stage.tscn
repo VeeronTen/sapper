@@ -26,10 +26,10 @@ texture = ExtResource("1_10q3y")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" unique_id=2116342513]
 navigation_polygon = SubResource("NavigationPolygon_10q3y")
 
-[node name="TestWallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235]
+[node name="TestWallsTileMapLayer" type="TileMapLayer" parent="Map/NavigationRegion2D" unique_id=241192235]
 tile_set = ExtResource("2_qi5ai")
 
-[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1080650706]
+[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map/NavigationRegion2D" unique_id=1080650706]
 tile_set = ExtResource("2_6ua3g")
 
 [node name="SceneChangerAreas" type="Node2D" parent="Map" unique_id=702820013]
@@ -37,7 +37,8 @@ tile_set = ExtResource("2_6ua3g")
 [node name="CameraComponent" parent="." unique_id=1504718468 node_paths=PackedStringArray("_follow_target") instance=ExtResource("1_est0r")]
 _follow_target = NodePath("../Sapper")
 
-[node name="Sapper" parent="." unique_id=1593754236 instance=ExtResource("2_meiqh")]
+[node name="Sapper" parent="." unique_id=1593754236 node_paths=PackedStringArray("node_to_drop_bomb") instance=ExtResource("2_meiqh")]
+node_to_drop_bomb = NodePath("../Map/NavigationRegion2D")
 
 [node name="Input" type="Node" parent="." unique_id=510070723]
 
