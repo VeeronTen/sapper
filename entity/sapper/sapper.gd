@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func try_to_roll() -> void:
-	if _is_rolling or not is_moving:
+	if not _can_roll():
 		return
 	_roll_direction = move_direction
 	_is_rolling = true
@@ -137,3 +137,8 @@ func _flip_sprit_horizontal(flip_h: bool) -> void:
 	var duration: float = horizontal_flip_duration * (needed_flip_difference / full_flip_difference)
 	_sprite_flip_tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	_sprite_flip_tween.tween_property(_sprites, "scale:x", final_scale, duration)	
+	
+func _can_roll() -> bool:
+	return not _is_rolling\
+	and is_moving\
+	and not _is_carrying_bomb
