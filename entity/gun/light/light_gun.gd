@@ -9,6 +9,7 @@ extends Node2D
 @onready var _damaging_ray_component: DamagingRayComponent = %DamagingRayComponent
 @onready var _gun_computer: GunComputer = %GunComputer
 @onready var _gun_pointer: GunPointer = %GunPointer
+@onready var _trace: Line2D = %Trace
 
 var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -29,6 +30,8 @@ func shoot(hold: bool) -> void:
 	var distance: float = min(_gun_computer.get_distance(), distance_limit_by_pointer)
 	_damaging_ray_component.damage = _gun_computer.get_damage()
 	_damaging_ray_component.shoot(distance)
+	#todo по лежачим целям пролетает странно
+	shootXXX(_damaging_ray_component.last_shot_distance)
 	_damage_if_not_damaged(pointer_damageable_component)
 	_gun_computer.on_shot()
 	if not _damaging_ray_component.last_shot_damaged.is_empty():
@@ -48,3 +51,20 @@ func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
 		if not damaged_parents.has(damageable_component.get_parent()):
 			damageable_component.take_damage(_gun_computer.get_damage(), "")
 			_gun_computer.on_succesfull_shot()
+
+func shootXXX(distance: float):
+	_trace.set_point_position(0, Vector2.ZERO)
+	if distance:
+		_trace.set_point_position(1, Vector2(distance, 0))
+		#spawn_impact_particles(cast_point) # Искры здесь
+	else:
+		_trace.set_point_position(1, Vector2.ZERO)
+	animate_shot()
+
+#env glow + shaders + particle color
+func animate_shot():
+	_trace.show()
+	var tween = create_tween()
+	tween.tween_property(_trace, "width", 0, 0.1)
+	tween.tween_callback(_trace.hide)
+	tween.finished.connect(func(): _trace.width = 1)

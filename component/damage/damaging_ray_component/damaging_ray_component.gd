@@ -15,6 +15,7 @@ extends RayCast2D
 
 var last_shot_exceptions: Array[DamageableComponent] = []
 var last_shot_damaged: Array[DamageableComponent] = []
+var last_shot_distance: float = 0
 
 #todo ассерты показывают абстрактный класс без связи
 func _ready() -> void:
@@ -30,11 +31,13 @@ func shoot(distance: float) -> void:
 	target_position.x = distance
 	_clear_exceptions()
 	last_shot_damaged.clear()
+	last_shot_distance = distance
 	force_raycast_update()
 	while is_colliding():
 		var collider: Object = get_collider()
 		if collider is not DamageableComponent:
 			collisions.append(get_collision_point())
+			last_shot_distance = to_local(get_collision_point()).x
 			break
 		var damageable: DamageableComponent = collider
 		var is_compatible: bool = _collision_filter.is_compatible_with(damageable.collision_filter)
@@ -45,6 +48,7 @@ func shoot(distance: float) -> void:
 		collisions.append(get_collision_point())
 		damageable.take_damage(damage, block_stacking_tag)
 		last_shot_damaged.append(damageable)
+		last_shot_distance = to_local(get_collision_point()).x
 		if not _is_piercing: break
 		_add_exception(damageable)
 		force_raycast_update()

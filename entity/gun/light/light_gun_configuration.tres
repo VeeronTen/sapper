@@ -6,13 +6,13 @@
 
 [sub_resource type="Resource" id="Resource_uitd0"]
 script = ExtResource("1_pg6h8")
-value = 4.99
+value = 5.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
 [sub_resource type="Resource" id="Resource_d5a81"]
 script = ExtResource("2_pg6h8")
 damage = SubResource("Resource_uitd0")
-distance = 25.0
+distance = 80.0
 metadata/_custom_type_script = "uid://cec1hx5in1ke1"
 
 [resource]
