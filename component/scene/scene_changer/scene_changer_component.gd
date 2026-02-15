@@ -2,18 +2,20 @@ class_name SceneChangerComponent
 extends Node
 
 enum Scene {
-	DEMO_HUB_STAGE,
-	DEMO_ORIGINAL_STAGE,
-	DEMO_SHADERS_STAGE,
+	DEMO_HUB,
+	DEMO_ORIGINAL,
+	DEMO_SHADERS,
+	DEMO_SHOOTING_RANGE,
 }
 
 @export var change_to: Scene
 
 func _scene_to_uid(scene: Scene) -> String:
 	match scene:
-		Scene.DEMO_HUB_STAGE: return "uid://dlilykokhgx8k"
-		Scene.DEMO_ORIGINAL_STAGE: return "uid://kqkvasn678ry"
-		Scene.DEMO_SHADERS_STAGE: return "uid://cu6qm7l1y18nx"
+		Scene.DEMO_HUB: return "uid://dlilykokhgx8k"
+		Scene.DEMO_ORIGINAL: return "uid://kqkvasn678ry"
+		Scene.DEMO_SHADERS: return "uid://cu6qm7l1y18nx"
+		Scene.DEMO_SHOOTING_RANGE: return "uid://c430veyjgx5k1"
 		_: return ""
 
 func change_scene() -> Node:

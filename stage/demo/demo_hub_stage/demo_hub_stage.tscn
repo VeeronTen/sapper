@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://t46bj6q6tl45" path="res://component/scene/scene_changer_area/scene_changer_area_component.tscn" id="2_56kxj"]
 [ext_resource type="PackedScene" uid="uid://cmpu4remk7hc6" path="res://component/scene/transitions/transition_test.tscn" id="3_ly5b0"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jfo5h"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7dpqa"]
 resource_local_to_scene = true
 vertices = PackedVector2Array(37, -107, 37, -155, 75, -155, 75, -107, 139, -107, 139, -69, 91, -69, 91, -11, 139, -11, 139, 27, -91, 27, -91, -11, -32, -11, -32, -24, -43, -69, 11, -107, -43, -24, -91, -69, -91, -107, -27, -107, 11, -155, -27, -155, 395.1797, -307.1797, 419.79688, 320, 165, 53, 165, -37, -267.02344, 320, -117, 53, -269.96875, -333.78906, -117, -37, 117, -37, 117, -43, 165, -43, 165, -133, 101, -133, 101, -181, -53, -181, -53, -133, -117, -133, -117, -43, -69, -43, -69, -37)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(10, 11, 12), PackedInt32Array(7, 10, 12, 6), PackedInt32Array(3, 6, 12, 13, 0), PackedInt32Array(14, 15, 0, 13, 16), PackedInt32Array(14, 17, 18, 19), PackedInt32Array(15, 14, 19, 20), PackedInt32Array(20, 19, 21), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(24, 23, 26, 27), PackedInt32Array(27, 26, 28, 29), PackedInt32Array(25, 30, 31, 32), PackedInt32Array(22, 25, 32), PackedInt32Array(22, 32, 33), PackedInt32Array(33, 34, 35, 22), PackedInt32Array(36, 37, 38, 28), PackedInt32Array(39, 40, 41, 29), PackedInt32Array(39, 29, 28), PackedInt32Array(38, 39, 28), PackedInt32Array(36, 28, 22, 35)])
@@ -19,7 +19,7 @@ size = Vector2(46, 37)
 script = ExtResource("2_7dpqa")
 
 [node name="NavigationRegion2D" parent="Map" parent_id_path=PackedInt32Array(666650282) index="1" unique_id=2116342513]
-navigation_polygon = SubResource("NavigationPolygon_jfo5h")
+navigation_polygon = SubResource("NavigationPolygon_7dpqa")
 
 [node name="TestWallsTileMapLayer" parent="Map/NavigationRegion2D" index="0" unique_id=241192235]
 tile_map_data = PackedByteArray("AAD8/wIAAgACAAMAAAD8//7/AgAGAAIAAAD8//3/AgAAAAEAAAD8//z/AgAGAAAAAAD8//j/AgACAAMAAAD9//j/AgAGAAIAAAABAPj/AgAAAAIAAAAFAPj/AgAEAAIAAAAGAPj/AgACAAMAAAAGAPz/AgAEAAAAAAAGAAIAAgACAAMAAAAJAP7/AgAGAAAAAAAJAP//AgAAAAEAAAAJAAAAAgAAAAEAAAAJAAEAAgAAAAEAAAAJAPv/AgAAAAEAAAAJAPr/AgAAAAEAAAAJAPn/AgAAAAEAAAAJAPj/AgAGAAAAAAAHAPj/AgACAAMAAAAIAPj/AgACAAMAAAAHAAIAAgACAAMAAAAIAAIAAgACAAMAAAAJAAIAAgAGAAIAAAAIAP7/AgACAAMAAAAHAP7/AgACAAMAAAAGAP7/AgAEAAIAAAAGAP3/AgAAAAEAAAAHAPz/AgACAAMAAAAIAPz/AgACAAMAAAAJAPz/AgAGAAIAAAD7/wIAAgACAAMAAAD6/wIAAgACAAMAAAD5/wIAAgAEAAIAAAD5/wEAAgAAAAEAAAD5/wAAAgAAAAEAAAD5////AgAAAAEAAAD5//7/AgAEAAAAAAD6//7/AgACAAMAAAD7//7/AgACAAMAAAD7//z/AgACAAMAAAD6//z/AgACAAMAAAD5//z/AgAEAAIAAAD5//v/AgAAAAEAAAD5//r/AgAAAAEAAAD5//n/AgAAAAEAAAD5//j/AgAEAAAAAAD6//j/AgACAAMAAAD7//j/AgACAAMAAAD9//f/AgAAAAEAAAD9//b/AgAAAAEAAAD9//X/AgAEAAAAAAD+//X/AgACAAMAAAD///X/AgACAAMAAAAAAPX/AgACAAMAAAABAPf/AgAAAAEAAAABAPb/AgAAAAEAAAABAPX/AgAFAAAAAAACAPX/AgACAAMAAAADAPX/AgACAAMAAAAEAPX/AgACAAMAAAAFAPX/AgAGAAAAAAAFAPf/AgAAAAEAAAAFAPb/AgAAAAEAAAD9/wIAAgACAAMAAAD+/wIAAgACAAMAAAD//wIAAgACAAMAAAAAAAIAAgACAAMAAAABAAIAAgACAAMAAAACAAIAAgACAAMAAAADAAIAAgACAAMAAAAEAAIAAgACAAMAAAAFAAIAAgACAAMAAAA=")
@@ -48,6 +48,18 @@ _transition_in_scene = ExtResource("3_ly5b0")
 _transition_out_scene = ExtResource("3_ly5b0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneChangerAreas/DemoShaders" index="2" unique_id=1195730385]
+position = Vector2(3, 0.5)
+shape = SubResource("RectangleShape2D_ly5b0")
+
+[node name="DemoShootingRange" parent="Map/SceneChangerAreas" parent_id_path=PackedInt32Array(702820013) index="2" unique_id=1951995892 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("2_56kxj")]
+position = Vector2(113, -90)
+_trigger_object = NodePath("../../../Sapper")
+_change_to = 3
+move_during_transition = Vector2(17.815, 0)
+_transition_in_scene = ExtResource("3_ly5b0")
+_transition_out_scene = ExtResource("3_ly5b0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneChangerAreas/DemoShootingRange" index="2" unique_id=1815595706]
 position = Vector2(3, 0.5)
 shape = SubResource("RectangleShape2D_ly5b0")
 
