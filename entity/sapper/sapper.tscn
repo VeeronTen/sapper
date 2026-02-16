@@ -207,6 +207,7 @@ metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 unique_name_in_owner = true
 collision_filter = ExtResource("4_bnsai")
 _health = NodePath("../HealthComponent")
+damaged_color = Color(0.41960785, 0.043137256, 0.1254902, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround" unique_id=1871084601]
 position = Vector2(0, 7)

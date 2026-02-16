@@ -7,6 +7,7 @@ signal took_damage
 @export var collision_filter: DamageableComponentCollisionFilter
 @export var _damage_filter: DamageFilter
 @export var _health: HealthComponent
+@export var damaged_color: Color
 
 @onready var _collisions_recolorer: CollisionsRecolorer = %CollisionsRecolorer
 	

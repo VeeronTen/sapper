@@ -32,6 +32,7 @@ shape = SubResource("RectangleShape2D_vlewu")
 [node name="DamageableComponentAir" parent="." unique_id=332337403 node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
 collision_filter = ExtResource("4_avckc")
 _health = NodePath("../HealthComponent")
+damaged_color = Color(0.6784314, 0.5529412, 0.3647059, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentAir" unique_id=1795211994]
 shape = SubResource("RectangleShape2D_bkyos")
@@ -49,6 +50,7 @@ metadata/_custom_type_script = "uid://b5plkl8rxjx3l"
 [node name="DamageableComponentGround" parent="." unique_id=1113658265 node_paths=PackedStringArray("_health") instance=ExtResource("2_bkyos")]
 collision_filter = ExtResource("6_518d7")
 _health = NodePath("../HealthComponent")
+damaged_color = Color(0.6784314, 0.5529412, 0.3647059, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponentGround" unique_id=207429182]
 position = Vector2(0, 7)

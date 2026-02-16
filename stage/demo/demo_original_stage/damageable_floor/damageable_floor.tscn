@@ -13,6 +13,7 @@ size = Vector2(20, 12)
 [node name="DamageableComponent" parent="." unique_id=1943814882 node_paths=PackedStringArray("_health") instance=ExtResource("1_hsm17")]
 collision_filter = ExtResource("2_ucbb0")
 _health = NodePath("../HealthComponent")
+damaged_color = Color(0.79607844, 0.5882353, 0.41960785, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent" unique_id=1022234230]
 shape = SubResource("RectangleShape2D_736u6")

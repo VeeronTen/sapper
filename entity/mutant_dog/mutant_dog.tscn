@@ -224,7 +224,6 @@ to = NodePath("../../..")
 delay_in_seconds = "0.5"
 
 [node name="StateChartDebugger" parent="." unique_id=2068065036 instance=ExtResource("7_esaah")]
-visible = false
 offset_left = 18.999998
 offset_top = -50.0
 offset_right = 353.83282
@@ -239,6 +238,7 @@ debug_enabled = true
 [node name="DamageableAir" parent="." unique_id=296747577 node_paths=PackedStringArray("_health") instance=ExtResource("8_vmaoy")]
 collision_filter = ExtResource("9_1671i")
 _health = NodePath("../HealthComponent")
+damaged_color = Color(0.28627452, 0.0627451, 0.105882354, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableAir" unique_id=523051658]
 position = Vector2(0.5, 3)
@@ -248,6 +248,7 @@ debug_color = Color(0, 0.470588, 0, 0.368627)
 [node name="DamageableGround" parent="." unique_id=1031431700 node_paths=PackedStringArray("_health") instance=ExtResource("8_vmaoy")]
 collision_filter = ExtResource("10_fyhl8")
 _health = NodePath("../HealthComponent")
+damaged_color = Color(0.28627452, 0.0627451, 0.105882354, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableGround" unique_id=1175295383]
 position = Vector2(0.5, 6.5)
