@@ -21,6 +21,11 @@ var pointer_position: Vector2 = Vector2.ZERO:
 		_gun_pointer.global_position = value
 		pointer_position = value
 
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	_trace.visible = false
+	
 func shoot(hold: bool) -> void:
 	if not _gun_computer.can_shoot(hold): 
 		return
@@ -30,8 +35,10 @@ func shoot(hold: bool) -> void:
 	var distance: float = min(_gun_computer.get_distance(), distance_limit_by_pointer)
 	_damaging_ray_component.damage = _gun_computer.get_damage()
 	_damaging_ray_component.shoot(distance)
-	#todo по лежачим целям пролетает странно
-	shootXXX(_damaging_ray_component.last_shot_distance)
+	if _damaging_ray_component.last_shot_damaged.back() and pointer_damageable_component == _damaging_ray_component.last_shot_damaged.back():
+		shootXXX(distance_limit_by_pointer)
+	else:
+		shootXXX(_damaging_ray_component.last_shot_distance + 4)
 	_damage_if_not_damaged(pointer_damageable_component)
 	_gun_computer.on_shot()
 	if not _damaging_ray_component.last_shot_damaged.is_empty():
@@ -39,7 +46,7 @@ func shoot(hold: bool) -> void:
 
 func _get_distance_limit_by(damageableComponent: DamageableComponent) -> float:
 	if damageableComponent:
-		return global_position.distance_to(damageableComponent.global_position)
+		return _damaging_ray_component.global_position.distance_to(_gun_pointer.global_position)
 	else:
 		return 9999999999
 
