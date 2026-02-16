@@ -11,6 +11,7 @@ extends Node2D
 @onready var _gun_pointer: GunPointer = %GunPointer
 @onready var _trace: Line2D = %Trace
 @onready var _hit_marker: GPUParticles2D = %HitMarker
+@onready var _shot_audio_player: AudioStreamPlayer2D = %ShotAudioPlayer
 
 var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -30,6 +31,7 @@ func _ready() -> void:
 func shoot(hold: bool) -> void:
 	if not _gun_computer.can_shoot(hold): 
 		return
+	_shot_audio_player.play()
 	var pointer_damageable_component: DamageableComponent = _gun_pointer.get_damageable_component_at_pointer()
 	var distance_limit_by_pointer: float = _get_distance_limit_by(pointer_damageable_component)
 	_damaging_ray_component.rotation_degrees = _gun_computer.get_spread()
