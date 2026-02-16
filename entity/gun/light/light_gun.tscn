@@ -15,6 +15,23 @@ script = ExtResource("4_l0bhc")
 value = 3.0
 metadata/_custom_type_script = "uid://but4ln51v458i"
 
+[sub_resource type="Curve" id="Curve_fg55s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6703629, 0.6570546), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_22jmu"]
+curve = SubResource("Curve_fg55s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5qpvg"]
+particle_flag_disable_z = true
+angle_min = -75.19999
+angle_max = 75.20001
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 12.849999
+initial_velocity_max = 63.89
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_22jmu")
+
 [node name="LightGun" type="Node2D" unique_id=1705542247]
 script = ExtResource("1_looag")
 
@@ -37,6 +54,16 @@ unique_name_in_owner = true
 points = PackedVector2Array(0, -0.5, 100, -0.5)
 width = 1.0
 default_color = Color(0.73333335, 0.64705884, 0.27450982, 0.6156863)
+
+[node name="HitMarker" type="GPUParticles2D" parent="Pivot/Sprite2D/DamagingRayComponent" unique_id=1316924864]
+unique_name_in_owner = true
+emitting = false
+amount = 18
+texture = ExtResource("7_bxgbb")
+lifetime = 0.37
+one_shot = true
+explosiveness = 0.77
+process_material = SubResource("ParticleProcessMaterial_5qpvg")
 
 [node name="GunComputer" type="Node" parent="." unique_id=194290014]
 unique_name_in_owner = true

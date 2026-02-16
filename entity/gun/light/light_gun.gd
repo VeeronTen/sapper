@@ -10,6 +10,7 @@ extends Node2D
 @onready var _gun_computer: GunComputer = %GunComputer
 @onready var _gun_pointer: GunPointer = %GunPointer
 @onready var _trace: Line2D = %Trace
+@onready var _hit_marker: GPUParticles2D = %HitMarker
 
 var pointer_position: Vector2 = Vector2.ZERO:
 	set(value):
@@ -35,11 +36,15 @@ func shoot(hold: bool) -> void:
 	var distance: float = min(_gun_computer.get_distance(), distance_limit_by_pointer)
 	_damaging_ray_component.damage = _gun_computer.get_damage()
 	_damaging_ray_component.shoot(distance)
+	if _damaging_ray_component.last_shot_damaged.back():
+		_hit_marker.modulate = _damaging_ray_component.last_shot_damaged.back().damaged_color
+	else:
+		_hit_marker.modulate = Color.WHITE
+	_damage_if_not_damaged(pointer_damageable_component)
 	if _damaging_ray_component.last_shot_damaged.back() and pointer_damageable_component == _damaging_ray_component.last_shot_damaged.back():
 		shootXXX(distance_limit_by_pointer)
 	else:
 		shootXXX(_damaging_ray_component.last_shot_distance + 4)
-	_damage_if_not_damaged(pointer_damageable_component)
 	_gun_computer.on_shot()
 	if not _damaging_ray_component.last_shot_damaged.is_empty():
 		_gun_computer.on_succesfull_shot()
@@ -57,15 +62,17 @@ func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
 		)
 		if not damaged_parents.has(damageable_component.get_parent()):
 			damageable_component.take_damage(_gun_computer.get_damage(), "")
+			_hit_marker.modulate = damageable_component.damaged_color
 			_gun_computer.on_succesfull_shot()
 
 func shootXXX(distance: float):
 	if distance:
 		_trace.set_point_position(1, Vector2(distance, 0))
-		#spawn_impact_particles(cast_point) # Искры здесь
+		_hit_marker.position.x = distance
+		_hit_marker.restart()
+		animate_shot()
 	else:
 		_trace.set_point_position(1, Vector2.ZERO)
-	animate_shot()
 
 #env glow + shaders + particle color
 func animate_shot():
