@@ -34,8 +34,9 @@ _collision_filter = ExtResource("5_47k46")
 
 [node name="Trace" type="Line2D" parent="Pivot/Sprite2D/DamagingRayComponent" unique_id=1422460098]
 unique_name_in_owner = true
-points = PackedVector2Array(0, 0, 100, 0)
+points = PackedVector2Array(0, -0.5, 100, -0.5)
 width = 1.0
+default_color = Color(0.73333335, 0.64705884, 0.27450982, 0.6156863)
 
 [node name="GunComputer" type="Node" parent="." unique_id=194290014]
 unique_name_in_owner = true

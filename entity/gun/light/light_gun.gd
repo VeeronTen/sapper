@@ -60,7 +60,6 @@ func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
 			_gun_computer.on_succesfull_shot()
 
 func shootXXX(distance: float):
-	_trace.set_point_position(0, Vector2.ZERO)
 	if distance:
 		_trace.set_point_position(1, Vector2(distance, 0))
 		#spawn_impact_particles(cast_point) # Искры здесь
