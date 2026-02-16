@@ -1,14 +1,9 @@
 extends Node2D
-#todo backBufferCopy
 #todo локализация
 #todo сохранение загрузка
-#todo канвас группа
-#todo Perspective in Top down
 #todo особая зона на врагах, в которой хитмаркеры появляются
 #todo Прицел с искривлением пространства
 #todo поправить коллизии для нав агентов
-#todo порядок отрисовки всех
-#todo подправить реакцию камеры на мышку
 
 @onready var _sapper: Sapper = %Sapper
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
