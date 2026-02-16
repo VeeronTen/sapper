@@ -26,6 +26,7 @@ func _draw() -> void:
 	if Engine.is_editor_hint():
 		draw_line(Vector2.ZERO, _direction * 10, Color.GOLD, 0.5)
 	
+#todo все равно нужно разделить так как проникающий урон косячит
 func shoot(distance: float) -> void:
 	var collisions: Array[Vector2] = []
 	target_position.x = distance
