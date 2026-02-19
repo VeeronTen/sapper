@@ -3,6 +3,7 @@ class_name LightGun
 extends Node2D
 
 #todo оружие должно краснеть от заспама?
+#todo цвет от попадания в стены тоже бы разный
 
 @onready var _pivot: Node2D = %Pivot
 @onready var _sprite_2d: Sprite2D = %Sprite2D

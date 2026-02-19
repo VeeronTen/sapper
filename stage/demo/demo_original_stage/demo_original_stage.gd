@@ -4,6 +4,7 @@ extends Node2D
 #todo особая зона на врагах, в которой хитмаркеры появляются
 #todo Прицел с искривлением пространства
 #todo поправить коллизии для нав агентов
+#todo z индекс в зависимость от y
 
 @onready var _sapper: Sapper = %Sapper
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
