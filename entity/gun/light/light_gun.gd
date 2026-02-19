@@ -67,6 +67,7 @@ func _damage_if_not_damaged(damageable_component: DamageableComponent) -> void:
 			_hit_marker.modulate = damageable_component.damaged_color
 			_gun_computer.on_succesfull_shot()
 
+#todo навести порядок
 func shootXXX(distance: float):
 	if distance:
 		_trace.set_point_position(1, Vector2(distance, 0))

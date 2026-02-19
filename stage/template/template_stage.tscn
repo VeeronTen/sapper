@@ -5,8 +5,10 @@
 [ext_resource type="TileSet" uid="uid://cfjcpd5lab1w6" path="res://stage/common/tileset/scenes_tile_set.tres" id="2_6ua3g"]
 [ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="2_meiqh"]
 [ext_resource type="TileSet" uid="uid://cqolv8i1fjmpn" path="res://stage/common/tileset/test_walls_tile_set.tres" id="2_qi5ai"]
+[ext_resource type="TileSet" uid="uid://bo2pff3n8npny" path="res://stage/common/tileset/floor_tile_set.tres" id="3_o5pfn"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="3_vcyxt"]
 [ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="4_10q3y"]
+[ext_resource type="TileSet" uid="uid://c6k5ksvjxokf2" path="res://stage/common/tileset/walls_tile_set.tres" id="4_rdtn0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_10q3y"]
 resource_local_to_scene = true
@@ -29,6 +31,12 @@ navigation_polygon = SubResource("NavigationPolygon_10q3y")
 
 [node name="TestWallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("2_qi5ai")
+
+[node name="FloorTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1041314286 groups=["navigation_polygon_source_geometry_group"]]
+tile_set = ExtResource("3_o5pfn")
+
+[node name="WallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1439620131 groups=["navigation_polygon_source_geometry_group"]]
+tile_set = ExtResource("4_rdtn0")
 
 [node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1080650706 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("2_6ua3g")
