@@ -26,9 +26,6 @@ repeat_times = 4
 [node name="Sprite2D" type="Sprite2D" parent="Map/DefaultBackground" unique_id=478587894]
 texture = ExtResource("1_10q3y")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" unique_id=2116342513]
-navigation_polygon = SubResource("NavigationPolygon_10q3y")
-
 [node name="TestWallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("2_qi5ai")
 
@@ -42,6 +39,9 @@ tile_set = ExtResource("4_rdtn0")
 tile_set = ExtResource("2_6ua3g")
 
 [node name="SceneChangerAreas" type="Node2D" parent="Map" unique_id=702820013]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" unique_id=2116342513]
+navigation_polygon = SubResource("NavigationPolygon_10q3y")
 
 [node name="CameraComponent" parent="." unique_id=1504718468 node_paths=PackedStringArray("_follow_target") instance=ExtResource("1_est0r")]
 _follow_target = NodePath("../Sapper")

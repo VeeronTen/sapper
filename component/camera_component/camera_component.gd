@@ -28,7 +28,7 @@ func _ready() -> void:
 	_follow_target = _follow_target
 	_priority = _priority
 	
-#fixme довольно неудобно вышло
+#fixme довольно неудобно вышло, брать координаты от экрана а не сапера
 func change_watch_point(point: Vector2) -> void:
 	if not _follow_target: 
 		return
