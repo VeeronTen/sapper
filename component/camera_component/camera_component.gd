@@ -38,7 +38,5 @@ func change_watch_point(point: Vector2) -> void:
 	)
 	var influence_weight: float = clamp(remapped_pos.length() * 2.0, 0.0, 1.0)
 	_phantom_camera_2d.zoom = _initial_zoom.lerp(_initial_zoom * _watch_point_zoom, influence_weight)	
-	# 6. Применяем Смещение (Offset)
-	# Множитель 2 возвращает нормализованные координаты к размеру экрана
 	var target_offset: Vector2 = remapped_pos * _watch_point_offset_in_screen_sizes * screen_size * 2.0
 	_phantom_camera_2d.follow_offset = target_offset / _phantom_camera_2d.zoom

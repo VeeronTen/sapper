@@ -5,6 +5,7 @@ extends Node2D
 #todo Прицел с искривлением пространства
 #todo поправить коллизии для нав агентов
 #todo z индекс в зависимость от y
+#todo тряска приходьбе, особенно по диагонали
 
 @onready var _sapper: Sapper = %Sapper
 @onready var _world_edge_phantom_camera_2d: PhantomCamera2D = $WorldEdge/WorldEdgePhantomCamera2D
