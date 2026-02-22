@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cjv032swxriro" path="res://component/camera_component/camera_component.tscn" id="1_est0r"]
 [ext_resource type="TileSet" uid="uid://cfjcpd5lab1w6" path="res://stage/common/tileset/scenes_tile_set.tres" id="2_6ua3g"]
 [ext_resource type="PackedScene" uid="uid://c37uogod3vrww" path="res://entity/sapper/sapper.tscn" id="2_meiqh"]
-[ext_resource type="TileSet" uid="uid://cqolv8i1fjmpn" path="res://stage/common/tileset/test_walls_tile_set.tres" id="2_qi5ai"]
 [ext_resource type="TileSet" uid="uid://bo2pff3n8npny" path="res://stage/common/tileset/floor_tile_set.tres" id="3_o5pfn"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="3_vcyxt"]
 [ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="4_10q3y"]
@@ -27,22 +26,26 @@ repeat_times = 4
 [node name="Sprite2D" type="Sprite2D" parent="Map/DefaultBackground" unique_id=478587894]
 texture = ExtResource("1_10q3y")
 
-[node name="TestWallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=241192235 groups=["navigation_polygon_source_geometry_group"]]
-tile_set = ExtResource("2_qi5ai")
+[node name="FloorLayers" type="Node2D" parent="Map" unique_id=718399002]
 
-[node name="FloorTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1041314286 groups=["navigation_polygon_source_geometry_group"]]
+[node name="FloorTileMapLayer" type="TileMapLayer" parent="Map/FloorLayers" unique_id=1041314286 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("3_o5pfn")
 
-[node name="WallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1439620131 groups=["navigation_polygon_source_geometry_group"]]
+[node name="WallLayers" type="Node2D" parent="Map" unique_id=1124341980]
+
+[node name="WallTileMapLayer" type="TileMapLayer" parent="Map/WallLayers" unique_id=1439620131 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("4_rdtn0")
 
-[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=310122529 groups=["navigation_polygon_source_geometry_group"]]
-tile_set = ExtResource("2_6ua3g")
+[node name="WallTopLayers" type="Node2D" parent="Map" unique_id=1892209254]
+modulate = Color(1.1638972, 1.1638972, 1.1638972, 1)
+
+[node name="WallTopTileMapLayer" type="TileMapLayer" parent="Map/WallTopLayers" unique_id=904536025 groups=["navigation_polygon_source_geometry_group"]]
+tile_set = ExtResource("3_o5pfn")
 
 [node name="ObjectsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1358493891 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("5_rdtn0")
 
-[node name="ScenesTileMapLayer2" type="TileMapLayer" parent="Map" unique_id=1080650706 groups=["navigation_polygon_source_geometry_group"]]
+[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1080650706 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("2_6ua3g")
 
 [node name="SceneChangerAreas" type="Node2D" parent="Map" unique_id=702820013]

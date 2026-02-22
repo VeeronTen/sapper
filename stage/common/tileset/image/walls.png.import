@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boj8vy8tvj51v"
-path="res://.godot/imported/desert-walls.png-fba6aa9e9e771e51e5a290f1a1c5cb5f.ctex"
+uid="uid://bxwh6vu7t44t"
+path="res://.godot/imported/walls.png-63621005e66eafee5fe9a8aabaecf807.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stage/common/tileset/image/desert-walls.png"
-dest_files=["res://.godot/imported/desert-walls.png-fba6aa9e9e771e51e5a290f1a1c5cb5f.ctex"]
+source_file="res://stage/common/tileset/image/walls.png"
+dest_files=["res://.godot/imported/walls.png-63621005e66eafee5fe9a8aabaecf807.ctex"]
 
 [params]
 
