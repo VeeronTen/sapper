@@ -36,10 +36,13 @@ tile_set = ExtResource("3_o5pfn")
 [node name="WallsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1439620131 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("4_rdtn0")
 
+[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=310122529 groups=["navigation_polygon_source_geometry_group"]]
+tile_set = ExtResource("2_6ua3g")
+
 [node name="ObjectsTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1358493891 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("5_rdtn0")
 
-[node name="ScenesTileMapLayer" type="TileMapLayer" parent="Map" unique_id=1080650706 groups=["navigation_polygon_source_geometry_group"]]
+[node name="ScenesTileMapLayer2" type="TileMapLayer" parent="Map" unique_id=1080650706 groups=["navigation_polygon_source_geometry_group"]]
 tile_set = ExtResource("2_6ua3g")
 
 [node name="SceneChangerAreas" type="Node2D" parent="Map" unique_id=702820013]
