@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SceneSequence" format=3 uid="uid://chh6c3mdhhc2y"]
+
+[ext_resource type="Script" uid="uid://bkn3yslpakvvi" path="res://component/scene/scene_changer/scene_sequence.gd" id="1_6640s"]
+
+[resource]
+script = ExtResource("1_6640s")
+scene_sequence = Array[int]([1, 2, 1])
+metadata/_custom_type_script = "uid://bkn3yslpakvvi"

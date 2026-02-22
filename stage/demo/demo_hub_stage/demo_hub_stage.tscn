@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://t46bj6q6tl45" path="res://component/scene/scene_changer_area/scene_changer_area_component.tscn" id="2_56kxj"]
 [ext_resource type="TileSet" uid="uid://bo2pff3n8npny" path="res://stage/common/tileset/floor_tile_set.tres" id="3_jfo5h"]
 [ext_resource type="PackedScene" uid="uid://cmpu4remk7hc6" path="res://component/scene/transitions/transition_test.tscn" id="3_ly5b0"]
+[ext_resource type="Resource" uid="uid://chh6c3mdhhc2y" path="res://stage/scene_sequence.tres" id="6_c4qo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly5b0"]
 size = Vector2(46, 37)
@@ -46,7 +47,7 @@ tile_map_data = PackedByteArray("AAD9//7/AAAAAAAABAA=")
 [node name="DemoOriginal" parent="Map/SceneChangerAreas" parent_id_path=PackedInt32Array(702820013) index="0" unique_id=418170468 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("2_56kxj")]
 position = Vector2(-72, 7)
 _trigger_object = NodePath("../../../Sapper")
-_change_to = 1
+_change_to = 2
 move_during_transition = Vector2(-18.73, 0)
 _transition_in_scene = ExtResource("3_ly5b0")
 _transition_out_scene = ExtResource("3_ly5b0")
@@ -55,22 +56,22 @@ _transition_out_scene = ExtResource("3_ly5b0")
 position = Vector2(3, 0.5)
 shape = SubResource("RectangleShape2D_ly5b0")
 
-[node name="DemoShaders" parent="Map/SceneChangerAreas" parent_id_path=PackedInt32Array(702820013) index="1" unique_id=1607144424 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("2_56kxj")]
+[node name="DemoNext" parent="Map/SceneChangerAreas" parent_id_path=PackedInt32Array(702820013) index="1" unique_id=1607144424 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("2_56kxj")]
 position = Vector2(113, 7)
 _trigger_object = NodePath("../../../Sapper")
-_change_to = 2
+_scene_sequence = ExtResource("6_c4qo0")
 move_during_transition = Vector2(17.815, 0)
 _transition_in_scene = ExtResource("3_ly5b0")
 _transition_out_scene = ExtResource("3_ly5b0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneChangerAreas/DemoShaders" index="2" unique_id=1195730385]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/SceneChangerAreas/DemoNext" index="2" unique_id=1195730385]
 position = Vector2(3, 0.5)
 shape = SubResource("RectangleShape2D_ly5b0")
 
 [node name="DemoShootingRange" parent="Map/SceneChangerAreas" parent_id_path=PackedInt32Array(702820013) index="2" unique_id=1951995892 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("2_56kxj")]
 position = Vector2(113, -90)
 _trigger_object = NodePath("../../../Sapper")
-_change_to = 3
+_change_to = 4
 move_during_transition = Vector2(17.815, 0)
 _transition_in_scene = ExtResource("3_ly5b0")
 _transition_out_scene = ExtResource("3_ly5b0")
@@ -83,5 +84,5 @@ shape = SubResource("RectangleShape2D_ly5b0")
 navigation_polygon = SubResource("NavigationPolygon_jfo5h")
 
 [connection signal="triggered" from="Map/SceneChangerAreas/DemoOriginal" to="." method="_on_scene_changer_area_component_triggered"]
-[connection signal="triggered" from="Map/SceneChangerAreas/DemoShaders" to="." method="_on_scene_changer_area_component_triggered"]
+[connection signal="triggered" from="Map/SceneChangerAreas/DemoNext" to="." method="_on_scene_changer_area_component_triggered"]
 [connection signal="triggered" from="Map/SceneChangerAreas/DemoShootingRange" to="." method="_on_scene_changer_area_component_triggered"]

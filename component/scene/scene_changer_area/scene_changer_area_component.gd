@@ -12,6 +12,12 @@ signal triggered(component: SceneChangerAreaComponent)
 			_scene_name.text = SceneChangerComponent.Scene.keys()[_change_to]
 		if _scene_changer_component:
 			_scene_changer_component.change_to = _change_to
+@export var _scene_sequence: SceneSequence:
+	set(value):
+		_scene_sequence = value
+		if _scene_changer_component:
+			_scene_changer_component._scene_sequence = _scene_sequence
+
 @export var move_during_transition: Vector2:
 	set(value):
 		move_during_transition = value
@@ -25,6 +31,7 @@ signal triggered(component: SceneChangerAreaComponent)
 #todo текст шакалит
 #todo накладывается навигация со старой сцены
 func _ready() -> void:
+	_scene_sequence = _scene_sequence
 	_change_to = _change_to
 	move_during_transition = move_during_transition
 	if _transition_in_scene:

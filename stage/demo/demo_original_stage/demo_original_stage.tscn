@@ -16,6 +16,7 @@
 [ext_resource type="Shader" uid="uid://dvroe85kopapo" path="res://stage/common/shader/chromatic_aberration.gdshader" id="15_bs7jx"]
 [ext_resource type="PackedScene" uid="uid://t46bj6q6tl45" path="res://component/scene/scene_changer_area/scene_changer_area_component.tscn" id="16_jkwlr"]
 [ext_resource type="PackedScene" uid="uid://cmpu4remk7hc6" path="res://component/scene/transitions/transition_test.tscn" id="17_a8ga4"]
+[ext_resource type="Resource" uid="uid://chh6c3mdhhc2y" path="res://stage/scene_sequence.tres" id="17_kq3wu"]
 [ext_resource type="Script" uid="uid://tf36ugicuoyh" path="res://component/input/input_source_component.gd" id="18_kroc5"]
 [ext_resource type="PackedScene" uid="uid://cjv032swxriro" path="res://component/camera_component/camera_component.tscn" id="19_5e0ey"]
 [ext_resource type="Script" uid="uid://r30p1rnme8hn" path="res://entity/sapper/input/sapper_input_mapper.gd" id="19_etew6"]
@@ -231,11 +232,26 @@ texture = SubResource("PlaceholderTexture2D_y18u6")
 unique_name_in_owner = true
 position = Vector2(-65, -57)
 _trigger_object = NodePath("../Sapper")
+_change_to = 1
 move_during_transition = Vector2(-20, 0)
 _transition_in_scene = ExtResource("17_a8ga4")
 _transition_out_scene = ExtResource("17_a8ga4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerAreaComponent" unique_id=322458201]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_g02l8")
+debug_color = Color(0.6987125, 0.47562742, 0.36706594, 0.41960785)
+
+[node name="SceneChangerAreaComponent2" parent="." unique_id=1904900799 node_paths=PackedStringArray("_trigger_object") instance=ExtResource("16_jkwlr")]
+unique_name_in_owner = true
+position = Vector2(-65, -85)
+_trigger_object = NodePath("../Sapper")
+_scene_sequence = ExtResource("17_kq3wu")
+move_during_transition = Vector2(-20, 0)
+_transition_in_scene = ExtResource("17_a8ga4")
+_transition_out_scene = ExtResource("17_a8ga4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChangerAreaComponent2" unique_id=630410210]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_g02l8")
 debug_color = Color(0.6987125, 0.47562742, 0.36706594, 0.41960785)
@@ -259,4 +275,5 @@ _follow_target = NodePath("../Sapper")
 [connection signal="body_exited" from="WorldEdge/ZoomOutArea" to="." method="_on_zoom_out_area_body_exited"]
 [connection signal="timeout" from="SpawnDummyTimer" to="." method="_on_spawn_dummy_timer_timeout"]
 [connection signal="triggered" from="SceneChangerAreaComponent" to="." method="_on_scene_changer_area_component_triggered"]
+[connection signal="triggered" from="SceneChangerAreaComponent2" to="." method="_on_scene_changer_area_component_triggered"]
 [connection signal="pointer_position_changed" from="Input/InputSourceComponent" to="." method="_on_input_source_component_pointer_position_changed"]
